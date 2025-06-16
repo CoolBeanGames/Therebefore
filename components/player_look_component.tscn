@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcnaql1byjsi6"]
+
+[ext_resource type="Script" uid="uid://bntp6l6y7f1n0" path="res://components/scripts/player_look_component.gd" id="1_l03f6"]
+
+[node name="PlayerLookComponent" type="Node"]
+script = ExtResource("1_l03f6")
+invert_y = true
