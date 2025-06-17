@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hw3s6042icd6"]
+
+[ext_resource type="Script" uid="uid://cuhcwkk4551wu" path="res://prefabs/Scripts/audio_player.gd" id="1_y41ra"]
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D"]
+script = ExtResource("1_y41ra")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

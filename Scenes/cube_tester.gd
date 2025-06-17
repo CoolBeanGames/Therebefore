@@ -3,6 +3,8 @@ extends CSGBox3D
 var state : int = 0
 @export var mats : Array[Material]
 @export var lig : OmniLight3D
+@export var AudioClip : AudioStream
+@export var Audio : AudioPlayer
 
 func _ready() -> void:
 	set_mat(mats[0])
@@ -16,7 +18,11 @@ func _on_interactive_on_interact() -> void:
 	set_mat(mats[state])
 	lig.light_energy = 2 * state
 	print(state)
+	SubtitledAudioPlayer.start_playing(load("res://Data/test_machine_1.tres"))
 	pass # Replace with function body.
+
+func AudioFinished():
+	Audio = null
 
 func _process(delta: float) -> void:
 	if state == 1:

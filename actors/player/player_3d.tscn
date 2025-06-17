@@ -37,5 +37,6 @@ mouse_mode = 2
 [node name="PlayerMovementComponent" parent="Components" node_paths=PackedStringArray("player_body") instance=ExtResource("2_3sk25")]
 player_body = NodePath("../..")
 move_speed = 1000.0
+gravity = 0.0
 
 [connection signal="camera_moved" from="Components/PlayerLookComponent" to="Camera3D/player_interaction" method="camera_moved"]

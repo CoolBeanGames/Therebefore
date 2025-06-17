@@ -1,16 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsewyta3c4kq1"]
+[gd_scene load_steps=11 format=3 uid="uid://bsewyta3c4kq1"]
 
 [ext_resource type="PackedScene" uid="uid://dvld7irptqqd2" path="res://actors/player/player_3d.tscn" id="1_8ktb3"]
+[ext_resource type="Script" uid="uid://dwh2pde3ixyf6" path="res://Scripts/game_base.gd" id="1_xqm0q"]
 [ext_resource type="Script" uid="uid://vst3l01axc4v" path="res://Scenes/cube_tester.gd" id="2_op4vg"]
 [ext_resource type="Material" uid="uid://5q5gow8rtowo" path="res://materials/test_cube_off.tres" id="3_fqtgw"]
 [ext_resource type="PackedScene" uid="uid://blj3dygxwrgqq" path="res://components/interactive_toggle.tscn" id="3_op4vg"]
 [ext_resource type="Material" uid="uid://fw2op87e74h" path="res://materials/test_cube_on.tres" id="4_m357k"]
 [ext_resource type="PackedScene" uid="uid://b0bft7r4gmpsp" path="res://UI_Components/interaction_text.tscn" id="6_m357k"]
+[ext_resource type="AudioStream" uid="uid://gf2lvdx1fd34" path="res://Vocals/testAudioRecording.mp3" id="6_sx1ts"]
+[ext_resource type="PackedScene" uid="uid://bo4skswhjvykn" path="res://UI_Components/subtitle_display.tscn" id="9_coqrb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nvvv1"]
 size = Vector3(125.557, 0.608798, 129.571)
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" node_paths=PackedStringArray("inactiveAudioPlayers", "activeAudioPlayers")]
+script = ExtResource("1_xqm0q")
+inactiveAudioPlayers = NodePath("AudioPlayers/Inactive")
+activeAudioPlayers = NodePath("AudioPlayers/Active")
 
 [node name="Player3D" parent="." instance=ExtResource("1_8ktb3")]
 
@@ -20,6 +26,7 @@ layers = 2
 script = ExtResource("2_op4vg")
 mats = Array[Material]([ExtResource("3_fqtgw"), ExtResource("4_m357k")])
 lig = NodePath("OmniLight3D")
+AudioClip = ExtResource("6_sx1ts")
 
 [node name="interactive_toggle" parent="test_interaction" node_paths=PackedStringArray("parent") instance=ExtResource("3_op4vg")]
 display_text_on = "turn off weird light"
@@ -49,9 +56,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6178, 0, -0.0679817)
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51207, 0, -0.0679817)
 
-[node name="Node" type="Node" parent="."]
+[node name="UI" type="Node" parent="."]
 
-[node name="interaction_text" parent="Node" instance=ExtResource("6_m357k")]
+[node name="interaction_text" parent="UI" instance=ExtResource("6_m357k")]
+
+[node name="SubtitleDisplay" parent="UI" instance=ExtResource("9_coqrb")]
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="Inactive" type="Node" parent="AudioPlayers"]
+
+[node name="Active" type="Node" parent="AudioPlayers"]
 
 [connection signal="on_interact" from="test_interaction/interactive_toggle" to="test_interaction" method="_on_interactive_on_interact"]
 
