@@ -30,7 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_update_rot()
 		_clamp_y()
 		_apply_rot()
-		camera_moved.emit(input)
+		camera_moved.emit()
 
 func _update_rot():
 	rot_x += input.y * (look_speed * delta)

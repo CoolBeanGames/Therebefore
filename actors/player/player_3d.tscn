@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvld7irptqqd2"]
+[gd_scene load_steps=6 format=3 uid="uid://dvld7irptqqd2"]
 
 [ext_resource type="Script" uid="uid://v5h3ir1mfttl" path="res://actors/player/Scripts/raycaster.gd" id="1_3sk25"]
+[ext_resource type="Script" uid="uid://c3lj5d51fov65" path="res://actors/player/Scripts/player_3d.gd" id="1_dcmhy"]
 [ext_resource type="PackedScene" uid="uid://dcnaql1byjsi6" path="res://components/player_look_component.tscn" id="1_pgq8o"]
 [ext_resource type="PackedScene" uid="uid://37x61jytihl7" path="res://components/player_movement_component.tscn" id="2_3sk25"]
 
@@ -8,6 +9,7 @@
 
 [node name="Player3D" type="CharacterBody3D"]
 collision_mask = 0
+script = ExtResource("1_dcmhy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rqfr8")
@@ -15,8 +17,9 @@ shape = SubResource("CapsuleShape3D_rqfr8")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.650707, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+[node name="player_interaction" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -2)
+collision_mask = 2
 debug_shape_custom_color = Color(1, 0.607843, 0, 1)
 debug_shape_thickness = 5
 script = ExtResource("1_3sk25")
@@ -31,6 +34,8 @@ player_camera = NodePath("../../Camera3D")
 look_speed = 10.0
 mouse_mode = 2
 
-[node name="PlayerMovementComponent" parent="Components" instance=ExtResource("2_3sk25")]
+[node name="PlayerMovementComponent" parent="Components" node_paths=PackedStringArray("player_body") instance=ExtResource("2_3sk25")]
+player_body = NodePath("../..")
+move_speed = 1000.0
 
-[connection signal="camera_moved" from="Components/PlayerLookComponent" to="Camera3D/RayCast3D" method="camera_moved"]
+[connection signal="camera_moved" from="Components/PlayerLookComponent" to="Camera3D/player_interaction" method="camera_moved"]

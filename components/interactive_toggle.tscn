@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://blj3dygxwrgqq"]
+
+[ext_resource type="Script" uid="uid://cdxssukydkxfs" path="res://components/scripts/interactive_toggle.gd" id="1_ma1eh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ma1eh"]
+
+[node name="interactive_toggle" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_ma1eh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ma1eh")
+debug_color = Color(0.932884, 0.245237, 0.220902, 0.42)
