@@ -1,3 +1,108 @@
-[gd_scene format=3 uid="uid://bltvywq2knqk5"]
+[gd_scene load_steps=3 format=3 uid="uid://bltvywq2knqk5"]
 
-[node name="Note_UI" type="CanvasLayer"]
+[ext_resource type="Texture2D" uid="uid://dvd7ob51oyn02" path="res://textures/note.jpg" id="1_2dssb"]
+[ext_resource type="Script" uid="uid://cdasp8vj601yd" path="res://UI_Components/Scripts/note_ui.gd" id="1_rt0e4"]
+
+[node name="Note_UI" type="CanvasLayer" node_paths=PackedStringArray("darkness_panel", "note_texture", "text", "Q_prompt", "E_prompt", "interaction_timer")]
+follow_viewport_enabled = true
+script = ExtResource("1_rt0e4")
+darkness_panel = NodePath("darkness_panel")
+note_texture = NodePath("CenterContainer/MarginContainer/Note")
+text = NodePath("note_text")
+Q_prompt = NodePath("prompt_box/Q_Prompt")
+E_prompt = NodePath("prompt_box/E_Prompt")
+interaction_timer = NodePath("interaction_timer")
+
+[node name="backing_darkness" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="HBoxContainer" parent="."]
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 100
+
+[node name="Note" type="TextureRect" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_2dssb")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="darkness_panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="note_text" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Always say thank you
+It's the greatest gift 
+you can give someone
+ 				           	-Maya Angelou
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="prompt_box" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Q_Prompt" type="Label" parent="prompt_box"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "[Q] Close"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Label" parent="prompt_box"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "                     "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="E_Prompt" type="Label" parent="prompt_box"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "[E] Read Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="interaction_timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="interaction_timer" to="." method="on_timer_finish"]

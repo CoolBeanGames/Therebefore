@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsewyta3c4kq1"]
+[gd_scene load_steps=15 format=3 uid="uid://bsewyta3c4kq1"]
 
 [ext_resource type="PackedScene" uid="uid://dvld7irptqqd2" path="res://actors/player/player_3d.tscn" id="1_8ktb3"]
 [ext_resource type="Script" uid="uid://dwh2pde3ixyf6" path="res://Scripts/game_base.gd" id="1_xqm0q"]
@@ -8,7 +8,11 @@
 [ext_resource type="Material" uid="uid://fw2op87e74h" path="res://materials/test_cube_on.tres" id="4_m357k"]
 [ext_resource type="PackedScene" uid="uid://b0bft7r4gmpsp" path="res://UI_Components/interaction_text.tscn" id="6_m357k"]
 [ext_resource type="AudioStream" uid="uid://gf2lvdx1fd34" path="res://Vocals/testAudioRecording.mp3" id="6_sx1ts"]
+[ext_resource type="PackedScene" uid="uid://xwsrys6h3ath" path="res://components/note_component.tscn" id="8_hbyyj"]
 [ext_resource type="PackedScene" uid="uid://bo4skswhjvykn" path="res://UI_Components/subtitle_display.tscn" id="9_coqrb"]
+[ext_resource type="Resource" uid="uid://dl003ijj0lcce" path="res://Data/test_note.tres" id="9_yufje"]
+[ext_resource type="AudioStream" uid="uid://j37rys4xvwdc" path="res://Vocals/End_machine_line.mp3" id="10_coqrb"]
+[ext_resource type="PackedScene" uid="uid://bltvywq2knqk5" path="res://UI_Components/note_ui.tscn" id="10_trhqq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nvvv1"]
 size = Vector3(125.557, 0.608798, 129.571)
@@ -37,8 +41,13 @@ display_text = "toggle rotating light"
 [node name="OmniLight3D" type="OmniLight3D" parent="test_interaction"]
 light_color = Color(1, 0.0705882, 0, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.01435)
+[node name="Note_box" type="CSGBox3D" parent="."]
+transform = Transform3D(0.660941, 0, 0, 0, 0.0356989, 0.565485, 0, -0.0244765, 0.824758, 0, 0.392213, 3.01435)
+
+[node name="Note_Component" parent="Note_box" node_paths=PackedStringArray("parent") instance=ExtResource("8_hbyyj")]
+note_to_pickup = ExtResource("9_yufje")
+parent = NodePath("..")
+display_text = "read odd note"
 
 [node name="test_ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.430666, -1.08193, 0.447548)
@@ -62,12 +71,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51207, 0, -0.0679817)
 
 [node name="SubtitleDisplay" parent="UI" instance=ExtResource("9_coqrb")]
 
+[node name="Note_UI" parent="UI" instance=ExtResource("10_trhqq")]
+
 [node name="AudioPlayers" type="Node" parent="."]
 
 [node name="Inactive" type="Node" parent="AudioPlayers"]
 
 [node name="Active" type="Node" parent="AudioPlayers"]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_coqrb")
+bus = &"Vocals"
+
 [connection signal="on_interact" from="test_interaction/interactive_toggle" to="test_interaction" method="_on_interactive_on_interact"]
 
 [editable path="test_interaction/interactive_toggle"]
+[editable path="Note_box/Note_Component"]

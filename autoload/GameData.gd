@@ -14,6 +14,7 @@ func is_input_locked() -> bool:
 	return input_paused
 
 func lock_input(locking_object : Node):
+	print("locking input")
 	input_lockers[locking_object.name] = locking_object
 	input_paused = true
 

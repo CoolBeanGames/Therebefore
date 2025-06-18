@@ -17,9 +17,7 @@ func start_playing(group : subtitled_audio_group):
 		index=0
 		current_audio = current_group.lines[index]
 		#setup the player
-		current_player = AudioManager.playSound(current_audio.Audio)
-		subtitles.text = current_audio.Text
-		current_player.stream_finished.connect(audio_finished.bind())
+		play_audio()
 
 func start_playing_positional(group : subtitled_audio_group , position : Vector3):
 	if !is_playing and group.lines.size() > 0:
@@ -30,10 +28,7 @@ func start_playing_positional(group : subtitled_audio_group , position : Vector3
 		index=0
 		current_audio = current_group.lines[index]
 		#setup the player
-		current_player = AudioManager.playPositionalSound(current_audio.Audio,position)
-		subtitles.text = current_audio.Text
-		current_player.stream_finished.connect(audio_finished.bind())
-
+		play_audio_positional(position)
 
 func audio_finished():
 	#check if the lines are finished
@@ -44,11 +39,9 @@ func audio_finished():
 	#otherwise load the next line
 	current_audio = current_group.lines[index]
 	#setup the player
-	current_player = AudioManager.playSound(current_audio.Audio)
-	subtitles.text = current_audio.Text
-	current_player.stream_finished.connect(audio_finished.bind())
+	play_audio()
 
-func audio_finished_positional():
+func audio_finished_positional(position : Vector3):
 		#check if the lines are finished
 	index += 1
 	if index >= current_group.lines.size():
@@ -57,9 +50,7 @@ func audio_finished_positional():
 	#otherwise load the next line
 	current_audio = current_group.lines[index]
 	#setup the player
-	current_player = AudioManager.playSound(current_audio.Audio)
-	subtitles.text = current_audio.Text
-	current_player.stream_finished.connect(audio_finished.bind())
+	play_audio_positional(position)
 
 func finished_player():
 	subtitles.text = ""
@@ -69,3 +60,20 @@ func finished_player():
 	is_playing=false
 	current_player=null
 	pass
+
+func play_audio():
+	if current_player!=null and current_player.stream_finished.is_connected(audio_finished):
+		current_player.stream_finished.disconnect(audio_finished)
+	current_player = AudioManager.playSound(current_audio.Audio,current_audio.Bus)
+	subtitles.text = current_audio.Text
+	current_player.stream_finished.connect(audio_finished.bind())
+
+func play_audio_positional(position : Vector3):
+	if current_player!=null and current_player.stream_finished.is_connected(audio_finished_positional):
+		current_player.stream_finished.disconnect(audio_finished_positional)
+	if !current_audio.skip_position:
+		current_player = AudioManager.playPositionalSound(current_audio.Audio,position,current_audio.Bus)
+	else:
+		current_player = AudioManager.playSound(current_audio.Audio,current_audio.Bus)
+	subtitles.text = current_audio.Text
+	current_player.stream_finished.connect(audio_finished_positional.bind(position))

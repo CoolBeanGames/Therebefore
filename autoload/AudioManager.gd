@@ -1,6 +1,8 @@
 extends Node
 class_name audio_manager
 
+enum audio_bus{Vocals,SoundEffects,Music,PhoneVocals}
+
 @export var is_initialized : bool = false
 @export var Inactive_Parent : Node
 @export var Active_Parent : Node
@@ -33,7 +35,7 @@ func spawnPlayer(index : int) -> AudioPlayer:
 	InactivePlayers.append(player)
 	return player
 
-func playSound(clip : AudioStream) -> AudioPlayer:
+func playSound(clip : AudioStream,bus : audio_bus = audio_bus.SoundEffects) -> AudioPlayer:
 	if InactivePlayers.size() == 0:
 		return null
 	#get the first player
@@ -49,15 +51,20 @@ func playSound(clip : AudioStream) -> AudioPlayer:
 	Audio.stream = clip
 	Audio.attenuation_model = AudioStreamPlayer3D.ATTENUATION_DISABLED
 	
+	#set the bus
+	Audio.bus = audio_bus.keys()[bus]
+	print("bus set to ", Audio.bus, " attempted ", audio_bus.keys()[bus])
+	
 	#connect stream finished sound
-	Audio.stream_finished.connect(pushBack.bind(Audio))
+	if !Audio.stream_finished.is_connected(pushBack):
+		Audio.stream_finished.connect(pushBack.bind(Audio))
 	
 	#start playing
 	Audio.play()	
 	
 	return Audio
 
-func playPositionalSound(clip : AudioStream, position : Vector3)-> AudioPlayer:
+func playPositionalSound(clip : AudioStream, position : Vector3,bus : audio_bus = audio_bus.SoundEffects)-> AudioPlayer:
 	if InactivePlayers.size() == 0:
 		return null
 	#get the first player
@@ -74,8 +81,12 @@ func playPositionalSound(clip : AudioStream, position : Vector3)-> AudioPlayer:
 	Audio.attenuation_model = AudioStreamPlayer3D.ATTENUATION_INVERSE_DISTANCE
 	Audio.position = position
 	
+	#set the bus
+	Audio.bus = str(bus)
+	
 	#connect stream finished sound
-	Audio.stream_finished.connect(pushBack.bind(Audio))
+	if !Audio.stream_finished.is_connected(pushBack):
+		Audio.stream_finished.connect(pushBack.bind(Audio))
 	
 	#start playing
 	Audio.play()	

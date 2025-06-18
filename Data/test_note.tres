@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Note" load_steps=4 format=3 uid="uid://dl003ijj0lcce"]
+
+[ext_resource type="AudioStream" uid="uid://1rtqwir1s15i" path="res://Vocals/note_audio.mp3" id="1_1bvpq"]
+[ext_resource type="Texture2D" uid="uid://dvd7ob51oyn02" path="res://textures/note.jpg" id="1_booxo"]
+[ext_resource type="Script" uid="uid://dj88ee0tenkp1" path="res://Resources/Note.gd" id="1_jpik1"]
+
+[resource]
+script = ExtResource("1_jpik1")
+note_text = "Always say thank you
+It's the greatest gift 
+you can give someone
+ 				           	-Maya Angelou"
+note_texture = ExtResource("1_booxo")
+play_audio = false
+audio = ExtResource("1_1bvpq")
+metadata/_custom_type_script = "uid://dj88ee0tenkp1"

@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 	delta = _delta
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and !GameData.is_input_locked():
 		input = event.screen_relative
 		_update_rot()
 		_clamp_y()

@@ -28,8 +28,9 @@ func move():
 	player_body.move_and_slide()
 
 func _process(_delta: float) -> void:
-	delta = _delta
-	update_input_keyboard()
-	if input.length() > 0.1:
-		set_velocity()
-		move()
+	if !GameData.is_input_locked():
+		delta = _delta
+		update_input_keyboard()
+		if input.length() > 0.1:
+			set_velocity()
+			move()

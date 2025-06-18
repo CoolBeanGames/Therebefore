@@ -1,0 +1,73 @@
+[gd_resource type="AudioBusLayout" load_steps=7 format=3 uid="uid://e0v7gy3eck8n"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+room_size = 0.02
+damping = 1.0
+hipass = 0.92
+dry = 0.72
+wet = 0.35
+
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_j3pel"]
+resource_name = "Filter"
+cutoff_hz = 10626.0
+resonance = 0.16
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+mode = 1
+keep_hf_hz = 19643.0
+drive = 0.88
+post_gain = 12.97
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
+resource_name = "Reverb"
+room_size = 0.02
+damping = 1.0
+hipass = 0.92
+dry = 0.72
+wet = 0.35
+
+[resource]
+bus/1/name = &"SoundEffects"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -3.41317
+bus/1/send = &"Master"
+bus/2/name = &"Music"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/3/name = &"Vocals"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 6.02
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
+bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectFilter_j3pel")
+bus/3/effect/1/enabled = true
+bus/4/name = &"PhoneVocals"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 6.02
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/4/effect/1/enabled = true
+bus/4/effect/2/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/4/effect/2/enabled = true
+bus/4/effect/3/effect = SubResource("AudioEffectReverb_g28q7")
+bus/4/effect/3/enabled = true
