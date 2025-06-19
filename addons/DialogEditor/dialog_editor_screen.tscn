@@ -1,0 +1,173 @@
+[gd_scene load_steps=4 format=3 uid="uid://deokutxu0no37"]
+
+[ext_resource type="Script" uid="uid://b0bobwbc1xpw5" path="res://addons/DialogEditor/dialog_editor_screen.gd" id="1_52fdx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52fdx"]
+bg_color = Color(0.201185, 0.214956, 0.293544, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lv6s"]
+bg_color = Color(0.107811, 0.216186, 0.417135, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+
+[node name="DialogEditorScreen" type="MarginContainer" node_paths=PackedStringArray("groups_item_list")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_52fdx")
+groups_item_list = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/group_item_list")
+
+[node name="parent_container" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="top_bar" type="HBoxContainer" parent="parent_container"]
+custom_minimum_size = Vector2(0, 37.219)
+layout_mode = 2
+
+[node name="reload_button" type="Button" parent="parent_container/top_bar"]
+layout_mode = 2
+text = "reload data"
+
+[node name="save_all_button" type="Button" parent="parent_container/top_bar"]
+layout_mode = 2
+text = "save all"
+
+[node name="delete_selected_button" type="Button" parent="parent_container/top_bar"]
+layout_mode = 2
+text = "delete selected"
+
+[node name="content" type="HBoxContainer" parent="parent_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="parent_container/content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="parent_container/content/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_52fdx")
+
+[node name="MarginContainer" type="MarginContainer" parent="parent_container/content/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="content_organizer" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="groups_content" type="VBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="groups_label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Groups"
+horizontal_alignment = 1
+
+[node name="group_item_list" type="ItemList" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1lv6s")
+
+[node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content"]
+layout_mode = 2
+text = "Add new Group"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="create_new_group" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="new_group_name_text" type="LineEdit" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/MarginContainer/create_new_group"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="add_new_group" type="Button" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/MarginContainer/create_new_group"]
+layout_mode = 2
+text = "Add"
+
+[node name="lines_content" type="VBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lines_label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Lines"
+horizontal_alignment = 1
+
+[node name="line_item_list" type="ItemList" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1lv6s")
+
+[node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content"]
+layout_mode = 2
+text = "Add new Line"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="create_new_line" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="new_line_name_text" type="LineEdit" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/MarginContainer/create_new_line"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="add_new_line" type="Button" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/MarginContainer/create_new_line"]
+layout_mode = 2
+text = "Add"
+
+[node name="data" type="VBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="data_label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Data"
+horizontal_alignment = 1

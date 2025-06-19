@@ -29,6 +29,10 @@ SubtitledAudioPlayer="*res://autoload/SubtitledAudioPlayer.gd"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/DialogEditor/plugin.cfg")
+
 [input]
 
 up={
