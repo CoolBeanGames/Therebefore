@@ -31,7 +31,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/DialogEditor/plugin.cfg")
+enabled=PackedStringArray("res://addons/DialogEditor/plugin.cfg", "res://addons/Notes/plugin.cfg")
 
 [input]
 

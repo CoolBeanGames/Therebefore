@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Note" load_steps=4 format=3 uid="uid://o4jurxxlwkk0"]
+
+[ext_resource type="Texture2D" uid="uid://dvd7ob51oyn02" path="res://textures/note.jpg" id="1_ogg7t"]
+[ext_resource type="Script" uid="uid://dj88ee0tenkp1" path="res://Resources/Note.gd" id="1_uslml"]
+[ext_resource type="AudioStream" uid="uid://bxv6widls0c86" path="res://Vocals/James_Line_3.mp3" id="1_yt5cs"]
+
+[resource]
+resource_name = "note"
+script = ExtResource("1_uslml")
+note_text = "this is a sample note, hopefully this works correctly"
+note_texture = ExtResource("1_ogg7t")
+play_audio = false
+audio = ExtResource("1_yt5cs")

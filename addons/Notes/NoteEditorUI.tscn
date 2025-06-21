@@ -1,0 +1,183 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtofca1xua3ae"]
+
+[ext_resource type="Script" uid="uid://b3gc8yduwhttd" path="res://addons/Notes/note_editor_ui.gd" id="1_rx3xh"]
+[ext_resource type="StyleBox" uid="uid://ck5f88c5kxqu1" path="res://addons/DialogEditor/panel.tres" id="2_cmse1"]
+
+[node name="NoteEditorUi" type="MarginContainer" node_paths=PackedStringArray("note_item_list", "preview_texture", "new_note_text", "image_picker_parent", "note_text", "audio_contrainer_node", "use_audio")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_rx3xh")
+note_item_list = NodePath("parent_container/content/content_organizer/notes_content/note_item_list")
+preview_texture = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_image_preview/CenterContainer/TextureRect")
+new_note_text = NodePath("parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note/new_note_name_text")
+image_picker_parent = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_image_selection")
+note_text = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_text/TextEdit")
+audio_contrainer_node = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_audio_selection")
+use_audio = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/play_audio_check/CenterContainer/CheckBox")
+
+[node name="parent_container" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="top_bar" type="HBoxContainer" parent="parent_container"]
+custom_minimum_size = Vector2(0, 37.219)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="reload_button" type="Button" parent="parent_container/top_bar"]
+layout_mode = 2
+text = "reload data"
+
+[node name="save_all_button" type="Button" parent="parent_container/top_bar"]
+layout_mode = 2
+text = "save all"
+
+[node name="delete_selected_button" type="Button" parent="parent_container/top_bar"]
+layout_mode = 2
+text = "delete selected"
+
+[node name="content" type="HBoxContainer" parent="parent_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="content_organizer" type="HBoxContainer" parent="parent_container/content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="notes_content" type="VBoxContainer" parent="parent_container/content/content_organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="notes_label" type="Label" parent="parent_container/content/content_organizer/notes_content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Notes"
+horizontal_alignment = 1
+
+[node name="note_item_list" type="ItemList" parent="parent_container/content/content_organizer/notes_content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_cmse1")
+
+[node name="Label" type="Label" parent="parent_container/content/content_organizer/notes_content"]
+layout_mode = 2
+text = "Add new Note"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="parent_container/content/content_organizer/notes_content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="create_new_note" type="HBoxContainer" parent="parent_container/content/content_organizer/notes_content/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="new_note_name_text" type="LineEdit" parent="parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="add_new_note" type="Button" parent="parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note"]
+layout_mode = 2
+text = "Add"
+
+[node name="data" type="VBoxContainer" parent="parent_container/content/content_organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="data_label" type="Label" parent="parent_container/content/content_organizer/data"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text = "Data"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="parent_container/content/content_organizer/data"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_cmse1")
+
+[node name="MarginContainer" type="MarginContainer" parent="parent_container/content/content_organizer/data/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="note_image_selection" type="HBoxContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_image_selection"]
+layout_mode = 2
+text = "Image:"
+
+[node name="note_audio_selection" type="HBoxContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_audio_selection"]
+layout_mode = 2
+text = "Audio:"
+
+[node name="play_audio_check" type="HBoxContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/play_audio_check"]
+layout_mode = 2
+text = "Play Audio:"
+
+[node name="CenterContainer" type="CenterContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/play_audio_check"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/play_audio_check/CenterContainer"]
+layout_mode = 2
+
+[node name="note_text" type="HBoxContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_text"]
+layout_mode = 2
+text = "Text:"
+
+[node name="TextEdit" type="TextEdit" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_text"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Preview:"
+horizontal_alignment = 1
+
+[node name="note_image_preview" type="HBoxContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_image_preview"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_image_preview/CenterContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 2
+stretch_mode = 4
+
+[connection signal="button_down" from="parent_container/top_bar/reload_button" to="." method="reload"]
+[connection signal="empty_clicked" from="parent_container/content/content_organizer/notes_content/note_item_list" to="." method="clear_selection"]
+[connection signal="item_selected" from="parent_container/content/content_organizer/notes_content/note_item_list" to="." method="note_selected"]
+[connection signal="text_submitted" from="parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note/new_note_name_text" to="." method="add_new_note_enter_pressed"]
+[connection signal="button_down" from="parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note/add_new_note" to="." method="add_new_note"]
+[connection signal="toggled" from="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/play_audio_check/CenterContainer/CheckBox" to="." method="checkbox_pressed"]
+[connection signal="focus_exited" from="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_text/TextEdit" to="." method="texted_edited"]
