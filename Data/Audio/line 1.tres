@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="subtitled_audio" load_steps=3 format=3 uid="uid://c7qarnvgqgoa7"]
+
+[ext_resource type="Script" uid="uid://bbtgup22pegu4" path="res://Resources/Subtitled_Audio.gd" id="1_dl50b"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_dl50b"]
+
+[resource]
+resource_name = "line 1"
+script = ExtResource("1_dl50b")
+Audio = SubResource("AudioStreamGenerator_dl50b")
+Text = "hey this is some text here is some more"
+Bus = 3
+skip_position = false

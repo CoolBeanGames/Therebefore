@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="subtitled_audio" load_steps=2 format=3 uid="uid://c5s7s15oery2g"]
+
+[ext_resource type="Script" uid="uid://bbtgup22pegu4" path="res://Resources/Subtitled_Audio.gd" id="1_pctp7"]
+
+[resource]
+resource_name = "line 5"
+script = ExtResource("1_pctp7")
+Text = ""
+Bus = 0
+skip_position = false

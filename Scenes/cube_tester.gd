@@ -18,7 +18,7 @@ func _on_interactive_on_interact() -> void:
 	set_mat(mats[state])
 	lig.light_energy = 2 * state
 	print(state)
-	SubtitledAudioPlayer.start_playing_positional(load("res://Data/test_machine_1.tres"),position)
+	SubtitledAudioPlayer.start_playing_positional(load("res://Data/AudioGroups/conv ersation.tres"),position)
 
 func AudioFinished():
 	Audio = null

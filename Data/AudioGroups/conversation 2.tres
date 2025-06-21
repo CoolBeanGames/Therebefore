@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="subtitled_audio_group" load_steps=3 format=3 uid="uid://bbj11n3t00jtp"]
+
+[ext_resource type="Script" uid="uid://bbtgup22pegu4" path="res://Resources/Subtitled_Audio.gd" id="1_1sf2b"]
+[ext_resource type="Script" uid="uid://6q18ilv627ft" path="res://Resources/Subtitled_Audio_Group.gd" id="2_beqhj"]
+
+[resource]
+resource_name = "conversation 2"
+script = ExtResource("2_beqhj")
+lines = Array[ExtResource("1_1sf2b")]([])

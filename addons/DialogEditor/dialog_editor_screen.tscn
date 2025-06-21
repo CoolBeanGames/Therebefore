@@ -1,24 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://deokutxu0no37"]
 
 [ext_resource type="Script" uid="uid://b0bobwbc1xpw5" path="res://addons/DialogEditor/dialog_editor_screen.gd" id="1_52fdx"]
+[ext_resource type="StyleBox" uid="uid://ck5f88c5kxqu1" path="res://addons/DialogEditor/panel.tres" id="2_k68rl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52fdx"]
 bg_color = Color(0.201185, 0.214956, 0.293544, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lv6s"]
-bg_color = Color(0.107811, 0.216186, 0.417135, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 2
-
-[node name="DialogEditorScreen" type="MarginContainer" node_paths=PackedStringArray("groups_item_list")]
+[node name="DialogEditorScreen" type="MarginContainer" node_paths=PackedStringArray("new_group_name", "new_line_name", "audio_contrainer_node", "line_text", "bus_field", "check_box", "group_item_list", "line_item_list")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,7 +19,14 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_52fdx")
-groups_item_list = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/group_item_list")
+new_group_name = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/MarginContainer/create_new_group/new_group_name_text")
+new_line_name = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/MarginContainer/create_new_line/new_line_name_text")
+audio_contrainer_node = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/Audio_container")
+line_text = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/Text_Container/TextEdit")
+bus_field = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/BusContainer/OptionButton")
+check_box = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/SkipPosition/CenterContainer/CheckBox")
+group_item_list = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/group_item_list")
+line_item_list = NodePath("parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/line_item_list")
 
 [node name="parent_container" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -95,7 +90,7 @@ horizontal_alignment = 1
 [node name="group_item_list" type="ItemList" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_1lv6s")
+theme_override_styles/panel = ExtResource("2_k68rl")
 
 [node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content"]
 layout_mode = 2
@@ -135,7 +130,7 @@ horizontal_alignment = 1
 [node name="line_item_list" type="ItemList" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_1lv6s")
+theme_override_styles/panel = ExtResource("2_k68rl")
 
 [node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content"]
 layout_mode = 2
@@ -171,3 +166,84 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Data"
 horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_k68rl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer"]
+layout_mode = 2
+
+[node name="Audio_container" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/Audio_container"]
+layout_mode = 2
+text = "Audio File:"
+
+[node name="Text_Container" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/Text_Container"]
+layout_mode = 2
+text = "Test Display:"
+
+[node name="TextEdit" type="TextEdit" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/Text_Container"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BusContainer" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/BusContainer"]
+layout_mode = 2
+text = "Audio Bus:"
+
+[node name="OptionButton" type="OptionButton" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/BusContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkipPosition" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/SkipPosition"]
+layout_mode = 2
+text = "Global Audio:"
+
+[node name="CenterContainer" type="CenterContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/SkipPosition"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/SkipPosition/CenterContainer"]
+layout_mode = 2
+
+[node name="move_up_move_down" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="move_up" type="Button" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/move_up_move_down"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Up"
+
+[node name="move_down" type="Button" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/move_up_move_down"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Down"
+
+[connection signal="button_down" from="parent_container/top_bar/reload_button" to="." method="reload_all"]
+[connection signal="button_down" from="parent_container/top_bar/save_all_button" to="." method="save_all"]
+[connection signal="button_down" from="parent_container/top_bar/delete_selected_button" to="." method="delete_selected"]
+[connection signal="empty_clicked" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/group_item_list" to="." method="group_empty_clicked"]
+[connection signal="item_selected" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/group_item_list" to="." method="group_selected"]
+[connection signal="text_submitted" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/MarginContainer/create_new_group/new_group_name_text" to="." method="enter_pressed_on_group_name"]
+[connection signal="button_down" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/MarginContainer/create_new_group/add_new_group" to="." method="add_new_group"]
+[connection signal="empty_clicked" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/line_item_list" to="." method="line_empty_clicked"]
+[connection signal="item_selected" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/line_item_list" to="." method="line_selected"]
+[connection signal="text_submitted" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/MarginContainer/create_new_line/new_line_name_text" to="." method="enter_pressed_on_line_name"]
+[connection signal="button_down" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/MarginContainer/create_new_line/add_new_line" to="." method="add_new_line"]
+[connection signal="focus_exited" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/Text_Container/TextEdit" to="." method="text_updated"]
+[connection signal="item_selected" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/BusContainer/OptionButton" to="." method="bus_changed"]
+[connection signal="toggled" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/SkipPosition/CenterContainer/CheckBox" to="." method="checkbox_changed"]
+[connection signal="button_down" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/move_up_move_down/move_up" to="." method="move_line_up"]
+[connection signal="button_down" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer/move_up_move_down/move_down" to="." method="move_line_down"]
