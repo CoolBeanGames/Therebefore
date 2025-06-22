@@ -34,7 +34,6 @@ const audio_path : String = "res://Data/Audio/"
 @export var line_selected_index : int
 @export var line_selected_res : subtitled_audio
 
-
 #private stuff
 var parent_plugin : EditorPlugin
 
@@ -300,14 +299,11 @@ func save_all() -> void:
 		save_group_other(groups[g])
 	print("saved all data")
 
-
 func enter_pressed_on_group_name(new_text: String) -> void:
 	add_new_group()
 
-
 func enter_pressed_on_line_name(new_text: String) -> void:
 	add_new_line()
-
 
 func move_line_up() -> void:
 	if line_selected_index != -1 and line_selected_index != 0:
@@ -319,7 +315,6 @@ func move_line_up() -> void:
 		load_all_lines()
 		line_item_list.select(index-1)
 		line_selected(index-1)
-
 
 func move_line_down() -> void:
 	if line_selected_index != -1 and line_selected_index != lines.size()-1:

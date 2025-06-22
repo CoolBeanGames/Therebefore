@@ -25,8 +25,6 @@ var parent_plugin : EditorPlugin
 @export var audio_picker : EditorResourcePicker
 @export var use_audio : CheckBox
 
-
-
 func setup(plugin : EditorPlugin):
 	parent_plugin = plugin
 	check_directory()
@@ -52,14 +50,17 @@ func refresh_resource_database():
 	parent_plugin.get_editor_interface().get_resource_filesystem().scan()
 
 func load_all_notes():
+	
 	var dir = DirAccess.open(note_path)
 
 	if !dir:
 		printerr("ERROR: Could not open notes directory")
 		return
+	
+	notes.clear()
+	note_item_list.clear()
+	
 	dir.list_dir_begin()
-	notes.clear()
-	notes.clear()
 	
 	#process all the files
 	var filename = dir.get_next()
@@ -83,10 +84,10 @@ func load_all_notes():
 func on_image_changed(resource : Resource):
 	if resource!=null and resource is Texture:
 		preview_texture.texture = resource
-		if note_selected_res!=null:
+		if note_selected_res != null:
 			note_selected_res.note_texture = resource
 			save_note(note_selected_res)
-
+		print(preview_texture.texture.resource_path)
 
 func add_new_note() -> void:
 	var note_name : String = new_note_text.text
@@ -103,7 +104,6 @@ func add_new_note() -> void:
 	new_note_text.text=""
 	refresh_resource_database()
 
-
 func add_new_note_enter_pressed(new_text: String) -> void:
 	add_new_note()
 
@@ -113,14 +113,40 @@ func check_directory():
 		print("Made new note directory")
 		refresh_resource_database()
 
-
 func note_selected(index: int) -> void:
 	note_selected_index = index
 	note_selected_string = notes.keys()[index]
-	note_selected_res = notes[note_selected_string]
+	
+	#disconnect previous
+	if note_selected_res and note_selected_res.is_connected("changed",_on_note_changed):
+		note_selected_res.disconnect("changed",_on_note_changed)
+	
+	note_selected_res = notes[note_selected_string] 
+	
+	#connect to the change signal
+	note_selected_res.changed.connect(_on_note_changed)
+	
 	print(note_selected_res.resource_name)
 	read_all_data()
 
+func _on_note_changed():
+	if note_selected_res == null:
+		return
+	
+	print("NoteEditorUI: Detected external change to note")
+	var path := note_selected_res.resource_path
+	var fresh_res := ResourceLoader.load(path)
+	
+	if fresh_res:
+		print("Reloaded file")
+		note_selected_res = fresh_res
+		notes[note_selected_string] = fresh_res
+		
+		var index = note_selected_index
+		load_all_notes()
+		note_selected(index)		
+		read_all_data()
+		
 
 func clear_selection(at_position: Vector2, mouse_button_index: int) -> void:
 	_deselect()
@@ -147,9 +173,20 @@ func read_all_data():
 	note_text.text = note.note_text
 	use_audio.button_pressed = note.play_audio
 
-func save_note(note : Note):
-	if note!=null:
-		ResourceSaver.save(note,note.resource_path)
+func save_note(note_arg : Note): # Renamed 'note' to 'note_arg' for clarity, still using note_selected_res
+	if note_selected_res != null:
+		var undo_redo = parent_plugin.get_undo_redo() # Get the editor's UndoRedoManager
+		undo_redo.create_action("Modify Note Properties", UndoRedo.MERGE_ENDS)
+			 
+		ResourceSaver.save(note_selected_res, note_selected_res.resource_path)
+		print("Saved note ", note_selected_res.resource_name, " to ", note_selected_res.resource_path)
+		note_selected_res.emit_changed() 
+		var editor_selection = parent_plugin.get_editor_interface().get_selection()
+		if editor_selection.get_selected_nodes().has(self): # Only refresh if this node is actually selected
+			editor_selection.clear() # Deselect all
+			editor_selection.add_node(self) # Re-select this node to force Inspector refresh
+		refresh_resource_database() # Still good for filesystem visibility
+		undo_redo.commit_action() # Commit the action (even if empty, it helps with editor state)
 
 func reload() -> void:
 	_deselect()
@@ -160,14 +197,26 @@ func on_audio_resource_changed(resource : Resource):
 		note_selected_res.audio = resource
 		save_note(note_selected_res)
 
-
 func checkbox_pressed(toggled_on: bool) -> void:
 	if note_selected_res!=null:
-		note_selected_res.play_audio=toggled_on
-		save_note(note_selected_res)
-
+		var unre = parent_plugin.get_undo_redo()
+		unre.create_action("update note checkbox")
+		unre.add_do_property(note_selected_res,"play_audio",toggled_on)
+		unre.add_undo_property(note_selected_res,"play_audio",note_selected_res.play_audio)
+		unre.commit_action()
+		note_selected_res.emit_changed()
+		parent_plugin.get_editor_interface().edit_resource(note_selected_res)
 
 func texted_edited() -> void:
 	if note_selected_res!=null:
-		note_selected_res.note_text = note_text.text
-		save_note(note_selected_res)
+		var unre = parent_plugin.get_undo_redo()
+		unre.create_action("Update Note Text")
+		unre.add_do_property(note_selected_res,"note_text",note_text.text)
+		unre.add_undo_property(note_selected_res,"note_text",note_selected_res.note_text)
+		unre.commit_action()
+		note_selected_res.emit_changed()
+		parent_plugin.get_editor_interface().edit_resource(note_selected_res)
+
+func save_all() -> void:
+	parent_plugin.get_editor_interface().queue_resource_inspector_refresh(note_selected_res)
+	refresh_resource_database()
