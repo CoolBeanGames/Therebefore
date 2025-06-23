@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dmmel37kux6kg"
-path="res://.godot/imported/MachineBeep.mp3-d53a09ebb80ac50a5361e0f6d08436e5.mp3str"
+path="res://.godot/imported/MachineBeep.mp3-ebe24bece1c8a2d8e99a803f12a1191e.mp3str"
 
 [deps]
 
-source_file="res://sound effects/MachineBeep.mp3"
-dest_files=["res://.godot/imported/MachineBeep.mp3-d53a09ebb80ac50a5361e0f6d08436e5.mp3str"]
+source_file="res://Sound Effects/MachineBeep.mp3"
+dest_files=["res://.godot/imported/MachineBeep.mp3-ebe24bece1c8a2d8e99a803f12a1191e.mp3str"]
 
 [params]
 

@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://ck5f88c5kxqu1" path="res://addons/DialogEditor/panel.tres" id="2_cmse1"]
 [ext_resource type="Texture2D" uid="uid://dvd7ob51oyn02" path="res://textures/note.jpg" id="3_p1nn3"]
 
-[node name="NoteEditorUi" type="PanelContainer" node_paths=PackedStringArray("note_item_list", "preview_texture", "new_note_text", "image_picker_parent", "note_text", "use_audio")]
+[node name="NoteEditorUi" type="PanelContainer" node_paths=PackedStringArray("note_item_list", "preview_texture", "new_note_text", "image_picker_parent", "note_text", "audio_contrainer_node", "use_audio")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,6 +18,7 @@ preview_texture = NodePath("parent_container/content/content_organizer/data/Pane
 new_note_text = NodePath("parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note/new_note_name_text")
 image_picker_parent = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_image_selection")
 note_text = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_text/TextEdit")
+audio_contrainer_node = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_audio_selection")
 use_audio = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/play_audio_check/CenterContainer/CheckBox")
 
 [node name="parent_container" type="VBoxContainer" parent="."]
@@ -32,10 +33,6 @@ size_flags_vertical = 0
 [node name="reload_button" type="Button" parent="parent_container/top_bar"]
 layout_mode = 2
 text = "reload data"
-
-[node name="save_all_button" type="Button" parent="parent_container/top_bar"]
-layout_mode = 2
-text = "save all"
 
 [node name="delete_selected_button" type="Button" parent="parent_container/top_bar"]
 layout_mode = 2
@@ -85,6 +82,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "insert note name"
 
 [node name="add_new_note" type="Button" parent="parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note"]
 layout_mode = 2
@@ -154,6 +152,15 @@ text = "Text:"
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "insert note text"
+wrap_mode = 1
+autowrap_mode = 2
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="\'fake\' save button" type="Button" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
 
 [node name="Label" type="Label" parent="parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -168,7 +175,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [connection signal="button_down" from="parent_container/top_bar/reload_button" to="." method="reload"]
-[connection signal="button_down" from="parent_container/top_bar/save_all_button" to="." method="save_all"]
+[connection signal="button_down" from="parent_container/top_bar/delete_selected_button" to="." method="delete_selected"]
 [connection signal="empty_clicked" from="parent_container/content/content_organizer/notes_content/note_item_list" to="." method="clear_selection"]
 [connection signal="item_selected" from="parent_container/content/content_organizer/notes_content/note_item_list" to="." method="note_selected"]
 [connection signal="text_submitted" from="parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note/new_note_name_text" to="." method="add_new_note_enter_pressed"]

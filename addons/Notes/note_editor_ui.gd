@@ -86,7 +86,6 @@ func on_image_changed(resource : Resource):
 		preview_texture.texture = resource
 		if note_selected_res != null:
 			note_selected_res.note_texture = resource
-			save_note(note_selected_res)
 		print(preview_texture.texture.resource_path)
 
 func add_new_note() -> void:
@@ -173,21 +172,6 @@ func read_all_data():
 	note_text.text = note.note_text
 	use_audio.button_pressed = note.play_audio
 
-func save_note(note_arg : Note): # Renamed 'note' to 'note_arg' for clarity, still using note_selected_res
-	if note_selected_res != null:
-		var undo_redo = parent_plugin.get_undo_redo() # Get the editor's UndoRedoManager
-		undo_redo.create_action("Modify Note Properties", UndoRedo.MERGE_ENDS)
-			 
-		ResourceSaver.save(note_selected_res, note_selected_res.resource_path)
-		print("Saved note ", note_selected_res.resource_name, " to ", note_selected_res.resource_path)
-		note_selected_res.emit_changed() 
-		var editor_selection = parent_plugin.get_editor_interface().get_selection()
-		if editor_selection.get_selected_nodes().has(self): # Only refresh if this node is actually selected
-			editor_selection.clear() # Deselect all
-			editor_selection.add_node(self) # Re-select this node to force Inspector refresh
-		refresh_resource_database() # Still good for filesystem visibility
-		undo_redo.commit_action() # Commit the action (even if empty, it helps with editor state)
-
 func reload() -> void:
 	_deselect()
 	load_all_notes()
@@ -195,7 +179,6 @@ func reload() -> void:
 func on_audio_resource_changed(resource : Resource):
 	if note_selected_res!=null:
 		note_selected_res.audio = resource
-		save_note(note_selected_res)
 
 func checkbox_pressed(toggled_on: bool) -> void:
 	if note_selected_res!=null:
@@ -217,6 +200,27 @@ func texted_edited() -> void:
 		note_selected_res.emit_changed()
 		parent_plugin.get_editor_interface().edit_resource(note_selected_res)
 
-func save_all() -> void:
-	parent_plugin.get_editor_interface().queue_resource_inspector_refresh(note_selected_res)
+
+func delete_selected() -> void:
+	print("Delete")
 	refresh_resource_database()
+	if note_selected_res != null:
+		var res_path = note_selected_res.resource_path
+		print(res_path)
+		#get the director and file
+		var directory = res_path.get_base_dir()
+		var file = res_path.get_file()
+		
+		#open dir
+		var dir = DirAccess.open(directory)
+		if dir:
+			print("dir is open at ", directory)
+			var error = dir.remove(res_path)
+			if error == OK and !dir.file_exists(file):
+				print("file successfully deleted")
+				note_selected_index = -1
+				note_selected_res = null
+				note_selected_string = ""
+				note_item_list.deselect_all()
+				load_all_notes()
+				

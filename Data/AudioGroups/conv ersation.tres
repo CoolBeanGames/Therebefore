@@ -1,17 +1,13 @@
-[gd_resource type="Resource" script_class="subtitled_audio_group" load_steps=11 format=3 uid="uid://fo3gq6em5kq6"]
+[gd_resource type="Resource" script_class="subtitled_audio_group" load_steps=7 format=3 uid="uid://fo3gq6em5kq6"]
 
 [ext_resource type="Script" uid="uid://bbtgup22pegu4" path="res://Resources/Subtitled_Audio.gd" id="1_r0227"]
 [ext_resource type="Script" uid="uid://6q18ilv627ft" path="res://Resources/Subtitled_Audio_Group.gd" id="2_16u2f"]
-[ext_resource type="Resource" uid="uid://c7qarnvgqgoa7" path="res://data/Audio/line 1.tres" id="2_ayosd"]
-[ext_resource type="Resource" uid="uid://dqvpiyyvlam6r" path="res://data/Audio/line 4.tres" id="4_1g5fq"]
-[ext_resource type="Resource" uid="uid://ctgty10t7tmdn" path="res://data/Audio/line 3.tres" id="4_5m366"]
-[ext_resource type="Resource" uid="uid://c5s7s15oery2g" path="res://data/Audio/line 5.tres" id="5_1g5fq"]
-[ext_resource type="Resource" uid="uid://dy55dopeslqe" path="res://data/Audio/line 6.tres" id="6_6yoef"]
-[ext_resource type="Resource" uid="uid://d41ris7ly2ps" path="res://data/Audio/line 7.tres" id="7_mpqcj"]
-[ext_resource type="Resource" uid="uid://k7r2b71pklq7" path="res://data/Audio/line_8.tres" id="8_b4h5f"]
-[ext_resource type="Resource" uid="uid://dp7rh3w7jgwth" path="res://data/Audio/line 9.tres" id="9_mxu7a"]
+[ext_resource type="Resource" uid="uid://8mmv70nxbh8f" path="res://Data/Audio/convo line 1.tres" id="2_ayosd"]
+[ext_resource type="Resource" uid="uid://crb5sgwdbwuvm" path="res://Data/Audio/convo line 2.tres" id="3_ayosd"]
+[ext_resource type="Resource" uid="uid://cmd8ff368ktd3" path="res://Data/Audio/convo line 3.tres" id="4_5m366"]
+[ext_resource type="Resource" uid="uid://jbsbh7hnqu3q" path="res://Data/Audio/this is a new line.tres" id="5_1g5fq"]
 
 [resource]
 resource_name = "conv ersation"
 script = ExtResource("2_16u2f")
-lines = Array[ExtResource("1_r0227")]([ExtResource("4_5m366"), ExtResource("2_ayosd"), ExtResource("4_1g5fq"), ExtResource("5_1g5fq"), ExtResource("6_6yoef"), ExtResource("7_mpqcj"), ExtResource("8_b4h5f"), ExtResource("9_mxu7a")])
+lines = Array[ExtResource("1_r0227")]([ExtResource("2_ayosd"), ExtResource("3_ayosd"), ExtResource("4_5m366"), ExtResource("5_1g5fq")])

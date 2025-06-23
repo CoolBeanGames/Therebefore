@@ -178,20 +178,10 @@ func load_all_lines() -> void:
 func on_audio_resource_changed(res : Resource):
 	if line_selected_res != null and res is AudioStream:
 		line_selected_res.Audio = res
-		save_line()
 
 func text_updated() -> void:
 	if line_selected_res != null:
 		line_selected_res.Text = line_text.text
-		save_line() 
-
-func save_line():
-	if line_selected_res != null:
-		ResourceSaver.save(line_selected_res,line_selected_res.resource_path)
-
-func save_line_other(line : subtitled_audio):
-	if line != null:
-		ResourceSaver.save(line,line.resource_path)
 
 func clear_line_selection():
 	line_selected_index = -1
@@ -284,21 +274,6 @@ func delete_selected() -> void:
 					reload_all()
 					remove_all_lines()
 
-func save_group():
-	if group_selected_res!=null:
-		ResourceSaver.save(group_selected_res,group_selected_res.resource_path)
-
-func save_group_other(group : subtitled_audio_group):
-	if group!=null:
-		ResourceSaver.save(group,group.resource_path)
-
-func save_all() -> void:
-	for g in groups:
-		for l in groups[g].lines:
-			save_line_other(groups[g].lines[l])
-		save_group_other(groups[g])
-	print("saved all data")
-
 func enter_pressed_on_group_name(new_text: String) -> void:
 	add_new_group()
 
@@ -327,4 +302,3 @@ func move_line_down() -> void:
 		load_all_lines()
 		line_item_list.select(index + 1)
 		line_selected(index + 1)
-		pass # Replace with function body.

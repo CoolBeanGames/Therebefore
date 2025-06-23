@@ -39,10 +39,6 @@ layout_mode = 2
 layout_mode = 2
 text = "reload data"
 
-[node name="save_all_button" type="Button" parent="parent_container/top_bar"]
-layout_mode = 2
-text = "save all"
-
 [node name="delete_selected_button" type="Button" parent="parent_container/top_bar"]
 layout_mode = 2
 text = "delete selected"
@@ -112,6 +108,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "insert group name"
 
 [node name="add_new_group" type="Button" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/MarginContainer/create_new_group"]
 layout_mode = 2
@@ -152,6 +149,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "insert line name"
 
 [node name="add_new_line" type="Button" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/lines_content/MarginContainer/create_new_line"]
 layout_mode = 2
@@ -192,6 +190,7 @@ text = "Test Display:"
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "place subtitle text here"
 
 [node name="BusContainer" type="HBoxContainer" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -231,8 +230,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Move Down"
 
+[node name="save_current_button" type="Button" parent="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/data/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
 [connection signal="button_down" from="parent_container/top_bar/reload_button" to="." method="reload_all"]
-[connection signal="button_down" from="parent_container/top_bar/save_all_button" to="." method="save_all"]
 [connection signal="button_down" from="parent_container/top_bar/delete_selected_button" to="." method="delete_selected"]
 [connection signal="empty_clicked" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/group_item_list" to="." method="group_empty_clicked"]
 [connection signal="item_selected" from="parent_container/content/MarginContainer/Panel/MarginContainer/content_organizer/groups_content/group_item_list" to="." method="group_selected"]
