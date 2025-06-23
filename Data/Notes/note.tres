@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="Note" load_steps=2 format=3 uid="uid://b3vco40dmu6fo"]
+[gd_resource type="Resource" script_class="Note" load_steps=2 format=3 uid="uid://bkw6stx4jigvg"]
 
 [ext_resource type="Script" uid="uid://dj88ee0tenkp1" path="res://Resources/Note.gd" id="1_uslml"]
 
 [resource]
 resource_name = "note"
 script = ExtResource("1_uslml")
-note_text = "here is a test"
+note_text = "some data text again"
 play_audio = false

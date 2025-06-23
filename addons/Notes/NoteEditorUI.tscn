@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://ck5f88c5kxqu1" path="res://addons/DialogEditor/panel.tres" id="2_cmse1"]
 [ext_resource type="Texture2D" uid="uid://dvd7ob51oyn02" path="res://textures/note.jpg" id="3_p1nn3"]
 
-[node name="NoteEditorUi" type="PanelContainer" node_paths=PackedStringArray("note_item_list", "preview_texture", "new_note_text", "image_picker_parent", "note_text", "audio_container_node", "use_audio")]
+[node name="NoteEditorUi" type="PanelContainer" node_paths=PackedStringArray("note_item_list", "preview_texture", "new_note_text", "image_picker_parent", "note_text", "use_audio")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,7 +18,6 @@ preview_texture = NodePath("parent_container/content/content_organizer/data/Pane
 new_note_text = NodePath("parent_container/content/content_organizer/notes_content/MarginContainer/create_new_note/new_note_name_text")
 image_picker_parent = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_image_selection")
 note_text = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_text/TextEdit")
-audio_container_node = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/note_audio_selection")
 use_audio = NodePath("parent_container/content/content_organizer/data/PanelContainer/MarginContainer/VBoxContainer/play_audio_check/CenterContainer/CheckBox")
 
 [node name="parent_container" type="VBoxContainer" parent="."]

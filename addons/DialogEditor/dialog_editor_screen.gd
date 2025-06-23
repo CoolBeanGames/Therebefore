@@ -187,11 +187,11 @@ func text_updated() -> void:
 
 func save_line():
 	if line_selected_res != null:
-		ResourceSaver.save(line_selected_res,line_selected_res.path)
+		ResourceSaver.save(line_selected_res,line_selected_res.resource_path)
 
 func save_line_other(line : subtitled_audio):
 	if line != null:
-		ResourceSaver.save(line,line.path)
+		ResourceSaver.save(line,line.resource_path)
 
 func clear_line_selection():
 	line_selected_index = -1
