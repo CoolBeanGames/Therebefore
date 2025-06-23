@@ -86,6 +86,7 @@ func on_image_changed(resource : Resource):
 		preview_texture.texture = resource
 		if note_selected_res != null:
 			note_selected_res.note_texture = resource
+			note_selected_res.emit_changed()
 		print(preview_texture.texture.resource_path)
 
 func add_new_note() -> void:
@@ -142,8 +143,7 @@ func _on_note_changed():
 		notes[note_selected_string] = fresh_res
 		
 		var index = note_selected_index
-		load_all_notes()
-		note_selected(index)		
+		note_selected(index)
 		read_all_data()
 		
 
@@ -179,26 +179,17 @@ func reload() -> void:
 func on_audio_resource_changed(resource : Resource):
 	if note_selected_res!=null:
 		note_selected_res.audio = resource
+		note_selected_res.emit_changed()
 
 func checkbox_pressed(toggled_on: bool) -> void:
 	if note_selected_res!=null:
-		var unre = parent_plugin.get_undo_redo()
-		unre.create_action("update note checkbox")
-		unre.add_do_property(note_selected_res,"play_audio",toggled_on)
-		unre.add_undo_property(note_selected_res,"play_audio",note_selected_res.play_audio)
-		unre.commit_action()
+		note_selected_res.play_audio = toggled_on
 		note_selected_res.emit_changed()
-		parent_plugin.get_editor_interface().edit_resource(note_selected_res)
 
 func texted_edited() -> void:
 	if note_selected_res!=null:
-		var unre = parent_plugin.get_undo_redo()
-		unre.create_action("Update Note Text")
-		unre.add_do_property(note_selected_res,"note_text",note_text.text)
-		unre.add_undo_property(note_selected_res,"note_text",note_selected_res.note_text)
-		unre.commit_action()
+		note_selected_res.note_text = note_text.text
 		note_selected_res.emit_changed()
-		parent_plugin.get_editor_interface().edit_resource(note_selected_res)
 
 
 func delete_selected() -> void:
