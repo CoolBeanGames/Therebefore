@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Therebefore"
+config/tags=PackedStringArray("3d", "exploration", "firstperson", "narrative", "story")
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/NoteEditor/plugin.cfg")
 
 [rendering]
 

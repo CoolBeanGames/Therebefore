@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dtnef01685lvt"]
+
+[ext_resource type="Texture2D" uid="uid://b17elq6qfxi38" path="res://addons/AddonUIComponents/Textures/Final Fantasy Panel.png" id="1_ma2vs"]
+
+[resource]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("1_ma2vs")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 6.0

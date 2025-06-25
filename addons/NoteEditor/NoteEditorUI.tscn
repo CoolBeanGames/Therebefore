@@ -1,0 +1,121 @@
+[gd_scene load_steps=4 format=3 uid="uid://br0vkmme8lc3f"]
+
+[ext_resource type="Script" uid="uid://dvfd37kp2q1la" path="res://addons/NoteEditor/note_editor_ui.gd" id="1_cjxdj"]
+[ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_lxh58"]
+[ext_resource type="AudioStream" uid="uid://cxtbe1rr4h04p" path="res://addons/ui_click_sound.mp3" id="3_b7q16"]
+
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_lxh58")
+script = ExtResource("1_cjxdj")
+click_sound_player = NodePath("clickSound")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ButtonsPanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="topButtons" type="HBoxContainer" parent="VBoxContainer/ButtonsPanel"]
+layout_mode = 2
+
+[node name="save_selected" type="Button" parent="VBoxContainer/ButtonsPanel/topButtons"]
+layout_mode = 2
+text = "save"
+
+[node name="save_all" type="Button" parent="VBoxContainer/ButtonsPanel/topButtons"]
+layout_mode = 2
+text = "save all"
+
+[node name="reload" type="Button" parent="VBoxContainer/ButtonsPanel/topButtons"]
+layout_mode = 2
+text = "reload"
+
+[node name="delete_selected" type="Button" parent="VBoxContainer/ButtonsPanel/topButtons"]
+layout_mode = 2
+text = "delete"
+
+[node name="Container" type="Control" parent="VBoxContainer/ButtonsPanel/topButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/ButtonsPanel/topButtons"]
+layout_mode = 2
+theme = ExtResource("1_lxh58")
+text = "Dialog Editor"
+
+[node name="ContentPanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="content" type="HBoxContainer" parent="VBoxContainer/ContentPanel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="NoteList" type="PanelContainer" parent="VBoxContainer/ContentPanel/content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Notes" type="VBoxContainer" parent="VBoxContainer/ContentPanel/content/NoteList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
+layout_mode = 2
+text = "Notes"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+item_0/text = "test item 1"
+item_1/text = "test item 2"
+
+[node name="new note" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/NoteList/Notes/new note"]
+layout_mode = 2
+theme = ExtResource("1_lxh58")
+text = "New Note: "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/ContentPanel/content/NoteList/Notes/new note"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_lxh58")
+placeholder_text = "new note name"
+
+[node name="Button" type="Button" parent="VBoxContainer/ContentPanel/content/NoteList/Notes/new note"]
+layout_mode = 2
+text = "Add New Note"
+
+[node name="DataContainer" type="PanelContainer" parent="VBoxContainer/ContentPanel/content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Data" type="VBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
+layout_mode = 2
+text = "Data"
+horizontal_alignment = 1
+
+[node name="BottomPanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="bottom" type="HBoxContainer" parent="VBoxContainer/BottomPanel"]
+layout_mode = 2
+
+[node name="clickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b7q16")
+
+[connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/reload" to="." method="reload_clicked"]

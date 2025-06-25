@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bkorw3gs008io"]
+
+[ext_resource type="FontFile" uid="uid://cx6sch5olmr48" path="res://addons/AddonUIComponents/seed-computer.otf" id="1_l5ui3"]
+[ext_resource type="StyleBox" uid="uid://duv73dbi64pq5" path="res://addons/AddonUIComponents/FF_Button_Normal.tres" id="2_l5ui3"]
+[ext_resource type="StyleBox" uid="uid://0mr61kvsysex" path="res://addons/AddonUIComponents/ff_button_hover.tres" id="2_oid4x"]
+[ext_resource type="StyleBox" uid="uid://dtnef01685lvt" path="res://addons/AddonUIComponents/FF_Panel.tres" id="3_1uogl"]
+
+[resource]
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("1_l5ui3")
+Button/styles/focus = ExtResource("2_l5ui3")
+Button/styles/hover = ExtResource("2_oid4x")
+Button/styles/normal = ExtResource("2_l5ui3")
+Button/styles/pressed = ExtResource("2_oid4x")
+ItemList/colors/font_color = Color(1, 1, 1, 1)
+ItemList/font_sizes/font_size = 35
+ItemList/fonts/font = ExtResource("1_l5ui3")
+ItemList/styles/hovered = ExtResource("2_oid4x")
+ItemList/styles/hovered_selected = ExtResource("2_oid4x")
+ItemList/styles/hovered_selected_focus = ExtResource("2_oid4x")
+ItemList/styles/panel = ExtResource("3_1uogl")
+ItemList/styles/selected = ExtResource("2_oid4x")
+ItemList/styles/selected_focus = ExtResource("2_oid4x")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_l5ui3")
+LineEdit/font_sizes/font_size = 32
+LineEdit/fonts/font = ExtResource("1_l5ui3")
+LineEdit/styles/focus = ExtResource("3_1uogl")
+LineEdit/styles/normal = ExtResource("3_1uogl")
+Panel/styles/panel = ExtResource("3_1uogl")
+PanelContainer/styles/panel = ExtResource("3_1uogl")
