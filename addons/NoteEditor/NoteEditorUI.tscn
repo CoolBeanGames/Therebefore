@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://br0vkmme8lc3f"]
+[gd_scene load_steps=9 format=3 uid="uid://br0vkmme8lc3f"]
 
 [ext_resource type="Script" uid="uid://dvfd37kp2q1la" path="res://addons/NoteEditor/note_editor_ui.gd" id="1_cjxdj"]
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_lxh58"]
-[ext_resource type="AudioStream" uid="uid://cxtbe1rr4h04p" path="res://addons/ui_click_sound.mp3" id="3_b7q16"]
+[ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="3_icmk7"]
+[ext_resource type="AudioStream" uid="uid://db01h3k1d21lp" path="res://addons/AddonUIComponents/Sounds/select.mp3" id="4_b7rpa"]
+[ext_resource type="AudioStream" uid="uid://cf825pr1p8l4v" path="res://addons/AddonUIComponents/Sounds/new_file.mp3" id="5_3xaye"]
+[ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="6_ht3q0"]
+[ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_tf0eo"]
+[ext_resource type="AudioStream" uid="uid://s7r0nf4x8chj" path="res://addons/AddonUIComponents/Sounds/cancel.mp3" id="8_koexj"]
 
-[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player")]
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "texture_selection_list", "note_list", "note_name", "text_entry", "page_count_label", "flags_text")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,7 +19,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_lxh58")
 script = ExtResource("1_cjxdj")
-click_sound_player = NodePath("clickSound")
+click_sound_player = NodePath("click_sound")
+save_sound_player = NodePath("save_sound")
+reload_sound_player = NodePath("reload_sound")
+new_file_sound_player = NodePath("new_sound")
+delete_sound_player = NodePath("delete_sound")
+texture_selection_list = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/texture_selector")
+note_list = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/note_list")
+item_list_pointer_icon = ExtResource("3_icmk7")
+note_name = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit")
+text_entry = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/text_box/TextEdit")
+page_count_label = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/page counter")
+flags_text = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -71,12 +87,9 @@ layout_mode = 2
 text = "Notes"
 horizontal_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
+[node name="note_list" type="ItemList" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
 size_flags_vertical = 3
-item_count = 2
-item_0/text = "test item 1"
-item_1/text = "test item 2"
 
 [node name="new note" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
@@ -92,7 +105,7 @@ size_flags_horizontal = 3
 theme = ExtResource("1_lxh58")
 placeholder_text = "new note name"
 
-[node name="Button" type="Button" parent="VBoxContainer/ContentPanel/content/NoteList/Notes/new note"]
+[node name="new_note_button" type="Button" parent="VBoxContainer/ContentPanel/content/NoteList/Notes/new note"]
 layout_mode = 2
 text = "Add New Note"
 
@@ -109,13 +122,127 @@ layout_mode = 2
 text = "Data"
 horizontal_alignment = 1
 
+[node name="texture_box" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box"]
+layout_mode = 2
+text = "Note Texture:"
+
+[node name="texture_selector" type="OptionButton" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 7
+popup/item_0/text = "res://CustomUVChecker_byValle_1K.png"
+popup/item_0/id = 0
+popup/item_1/text = "res://icon.svg"
+popup/item_1/id = 1
+popup/item_2/text = "res://addons/AddonUIComponents/Textures/button_hover.png"
+popup/item_2/id = 2
+popup/item_3/text = "res://addons/AddonUIComponents/Textures/ff_check_button_false.png"
+popup/item_3/id = 3
+popup/item_4/text = "res://addons/AddonUIComponents/Textures/ff_check_button_true.png"
+popup/item_4/id = 4
+popup/item_5/text = "res://addons/AddonUIComponents/Textures/Final Fantasy Panel.png"
+popup/item_5/id = 5
+popup/item_6/text = "res://addons/AddonUIComponents/Textures/item_list_pointer.png"
+popup/item_6/id = 6
+
+[node name="text_box" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/text_box"]
+layout_mode = 2
+text = "Text:"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/text_box"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "type text here"
+
+[node name="page_selector" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Left Button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+theme = ExtResource("1_lxh58")
+text = "<"
+
+[node name="Delete Button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+theme = ExtResource("1_lxh58")
+text = "-"
+
+[node name="spacer" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+text = "            "
+horizontal_alignment = 1
+
+[node name="page counter" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+text = "-- / --"
+horizontal_alignment = 1
+
+[node name="Add Button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+theme = ExtResource("1_lxh58")
+text = "+"
+
+[node name="Right Button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+theme = ExtResource("1_lxh58")
+text = ">"
+
+[node name="flags" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/flags"]
+layout_mode = 2
+text = "Flags"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/flags"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Type Comma Seperated Flags Here!"
+
 [node name="BottomPanel" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="bottom" type="HBoxContainer" parent="VBoxContainer/BottomPanel"]
 layout_mode = 2
 
-[node name="clickSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_b7q16")
+[node name="click_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_b7rpa")
 
+[node name="new_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3xaye")
+
+[node name="reload_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ht3q0")
+
+[node name="save_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tf0eo")
+
+[node name="delete_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_koexj")
+
+[connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/save_selected" to="." method="save_selected"]
+[connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/save_all" to="." method="save_all"]
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/reload" to="." method="reload_clicked"]
+[connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/delete_selected" to="." method="delete_selected"]
+[connection signal="empty_clicked" from="VBoxContainer/ContentPanel/content/NoteList/Notes/note_list" to="." method="note_clear"]
+[connection signal="item_selected" from="VBoxContainer/ContentPanel/content/NoteList/Notes/note_list" to="." method="on_note_selected"]
+[connection signal="text_submitted" from="VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit" to="." method="new_note_enter"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/NoteList/Notes/new note/new_note_button" to="." method="make_new_note"]
+[connection signal="item_selected" from="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/texture_selector" to="." method="set_res_texture"]
+[connection signal="focus_exited" from="VBoxContainer/ContentPanel/content/DataContainer/Data/text_box/TextEdit" to="." method="text_edit_finished"]
+[connection signal="text_changed" from="VBoxContainer/ContentPanel/content/DataContainer/Data/text_box/TextEdit" to="." method="text_edit_finished"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Left Button" to="." method="on_page_left"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Delete Button" to="." method="on_page_delete"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Add Button" to="." method="on_add_page"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Right Button" to="." method="on_page_right"]
+[connection signal="text_changed" from="VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit" to="." method="flags_updated"]

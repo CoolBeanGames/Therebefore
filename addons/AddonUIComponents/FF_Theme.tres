@@ -1,19 +1,57 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bkorw3gs008io"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://bkorw3gs008io"]
 
 [ext_resource type="FontFile" uid="uid://cx6sch5olmr48" path="res://addons/AddonUIComponents/seed-computer.otf" id="1_l5ui3"]
 [ext_resource type="StyleBox" uid="uid://duv73dbi64pq5" path="res://addons/AddonUIComponents/FF_Button_Normal.tres" id="2_l5ui3"]
 [ext_resource type="StyleBox" uid="uid://0mr61kvsysex" path="res://addons/AddonUIComponents/ff_button_hover.tres" id="2_oid4x"]
 [ext_resource type="StyleBox" uid="uid://dtnef01685lvt" path="res://addons/AddonUIComponents/FF_Panel.tres" id="3_1uogl"]
+[ext_resource type="Texture2D" uid="uid://5d1i3q7jcf7q" path="res://addons/AddonUIComponents/Textures/ff_check_button_true.png" id="4_75eme"]
+[ext_resource type="Texture2D" uid="uid://b17elq6qfxi38" path="res://addons/AddonUIComponents/Textures/Final Fantasy Panel.png" id="5_1uogl"]
+[ext_resource type="Texture2D" uid="uid://ccm2dl7rlp536" path="res://addons/AddonUIComponents/Textures/ff_check_button_false.png" id="5_72hi6"]
+[ext_resource type="StyleBox" uid="uid://doporqa12mptd" path="res://addons/AddonUIComponents/ff_text_edit_box.tres" id="8_arvai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u57ic"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcy3f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ij8rv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwc7j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbbhw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utuax"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vj83t"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+texture = ExtResource("5_1uogl")
+texture_margin_left = 4.0
+texture_margin_top = 5.01078
+texture_margin_right = 4.0
+texture_margin_bottom = 5.40647
+region_rect = Rect2(0, 0, 64, 64)
 
 [resource]
-Button/font_sizes/font_size = 36
+Button/colors/icon_disabled_color = Color(0.501407, 0.501406, 0.501406, 0.4)
+Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_l5ui3")
+Button/styles/disabled = ExtResource("2_l5ui3")
 Button/styles/focus = ExtResource("2_l5ui3")
 Button/styles/hover = ExtResource("2_oid4x")
 Button/styles/normal = ExtResource("2_l5ui3")
 Button/styles/pressed = ExtResource("2_oid4x")
+CheckButton/font_sizes/font_size = 20
+CheckButton/fonts/font = ExtResource("1_l5ui3")
+CheckButton/icons/checked = ExtResource("4_75eme")
+CheckButton/icons/unchecked = ExtResource("5_72hi6")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_u57ic")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_pcy3f")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_ij8rv")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_dwc7j")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_jbbhw")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_utuax")
 ItemList/colors/font_color = Color(1, 1, 1, 1)
-ItemList/font_sizes/font_size = 35
+ItemList/font_sizes/font_size = 20
 ItemList/fonts/font = ExtResource("1_l5ui3")
 ItemList/styles/hovered = ExtResource("2_oid4x")
 ItemList/styles/hovered_selected = ExtResource("2_oid4x")
@@ -21,11 +59,17 @@ ItemList/styles/hovered_selected_focus = ExtResource("2_oid4x")
 ItemList/styles/panel = ExtResource("3_1uogl")
 ItemList/styles/selected = ExtResource("2_oid4x")
 ItemList/styles/selected_focus = ExtResource("2_oid4x")
-Label/font_sizes/font_size = 24
+Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_l5ui3")
-LineEdit/font_sizes/font_size = 32
+LineEdit/font_sizes/font_size = 20
 LineEdit/fonts/font = ExtResource("1_l5ui3")
 LineEdit/styles/focus = ExtResource("3_1uogl")
-LineEdit/styles/normal = ExtResource("3_1uogl")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_vj83t")
+OptionButton/font_sizes/font_size = 20
+OptionButton/fonts/font = ExtResource("1_l5ui3")
 Panel/styles/panel = ExtResource("3_1uogl")
 PanelContainer/styles/panel = ExtResource("3_1uogl")
+TextEdit/font_sizes/font_size = 20
+TextEdit/fonts/font = ExtResource("1_l5ui3")
+TextEdit/styles/focus = ExtResource("8_arvai")
+TextEdit/styles/normal = ExtResource("8_arvai")
