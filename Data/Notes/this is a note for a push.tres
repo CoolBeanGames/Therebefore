@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="note_res" load_steps=2 format=3 uid="uid://bm3f0kx1dmrco"]
+
+[ext_resource type="Script" uid="uid://cs37kxhy4cbk0" path="res://scripts/resource_definitions/note_res.gd" id="1_xqi0y"]
+
+[resource]
+resource_name = "this is a note for a push"
+script = ExtResource("1_xqi0y")
+pages = Array[String]([])
+flags = Array[String]([])
