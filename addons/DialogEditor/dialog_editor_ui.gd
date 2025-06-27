@@ -25,6 +25,7 @@ var audio : Array[AudioStream]
 @export var dialog_selected_res : dialog_res
 @export var text_entry : TextEdit
 @export var page_count_label : Label
+@export var checkButton : CheckButton
 
 @export var flags_text : TextEdit
 var dialog_page_index : int = 0
@@ -103,25 +104,20 @@ func save_all() -> void:
 	play_save()
 	for n in dialog_data:
 		ResourceSaver.save(dialog_data[n],dialog_data[n].resource_path)
-		print("saved ", dialog_data[n])
 
 func save_selected() -> void:
 	play_save()
 	if dialog_selected_res:
-		print("Saving to path: ", dialog_selected_res.resource_path)
 		var save_path = dialog_selected_res.resource_path
 		if save_path == "":
 			save_path = note_path.path_join(dialog_selected_res.resource_name + ".tres")
 		var err := ResourceSaver.save(dialog_selected_res, save_path)
-		print("Save result: ", err)
 		if err != OK:
 			push_error("Failed to save note. Error code: %d" % err)
 		dialog_selected_res.emit_changed()
-		print("saved note")
 
 func delete_selected() -> void:
 	play_delete()
-	print("deleting note")
 	if dialog_selected_res == null:
 		push_warning("No note selected to delete.")
 		return
@@ -137,8 +133,6 @@ func delete_selected() -> void:
 		var err = DirAccess.remove_absolute(file_path)
 		if err != OK:
 			push_error("Failed to delete note file. Error code: %d" % err)
-		else:
-			print("Deleted note: ", file_path)
 
 	# Remove from list
 	if dialog_selected_name != "":
@@ -187,12 +181,17 @@ func on_page_delete() -> void:
 	if dialog_selected_res:
 		dialog_selected_res.remove_page(dialog_page_index)
 		check_page()
+		if dialog_page_index != 0 and dialog_page_index > dialog_selected_res.pages.size() - 1:
+			dialog_page_index -= 1
+		set_data()
 		update_page_counter()
 
 func on_add_page() -> void:
 	play_new()
 	if dialog_selected_res:
 		dialog_selected_res.add_page()
+		dialog_page_index+=1
+		set_data()
 		update_page_counter()
 
 func on_page_right() -> void:
@@ -234,10 +233,6 @@ func get_all_dialog(folder := "res://") -> Array[dialog_res]:
 					printerr("Note at ", full_path, " has no resource name!")
 		file_name = dir.get_next()
 	dir.list_dir_end()
-
-	# Only print once, from the top-level call
-	if folder == "res://":
-		print("Found ", dialog.size(), " notes total")
 	return dialog
 
 func clear_all_dialog():
@@ -254,10 +249,6 @@ func check_directory():
 		print("Directory doesn't exist: ", note_path)
 		var result := dir.make_dir_recursive(note_path)
 		if result == OK:
-			print("Successfully made directory: ", note_path)
-			# Schedule the scan to run on the next idle frame.
-			# This gives Godot's main thread a chance to finish current operations
-			# before initiating a potentially blocking scan that updates the UI.
 			EditorInterface.get_resource_filesystem().call_deferred("scan") 
 		else:
 			print("Failed to make directory, error: ", result)
@@ -279,12 +270,15 @@ func set_data():
 		set_audio_from_res()
 		set_text_from_res()
 		update_page_counter()
+		checkButton.button_pressed = dialog_selected_res.use_position[dialog_page_index]
 	else:
 		clear_data()
 	pass
 
 func clear_data():
 	update_page_counter()
+	flags_text.text = ""
+	checkButton.button_pressed=false
 	text_entry.text = ""
 	pass
 
@@ -318,16 +312,11 @@ func set_text_from_res():
 func text_edit_finished() -> void:
 	if dialog_selected_res:
 		dialog_selected_res.lines[dialog_page_index] = text_entry.text
-		print("finished editing text")
 	else:
 		text_entry.text = ""
 
 func set_res_audio(index : int):
 	if dialog_selected_res:
-		print("attempteing to set audio")
-		print("index is ",index)
-		print("dialog audio size: ",dialog_selected_res.audio.size())
-		print("audio array size:", audio.size())
 		dialog_selected_res.audio[dialog_page_index] = audio[index]
 
 func new_note_enter(new_text: String) -> void:
@@ -344,7 +333,6 @@ func parse_csv_string(input: String) -> Array[String]:
 func flags_updated() -> void:
 	if dialog_selected_res:
 		dialog_selected_res.flags = parse_csv_string(flags_text.text)
-		print("updated flags")
 	else:
 		flags_text.text = ""
 

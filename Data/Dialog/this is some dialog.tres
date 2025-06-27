@@ -1,14 +1,11 @@
-[gd_resource type="Resource" script_class="dialog_res" load_steps=5 format=3 uid="uid://0w8os700dxta"]
+[gd_resource type="Resource" script_class="dialog_res" load_steps=2 format=3 uid="uid://c3n8ylqapgh02"]
 
-[ext_resource type="AudioStream" uid="uid://2kkn55muf7k3" path="res://addons/ui_confirm_sound.mp3" id="1_60wkm"]
 [ext_resource type="Script" uid="uid://fk7kflknk12n" path="res://scripts/resource_definitions/dialog_res.gd" id="1_qffpj"]
-[ext_resource type="AudioStream" uid="uid://cavmyvald8m74" path="res://ui_click_sound.mp3" id="2_b56fe"]
-[ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="3_kydjo"]
 
 [resource]
 resource_name = "this is some dialog"
 script = ExtResource("1_qffpj")
-lines = Array[String](["", "", "", ""])
-audio = Array[AudioStream]([ExtResource("1_60wkm"), ExtResource("2_b56fe"), ExtResource("1_60wkm"), ExtResource("3_kydjo")])
-flags = Array[String](["this", "is", "the", "flags"])
-use_position = Array[bool]([false, false, false, false])
+lines = Array[String](["page 1", "page 2"])
+audio = Array[AudioStream]([null, null])
+flags = Array[String]([])
+use_position = Array[bool]([false, false])

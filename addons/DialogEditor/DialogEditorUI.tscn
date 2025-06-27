@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c65eurjoqd11o"]
+[gd_scene load_steps=9 format=3 uid="uid://c65eurjoqd11o"]
 
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_11hwm"]
 [ext_resource type="Script" uid="uid://mhjh5oyudo6c" path="res://addons/DialogEditor/dialog_editor_ui.gd" id="2_oti53"]
-[ext_resource type="Script" uid="uid://fk7kflknk12n" path="res://scripts/resource_definitions/dialog_res.gd" id="3_qql4o"]
-[ext_resource type="Resource" uid="uid://0w8os700dxta" path="res://Data/Dialog/this is some dialog.tres" id="4_nugw4"]
 [ext_resource type="AudioStream" uid="uid://db01h3k1d21lp" path="res://addons/AddonUIComponents/Sounds/select.mp3" id="4_vjuiv"]
 [ext_resource type="AudioStream" uid="uid://cf825pr1p8l4v" path="res://addons/AddonUIComponents/Sounds/new_file.mp3" id="5_8b1wl"]
 [ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="5_nugw4"]
@@ -11,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_ghuyq"]
 [ext_resource type="AudioStream" uid="uid://s7r0nf4x8chj" path="res://addons/AddonUIComponents/Sounds/cancel.mp3" id="8_lsjh5"]
 
-[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "audio_selection_list", "dialog_list", "dialog_name", "text_entry", "page_count_label", "flags_text")]
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "audio_selection_list", "dialog_list", "dialog_name", "text_entry", "page_count_label", "checkButton", "flags_text")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,14 +25,12 @@ reload_sound_player = NodePath("reload_sound")
 new_file_sound_player = NodePath("new_sound")
 delete_sound_player = NodePath("delete_sound")
 audio_selection_list = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/audio_selector")
-dialog_data = Dictionary[String, ExtResource("3_qql4o")]({
-"this is some dialog": ExtResource("4_nugw4")
-})
 dialog_list = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/note_list")
 item_list_pointer_icon = ExtResource("5_nugw4")
 dialog_name = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit")
 text_entry = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/text_box/TextEdit")
 page_count_label = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/page counter")
+checkButton = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/CheckButton")
 flags_text = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -95,8 +91,6 @@ horizontal_alignment = 1
 [node name="note_list" type="ItemList" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
 size_flags_vertical = 3
-item_count = 1
-item_0/text = "This is dialog"
 
 [node name="new note" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
@@ -139,22 +133,6 @@ text = "Line Audio:"
 [node name="audio_selector" type="OptionButton" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box"]
 layout_mode = 2
 size_flags_horizontal = 3
-selected = 0
-item_count = 7
-popup/item_0/text = "res://CustomUVChecker_byValle_1K.png"
-popup/item_0/id = 0
-popup/item_1/text = "res://icon.svg"
-popup/item_1/id = 1
-popup/item_2/text = "res://addons/AddonUIComponents/Textures/button_hover.png"
-popup/item_2/id = 2
-popup/item_3/text = "res://addons/AddonUIComponents/Textures/ff_check_button_false.png"
-popup/item_3/id = 3
-popup/item_4/text = "res://addons/AddonUIComponents/Textures/ff_check_button_true.png"
-popup/item_4/id = 4
-popup/item_5/text = "res://addons/AddonUIComponents/Textures/Final Fantasy Panel.png"
-popup/item_5/id = 5
-popup/item_6/text = "res://addons/AddonUIComponents/Textures/item_list_pointer.png"
-popup/item_6/id = 6
 
 [node name="text_box" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
 layout_mode = 2

@@ -99,25 +99,20 @@ func save_all() -> void:
 	play_save()
 	for n in notes_data:
 		ResourceSaver.save(notes_data[n],notes_data[n].resource_path)
-		print("saved ", notes_data[n])
 
 func save_selected() -> void:
 	play_save()
 	if note_selected_res:
-		print("Saving to path: ", note_selected_res.resource_path)
 		var save_path = note_selected_res.resource_path
 		if save_path == "":
 			save_path = note_path.path_join(note_selected_res.resource_name + ".tres")
 		var err := ResourceSaver.save(note_selected_res, save_path)
-		print("Save result: ", err)
 		if err != OK:
 			push_error("Failed to save note. Error code: %d" % err)
 		note_selected_res.emit_changed()
-		print("saved note")
 
 func delete_selected() -> void:
 	play_delete()
-	print("deleting note")
 	if note_selected_res == null:
 		push_warning("No note selected to delete.")
 		return
@@ -133,8 +128,6 @@ func delete_selected() -> void:
 		var err = DirAccess.remove_absolute(file_path)
 		if err != OK:
 			push_error("Failed to delete note file. Error code: %d" % err)
-		else:
-			print("Deleted note: ", file_path)
 
 	# Remove from list
 	if note_selected_name != "":
@@ -183,12 +176,17 @@ func on_page_delete() -> void:
 	if note_selected_res:
 		note_selected_res.remove_page(note_page_index)
 		check_page()
+		if note_page_index != 0 and note_page_index > note_selected_res.pages.size()-1:
+			note_page_index -= 1
+		set_data()
 		update_page_counter()
 
 func on_add_page() -> void:
 	play_new()
 	if note_selected_res:
 		note_selected_res.add_page("")
+		note_page_index+=1
+		set_data()
 		update_page_counter()
 
 func on_page_right() -> void:
@@ -229,10 +227,6 @@ func get_all_notes(folder := "res://") -> Array[note_res]:
 					printerr("Note at ", full_path, " has no resource name!")
 		file_name = dir.get_next()
 	dir.list_dir_end()
-
-	# Only print once, from the top-level call
-	if folder == "res://":
-		print("Found ", notes.size(), " notes total")
 	return notes
 
 func clear_all_notes():
@@ -308,7 +302,6 @@ func set_text_from_res():
 func text_edit_finished() -> void:
 	if note_selected_res:
 		note_selected_res.pages[note_page_index] = text_entry.text
-		print("finished editing text")
 	else:
 		text_entry.text = ""
 
@@ -330,6 +323,5 @@ func parse_csv_string(input: String) -> Array[String]:
 func flags_updated() -> void:
 	if note_selected_res:
 		note_selected_res.flags = parse_csv_string(flags_text.text)
-		print("updated flags")
 	else:
 		flags_text.text = ""

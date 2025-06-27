@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://br0vkmme8lc3f"]
+[gd_scene load_steps=11 format=3 uid="uid://br0vkmme8lc3f"]
 
 [ext_resource type="Script" uid="uid://dvfd37kp2q1la" path="res://addons/NoteEditor/note_editor_ui.gd" id="1_cjxdj"]
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_lxh58"]
+[ext_resource type="Script" uid="uid://cs37kxhy4cbk0" path="res://scripts/resource_definitions/note_res.gd" id="3_ht3q0"]
 [ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="3_icmk7"]
 [ext_resource type="AudioStream" uid="uid://db01h3k1d21lp" path="res://addons/AddonUIComponents/Sounds/select.mp3" id="4_b7rpa"]
+[ext_resource type="Resource" uid="uid://cqy2t8nvy15ig" path="res://Data/Notes/this note i clicked to create.tres" id="4_ht3q0"]
 [ext_resource type="AudioStream" uid="uid://cf825pr1p8l4v" path="res://addons/AddonUIComponents/Sounds/new_file.mp3" id="5_3xaye"]
 [ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="6_ht3q0"]
 [ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_tf0eo"]
@@ -25,6 +27,9 @@ reload_sound_player = NodePath("reload_sound")
 new_file_sound_player = NodePath("new_sound")
 delete_sound_player = NodePath("delete_sound")
 texture_selection_list = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/texture_selector")
+notes_data = Dictionary[String, ExtResource("3_ht3q0")]({
+"this note i clicked to create": ExtResource("4_ht3q0")
+})
 note_list = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/note_list")
 item_list_pointer_icon = ExtResource("3_icmk7")
 note_name = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit")
@@ -90,6 +95,8 @@ horizontal_alignment = 1
 [node name="note_list" type="ItemList" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
 size_flags_vertical = 3
+item_count = 1
+item_0/text = "note"
 
 [node name="new note" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
