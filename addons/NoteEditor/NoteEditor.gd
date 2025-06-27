@@ -17,7 +17,11 @@ func _enter_tree():
 
 func _exit_tree():
 	if main_panel_instance:
+		# Ensure it's parented to EditorInterface.get_editor_main_screen() before removing.
+		if main_panel_instance.get_parent() == EditorInterface.get_editor_main_screen():
+			EditorInterface.get_editor_main_screen().remove_child(main_panel_instance)
 		main_panel_instance.queue_free()
+		main_panel_instance = null # Clear the reference
 
 
 func _has_main_screen():

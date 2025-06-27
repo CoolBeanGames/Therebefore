@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="note_res" load_steps=3 format=3 uid="uid://caj60on1yfy4i"]
+
+[ext_resource type="Texture2D" uid="uid://5d1i3q7jcf7q" path="res://addons/AddonUIComponents/Textures/ff_check_button_true.png" id="1_ogg7t"]
+[ext_resource type="Script" uid="uid://cs37kxhy4cbk0" path="res://scripts/resource_definitions/note_res.gd" id="1_uslml"]
+
+[resource]
+resource_name = "note"
+script = ExtResource("1_uslml")
+pages = Array[String](["some text"])
+image = ExtResource("1_ogg7t")
+flags = Array[String](["this", "is", "a", "flag"])

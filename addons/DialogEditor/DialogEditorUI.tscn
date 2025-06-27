@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c65eurjoqd11o"]
+[gd_scene load_steps=11 format=3 uid="uid://c65eurjoqd11o"]
 
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_11hwm"]
 [ext_resource type="Script" uid="uid://mhjh5oyudo6c" path="res://addons/DialogEditor/dialog_editor_ui.gd" id="2_oti53"]
+[ext_resource type="Script" uid="uid://fk7kflknk12n" path="res://scripts/resource_definitions/dialog_res.gd" id="3_qql4o"]
+[ext_resource type="Resource" uid="uid://0w8os700dxta" path="res://Data/Dialog/this is some dialog.tres" id="4_nugw4"]
 [ext_resource type="AudioStream" uid="uid://db01h3k1d21lp" path="res://addons/AddonUIComponents/Sounds/select.mp3" id="4_vjuiv"]
 [ext_resource type="AudioStream" uid="uid://cf825pr1p8l4v" path="res://addons/AddonUIComponents/Sounds/new_file.mp3" id="5_8b1wl"]
+[ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="5_nugw4"]
 [ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="6_fjsj2"]
 [ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_ghuyq"]
 [ext_resource type="AudioStream" uid="uid://s7r0nf4x8chj" path="res://addons/AddonUIComponents/Sounds/cancel.mp3" id="8_lsjh5"]
@@ -24,7 +27,11 @@ reload_sound_player = NodePath("reload_sound")
 new_file_sound_player = NodePath("new_sound")
 delete_sound_player = NodePath("delete_sound")
 audio_selection_list = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/audio_selector")
+dialog_data = Dictionary[String, ExtResource("3_qql4o")]({
+"this is some dialog": ExtResource("4_nugw4")
+})
 dialog_list = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/note_list")
+item_list_pointer_icon = ExtResource("5_nugw4")
 dialog_name = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit")
 text_entry = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/text_box/TextEdit")
 page_count_label = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/page counter")
@@ -88,6 +95,8 @@ horizontal_alignment = 1
 [node name="note_list" type="ItemList" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
 size_flags_vertical = 3
+item_count = 1
+item_0/text = "This is dialog"
 
 [node name="new note" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
@@ -181,6 +190,7 @@ theme = ExtResource("1_11hwm")
 text = "-"
 
 [node name="spacer" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+visible = false
 layout_mode = 2
 text = "            "
 horizontal_alignment = 1
@@ -239,11 +249,12 @@ stream = ExtResource("8_lsjh5")
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/reload" to="." method="reload_clicked"]
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/delete_selected" to="." method="delete_selected"]
 [connection signal="empty_clicked" from="VBoxContainer/ContentPanel/content/NoteList/Notes/note_list" to="." method="note_clear"]
-[connection signal="item_selected" from="VBoxContainer/ContentPanel/content/NoteList/Notes/note_list" to="." method="on_note_selected"]
+[connection signal="item_selected" from="VBoxContainer/ContentPanel/content/NoteList/Notes/note_list" to="." method="on_dialog_selected"]
 [connection signal="text_submitted" from="VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit" to="." method="new_note_enter"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/NoteList/Notes/new note/new_note_button" to="." method="make_new_note"]
 [connection signal="item_selected" from="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/audio_selector" to="." method="set_res_audio"]
 [connection signal="text_changed" from="VBoxContainer/ContentPanel/content/DataContainer/Data/text_box/TextEdit" to="." method="text_edit_finished"]
+[connection signal="toggled" from="VBoxContainer/ContentPanel/content/DataContainer/Data/CheckButton" to="." method="check_button_toggle"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Left Button" to="." method="on_page_left"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Delete Button" to="." method="on_page_delete"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Add Button" to="." method="on_add_page"]

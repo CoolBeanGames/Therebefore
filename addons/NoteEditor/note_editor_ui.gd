@@ -199,11 +199,8 @@ func on_page_right() -> void:
 		update_page_counter()
 		set_text_from_res()
 
-func _enter_tree() -> void:
-	texture_selection_list.clear()
-	textures = get_all_textures()
-	check_directory()
-	get_all_notes()
+func _ready() -> void:
+	call_deferred("reload_clicked")
 
 func get_all_notes(folder := "res://") -> Array[note_res]:
 	if folder == "res://":

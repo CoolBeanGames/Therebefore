@@ -2,7 +2,7 @@
 extends Control
 class_name dialog_editor
 
-const note_path = "res://Data/Notes"
+const note_path = "res://Data/Dialog"
 
 var audio : Array[AudioStream]
 @export var click_sound_player : AudioStreamPlayer
@@ -57,8 +57,10 @@ func _scan_dir_for_audio(dir: EditorFileSystemDirectory, results: Array[AudioStr
 
 
 func reload_clicked() -> void:
+	check_directory()
 	play_reload()
 	dialog_list.clear()
+	audio_selection_list.clear()
 	audio = get_all_audio_streams()
 	get_all_dialog()
 
@@ -201,11 +203,9 @@ func on_page_right() -> void:
 		update_page_counter()
 		set_text_from_res()
 
-func _enter_tree() -> void:
-	audio_selection_list.clear()
-	audio = get_all_audio_streams()
-	check_directory()
-	get_all_dialog()
+func _ready() -> void:
+	call_deferred("check_directory")
+	call_deferred("reload_clicked")
 
 func get_all_dialog(folder := "res://") -> Array[dialog_res]:
 	if folder == "res://":
@@ -254,10 +254,15 @@ func check_directory():
 		print("Directory doesn't exist: ", note_path)
 		var result := dir.make_dir_recursive(note_path)
 		if result == OK:
-			print("Successfully made directory")
+			print("Successfully made directory: ", note_path)
+			# Schedule the scan to run on the next idle frame.
+			# This gives Godot's main thread a chance to finish current operations
+			# before initiating a potentially blocking scan that updates the UI.
+			EditorInterface.get_resource_filesystem().call_deferred("scan") 
 		else:
 			print("Failed to make directory, error: ", result)
-	EditorInterface.get_resource_filesystem().scan()
+	# No unconditional scan here.
+
 
 func note_clear(at_position: Vector2, mouse_button_index: int) -> void:
 	dialog_list.deselect_all()
@@ -285,41 +290,45 @@ func clear_data():
 
 func check_page():
 	if dialog_selected_res !=null:
-		if dialog_selected_res.pages.size() == 0 or dialog_selected_res.pages == null:
+		if dialog_selected_res.lines.size() == 0 or dialog_selected_res.lines == null:
 			dialog_selected_res.add_page()
 
 func update_page_counter():
 	if dialog_selected_res != null:
 		var index_counter : String = str(dialog_page_index + 1)
-		var max_index : String  = str(dialog_selected_res.pages.size())
+		var max_index : String  = str(dialog_selected_res.lines.size())
 		page_count_label.text = index_counter + " / " + max_index
 	else:
 		page_count_label.text = "-- / --"
 
 func clamp_page_index():
 	if dialog_selected_res != null:
-		dialog_page_index = clamp(dialog_page_index,0,dialog_selected_res.pages.size() - 1)
+		dialog_page_index = clamp(dialog_page_index,0,dialog_selected_res.lines.size() - 1)
 
 func set_audio_from_res():
 	if dialog_selected_res!=null:
-		if dialog_selected_res.image != null:
+		if dialog_selected_res.audio != null and audio.size() > 0:
 			var ind = audio.find(dialog_selected_res.audio[dialog_page_index])
 			audio_selection_list.select(ind)
 
 func set_text_from_res():
-	text_entry.text = dialog_selected_res.pages[dialog_page_index]
+	text_entry.text = dialog_selected_res.lines[dialog_page_index]
 
 
 func text_edit_finished() -> void:
 	if dialog_selected_res:
-		dialog_selected_res.pages[dialog_page_index] = text_entry.text
+		dialog_selected_res.lines[dialog_page_index] = text_entry.text
 		print("finished editing text")
 	else:
 		text_entry.text = ""
 
 func set_res_audio(index : int):
 	if dialog_selected_res:
-		dialog_selected_res.audio[index] = audio[index]
+		print("attempteing to set audio")
+		print("index is ",index)
+		print("dialog audio size: ",dialog_selected_res.audio.size())
+		print("audio array size:", audio.size())
+		dialog_selected_res.audio[dialog_page_index] = audio[index]
 
 func new_note_enter(new_text: String) -> void:
 	make_new_note()
@@ -338,3 +347,8 @@ func flags_updated() -> void:
 		print("updated flags")
 	else:
 		flags_text.text = ""
+
+
+func check_button_toggle(toggled_on: bool) -> void:
+	if dialog_selected_res:
+		dialog_selected_res.use_position[dialog_page_index] = toggled_on
