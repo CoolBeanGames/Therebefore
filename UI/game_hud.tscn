@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwaegwvlxtxbr"]
+
+[ext_resource type="Script" uid="uid://covnblndurusc" path="res://UI/game_hud.gd" id="1_5bqoq"]
+[ext_resource type="Texture2D" uid="uid://y4sqdu7nnwyw" path="res://icon.svg" id="1_v2jwi"]
+[ext_resource type="Script" uid="uid://bviv0sceyrg8v" path="res://UI/notes_ui.gd" id="2_qbrru"]
+[ext_resource type="Theme" uid="uid://50jxdsckl2ay" path="res://UI/game_theme.tres" id="2_s04bl"]
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("noteUI")]
+follow_viewport_enabled = true
+script = ExtResource("1_5bqoq")
+noteUI = NodePath("NotesUI")
+
+[node name="NotesUI" type="PanelContainer" parent="." node_paths=PackedStringArray("image", "text_contents", "page_couinter", "button_prompts")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_qbrru")
+image = NodePath("TextureRect")
+text_contents = NodePath("TextPanel/RichTextLabel")
+page_couinter = NodePath("TextPanel/Page Counter")
+button_prompts = NodePath("TextPanel/button_prompts")
+
+[node name="TextureRect" type="TextureRect" parent="NotesUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_v2jwi")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextPanel" type="Panel" parent="NotesUI"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NotesUI/TextPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s04bl")
+text = "This is where text will go
+notes will look like this
+its important for displaying
+lore and in game store"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Page Counter" type="Label" parent="NotesUI/TextPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.9
+theme = ExtResource("2_s04bl")
+text = "-- / --"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button_prompts" type="Label" parent="NotesUI/TextPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_s04bl")
+text = "[e] hide text [esc] close"
+horizontal_alignment = 1
+vertical_alignment = 1

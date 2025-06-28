@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqp0iws3a70pw"]
+
+[ext_resource type="Script" uid="uid://bxm3ikr4huwh8" path="res://scripts/camera_control_component.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://bw50fmaaj5juo" path="res://Scenes/player_movement_component.gd" id="2_cvnsp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+height = 2.00252
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+layers = 2
+height = 1.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+layers = 2
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, -0.5, 0)
+layers = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00946283, 0)
+shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0358651, 0.592706, 0.520494)
+cull_mask = 1048573
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 4
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+light_color = Color(0.929354, 0.93109, 0.793595, 1)
+light_energy = 0.5
+spot_range = 4.0
+spot_attenuation = 0.0
+
+[node name="camera_control" type="Node" parent="." node_paths=PackedStringArray("body", "head")]
+script = ExtResource("1_v0iea")
+body = NodePath("..")
+head = NodePath("../Camera3D")
+
+[node name="player_movement" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("2_cvnsp")
+walk_speed = 500.0
+body = NodePath("..")
