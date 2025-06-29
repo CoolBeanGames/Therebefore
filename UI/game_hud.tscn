@@ -11,7 +11,6 @@ script = ExtResource("1_5bqoq")
 noteUI = NodePath("NotesUI")
 
 [node name="NotesUI" type="PanelContainer" parent="." node_paths=PackedStringArray("image", "text_contents", "page_couinter", "button_prompts")]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
