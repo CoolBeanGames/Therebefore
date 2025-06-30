@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7f5ifnt8gshr"]
+[gd_scene load_steps=6 format=3 uid="uid://b7f5ifnt8gshr"]
 
 [ext_resource type="Script" uid="uid://bwa8marrksgol" path="res://scripts/game_base.gd" id="1_8ktb3"]
 [ext_resource type="PackedScene" uid="uid://msb8glnwae50" path="res://Scenes/test_map.tscn" id="2_nvvv1"]
 [ext_resource type="PackedScene" uid="uid://dqp0iws3a70pw" path="res://Scenes/player.tscn" id="3_op4vg"]
 [ext_resource type="PackedScene" uid="uid://bwaegwvlxtxbr" path="res://UI/game_hud.tscn" id="4_bngpg"]
+[ext_resource type="PackedScene" uid="uid://bysak7m1h8ts7" path="res://Scenes/test_note.tscn" id="5_fqtgw"]
 
 [node name="Game_Base" type="Node"]
 script = ExtResource("1_8ktb3")
@@ -14,3 +15,6 @@ script = ExtResource("1_8ktb3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955751, 0)
 
 [node name="UI" parent="." instance=ExtResource("4_bngpg")]
+
+[node name="test_note" parent="." instance=ExtResource("5_fqtgw")]
+transform = Transform3D(0.282967, 0, -0.0996483, 0, 0.3, 0, 0.0996483, 0, 0.282967, 0, 0.64801, 4.335)

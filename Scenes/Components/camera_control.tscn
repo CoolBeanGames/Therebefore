@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3xr7q01econf"]
+
+[ext_resource type="Script" uid="uid://bxm3ikr4huwh8" path="res://scripts/components/camera_control_component.gd" id="1_0287m"]
+
+[node name="camera_control" type="Node" node_paths=PackedStringArray("body", "head") groups=["interactable"]]
+script = ExtResource("1_0287m")
+body = NodePath("")
+head = NodePath("")

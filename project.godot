@@ -16,9 +16,17 @@ run/main_scene="uid://b7f5ifnt8gshr"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+References="*res://scripts/global/_references.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/DialogEditor/plugin.cfg", "res://addons/NoteEditor/plugin.cfg")
+
+[global_group]
+
+interactable="any object that can be interacted with"
 
 [input]
 

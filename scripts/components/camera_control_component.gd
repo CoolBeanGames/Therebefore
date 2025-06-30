@@ -26,7 +26,7 @@ func do_look():
 
 func calculate_rot():
 	pitch += input_vector.y * look_speed * delta
-	pivot += input_vector.x * look_speed * delta
+	pivot += input_vector.x * -look_speed * delta
 	
 	pitch = clamp(pitch,-90,90)
 

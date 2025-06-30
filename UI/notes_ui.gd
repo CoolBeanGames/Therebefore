@@ -40,7 +40,7 @@ func start_showing_note(_note : note_res):
 	note_open_sound.play()
 	visibility_parent.visible=true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_active:
 		if Input.is_action_just_released("left"):
 			page_left()
