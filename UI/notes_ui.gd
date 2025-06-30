@@ -39,6 +39,7 @@ func start_showing_note(_note : note_res):
 	note_opened.emit(_note)
 	note_open_sound.play()
 	visibility_parent.visible=true
+	GameData.lock_input(self)
 
 func _process(_delta: float) -> void:
 	if is_active:
@@ -52,9 +53,11 @@ func _process(_delta: float) -> void:
 #stops showing the note if one is showing and clears all data
 func stop_showing_note():
 	##todo: unlock input
+	GameData.release_input_lock(self)
 	if note != null:
 		note_closed.emit(note)
 		note_close_sound.play()
+		GameData.set_flags(note.flags)
 	note = null
 	image = null
 	page_couinter.text = "-- / --"
@@ -62,6 +65,7 @@ func stop_showing_note():
 	note_page = 0
 	is_active=false
 	visibility_parent.visible = false
+
 
 #update the current page indicator
 func update_page_string():

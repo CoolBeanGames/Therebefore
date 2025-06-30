@@ -8,10 +8,11 @@ var input : Vector2
 @export var delta : float
 
 func _process(_delta: float) -> void:
-	delta = _delta
-	update_input()
-	set_velocity()
-	move_player()
+	if !GameData.is_input_locked():
+		delta = _delta
+		update_input()
+		set_velocity()
+		move_player()
 
 func update_input():
 	input = Input.get_vector("left","right","back","forward")

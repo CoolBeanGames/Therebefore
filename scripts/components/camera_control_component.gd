@@ -13,7 +13,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.get_mouse_mode():
+	if event is InputEventMouseMotion and Input.get_mouse_mode() and !GameData.is_input_locked():
 		input_vector = event.relative
 		do_look()
 

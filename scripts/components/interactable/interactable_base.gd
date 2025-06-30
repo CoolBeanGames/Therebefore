@@ -33,6 +33,7 @@ func interact():
 	print("interact")
 	if !flags_set:
 		#set flags here
+		GameData.set_flags(flags)
 		pass
 	interacted.emit()
 	pass

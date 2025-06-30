@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 References="*res://scripts/global/_references.gd"
+GameData="*res://scripts/global/_gameData.gd"
 
 [editor_plugins]
 
