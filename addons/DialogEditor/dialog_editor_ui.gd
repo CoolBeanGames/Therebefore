@@ -12,6 +12,7 @@ var audio : Array[AudioStream]
 @export var delete_sound_player : AudioStreamPlayer
 
 @export var audio_selection_list : OptionButton
+@export var bus_selection : OptionButton
 
 @export var dialog_data : Dictionary[String, dialog_res]
 
@@ -174,14 +175,14 @@ func on_page_left() -> void:
 		dialog_page_index -= 1
 		clamp_page_index()
 		update_page_counter()
-		set_text_from_res()
+		set_data()
 
 func on_page_delete() -> void:
 	play_delete()
 	if dialog_selected_res:
 		dialog_selected_res.remove_page(dialog_page_index)
 		check_page()
-		if dialog_page_index != 0 and dialog_page_index > dialog_selected_res.pages.size() - 1:
+		if dialog_page_index != 0 and dialog_page_index > dialog_selected_res.lines.size() - 1:
 			dialog_page_index -= 1
 		set_data()
 		update_page_counter()
@@ -200,7 +201,7 @@ func on_page_right() -> void:
 		dialog_page_index += 1
 		clamp_page_index()
 		update_page_counter()
-		set_text_from_res()
+		set_data()
 
 func _ready() -> void:
 	call_deferred("check_directory")
@@ -269,11 +270,25 @@ func set_data():
 		check_page()
 		set_audio_from_res()
 		set_text_from_res()
+		set_bus_from_res()
 		update_page_counter()
 		checkButton.button_pressed = dialog_selected_res.use_position[dialog_page_index]
 	else:
 		clear_data()
 	pass
+
+func set_bus_from_res():
+	print("set bus")
+	if dialog_selected_res!=null:
+		if dialog_selected_res.audio != null:
+			var bus = dialog_selected_res.bus[dialog_page_index]
+			bus_selection.select(bus)
+			print("bus was set")
+
+func set_bus_from_list(index : int):
+	if dialog_selected_res!=null:
+		if dialog_selected_res.audio != null:
+			dialog_selected_res.bus[dialog_page_index] = bus_selection.selected
 
 func clear_data():
 	update_page_counter()
@@ -340,3 +355,7 @@ func flags_updated() -> void:
 func check_button_toggle(toggled_on: bool) -> void:
 	if dialog_selected_res:
 		dialog_selected_res.use_position[dialog_page_index] = toggled_on
+
+func int_to_audio_bus(bus_index : int) -> Audio.audio_bus:
+	var bus : Audio.audio_bus = bus_index
+	return bus

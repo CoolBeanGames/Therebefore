@@ -6,6 +6,7 @@ class_name dialog_res
 @export var audio : Array[AudioStream]
 @export var flags : Array[String]
 @export var use_position : Array[bool]
+@export var bus : Array[Audio.audio_bus]
 
 signal note_read
 
@@ -20,6 +21,7 @@ func add_page():
 	audio.append(null)
 	use_position.append(false)
 	lines.append("")
+	bus.append(Audio.audio_bus.master)
 
 #called to move page backward (index -1)
 func move_page_back(index : int):
@@ -29,6 +31,7 @@ func move_page_back(index : int):
 	var line_to_move = lines[index]
 	var audio_to_move = audio[index]
 	var use_position_to_move = use_position[index]
+	var bus_to_move = bus[index]
 	
 	lines.remove_at(index)
 	lines.insert(index-1,line_to_move)
@@ -38,6 +41,9 @@ func move_page_back(index : int):
 	
 	use_position.remove_at(index)
 	use_position.insert(index-1,use_position_to_move)
+	
+	bus.remove_at(index)
+	bus.insert(index-1,bus_to_move)
 
 #called to move page forweard (index + 1)
 func move_page_forward(index : int):
@@ -47,6 +53,7 @@ func move_page_forward(index : int):
 	var line_to_move = lines[index]
 	var audio_to_move = audio[index]
 	var use_position_to_move = use_position[index]
+	var bus_to_move = bus[index]
 	
 	
 	lines.remove_at(index)
@@ -57,6 +64,9 @@ func move_page_forward(index : int):
 	
 	use_position.remove_at(index)
 	use_position.insert(index+1,use_position_to_move)
+	
+	bus.remove_at(index)
+	bus.insert(index+1,bus_to_move)
 
 func remove_page(index : int):
 	if index<0 or index > lines.size()-1:
@@ -65,3 +75,4 @@ func remove_page(index : int):
 	lines.remove_at(index)
 	audio.remove_at(index)
 	use_position.remove_at(index)
+	bus.remove_at(index)
