@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bwaegwvlxtxbr" path="res://UI/game_hud.tscn" id="4_bngpg"]
 [ext_resource type="PackedScene" uid="uid://bysak7m1h8ts7" path="res://Scenes/test_note.tscn" id="5_fqtgw"]
 
-[node name="Game_Base" type="Node"]
+[node name="Game_Base" type="Node" node_paths=PackedStringArray("ActivePlayersParent", "InactivePlayersParent")]
 script = ExtResource("1_8ktb3")
+ActivePlayersParent = NodePath("AudioPlayers/Active")
+InactivePlayersParent = NodePath("AudioPlayers/Inactive")
 
 [node name="test_map" parent="." instance=ExtResource("2_nvvv1")]
 
@@ -18,3 +20,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955751, 0)
 
 [node name="test_note" parent="." instance=ExtResource("5_fqtgw")]
 transform = Transform3D(0.282967, 0, -0.0996483, 0, 0.3, 0, 0.0996483, 0, 0.282967, 0, 0.64801, 4.335)
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="Active" type="Node" parent="AudioPlayers"]
+
+[node name="Inactive" type="Node" parent="AudioPlayers"]

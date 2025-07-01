@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bovwdg54ec55l"]
+
+[ext_resource type="Script" uid="uid://d4lvatshrtyym" path="res://scripts/prefabs/audio_player.gd" id="1_n037t"]
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D"]
+script = ExtResource("1_n037t")
+
+[node name="3Dplayer" type="AudioStreamPlayer3D" parent="."]
+
+[node name="GlobalPlayer" type="AudioStreamPlayer" parent="."]
