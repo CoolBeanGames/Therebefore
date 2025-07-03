@@ -1,14 +1,15 @@
 @tool
 extends EditorPlugin
-
+class_name dialog_editor_plugin
 
 const MainPanel = preload("res://addons/DialogEditor/DialogEditorUI.tscn")
-var main_panel_instance : Control # Keep as Control or dialog_editor
+var main_panel_instance : dialog_editor 
+@export var is_visible : bool = false
 
 
 func _enter_tree():
 	main_panel_instance = MainPanel.instantiate()
-	main_panel_instance.setup(self)
+	main_panel_instance.call_deferred("setup", self)
 	
 	# Your original line for adding the control:
 	# This *is* actually the correct approach for a custom main editor screen
@@ -37,10 +38,14 @@ func _has_main_screen():
 	return true
 
 
-func _make_visible(visible):
+func _make_visible(visible_state: bool): # Renamed 'visible' to 'visible_state' to avoid shadowing built-in 'visible' property
 	# Godot calls this when your plugin's tab is selected (visible = true) or deselected (visible = false).
 	if main_panel_instance:
-		main_panel_instance.visible = visible
+		main_panel_instance.visible = visible_state
+		is_visible = visible_state # Update the plugin's internal state
+		
+		# Pass the current 'visible_state' directly to the UI script's toggle_music function
+		main_panel_instance.toggle_music(visible_state)
 
 
 func _get_plugin_name():

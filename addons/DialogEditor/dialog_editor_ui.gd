@@ -29,9 +29,12 @@ var audio : Array[AudioStream]
 @export var checkButton : CheckButton
 
 @export var flags_text : TextEdit
+
+@export var music_player : AudioStreamPlayer
+@export var music_playing : bool = false
 var dialog_page_index : int = 0
 
-var plugin : EditorPlugin
+var plugin : dialog_editor_plugin
 
 func setup(plug : EditorPlugin):
 	plugin = plug
@@ -67,7 +70,7 @@ func reload_clicked() -> void:
 	get_all_dialog()
 
 func play_click():
-	if click_sound_player!=null:
+	if click_sound_player!=null and plugin.is_visible:
 		click_sound_player.play()
 
 func on_dialog_selected(index: int) -> void:
@@ -86,19 +89,19 @@ func remove_icon_from_all_entries():
 		dialog_list.set_item_icon(i, null)
 
 func play_save():
-	if save_sound_player!=null:
+	if save_sound_player!=null and plugin.is_visible:
 		save_sound_player.play()
 
 func play_reload():
-	if reload_sound_player!=null:
+	if reload_sound_player!=null and plugin.is_visible:
 		reload_sound_player.play()
 
 func play_delete():
-	if delete_sound_player!=null:
+	if delete_sound_player!=null and plugin.is_visible:
 		delete_sound_player.play()
 
 func play_new():
-	if new_file_sound_player!=null:
+	if new_file_sound_player!=null and plugin.is_visible:
 		new_file_sound_player.play()
 
 func save_all() -> void:
@@ -359,3 +362,22 @@ func check_button_toggle(toggled_on: bool) -> void:
 func int_to_audio_bus(bus_index : int) -> Audio.audio_bus:
 	var bus : Audio.audio_bus = bus_index
 	return bus
+
+func start_music():
+	if music_player and not music_playing: # Use 'not' for clarity, equivalent to '!'.
+		music_player.play()
+		music_playing = true # Update state
+		print("Music Started") # Debug print
+
+func end_music():
+	if music_player and music_playing:
+		music_player.stop()
+		music_playing = false # Update state
+		print("Music Ended") # Debug print
+
+# Updated function to accept the visibility state directly
+func toggle_music(is_plugin_visible: bool):
+	if is_plugin_visible:
+		start_music()
+	else:
+		end_music()

@@ -30,6 +30,9 @@ var textures : Array[Texture2D]
 
 @export var flags_text : TextEdit
 
+@export var music_player : AudioStreamPlayer
+@export var music_playing : bool = false
+
 var plugin : EditorPlugin
 
 func setup(plug : EditorPlugin):
@@ -61,7 +64,7 @@ func reload_clicked() -> void:
 	get_all_notes()
 
 func play_click():
-	if click_sound_player!=null:
+	if click_sound_player!=null and music_playing:
 		click_sound_player.play()
 
 func on_note_selected(index: int) -> void:
@@ -80,19 +83,19 @@ func remove_icon_from_all_entries():
 		note_list.set_item_icon(i, null)
 
 func play_save():
-	if save_sound_player!=null:
+	if save_sound_player!=null and music_playing:
 		save_sound_player.play()
 
 func play_reload():
-	if reload_sound_player!=null:
+	if reload_sound_player!=null and music_playing:
 		reload_sound_player.play()
 
 func play_delete():
-	if delete_sound_player!=null:
+	if delete_sound_player!=null and music_playing:
 		delete_sound_player.play()
 
 func play_new():
-	if new_file_sound_player!=null:
+	if new_file_sound_player!=null and music_playing:
 		new_file_sound_player.play()
 
 func save_all() -> void:
@@ -325,3 +328,23 @@ func flags_updated() -> void:
 		note_selected_res.flags = parse_csv_string(flags_text.text)
 	else:
 		flags_text.text = ""
+
+
+func start_music():
+	if music_player and not music_playing: # Use 'not' for clarity, equivalent to '!'.
+		music_player.play()
+		music_playing = true # Update state
+		print("Music Started") # Debug print
+
+func end_music():
+	if music_player and music_playing:
+		music_player.stop()
+		music_playing = false # Update state
+		print("Music Ended") # Debug print
+
+# Updated function to accept the visibility state directly
+func toggle_music(is_plugin_visible: bool):
+	if is_plugin_visible:
+		start_music()
+	else:
+		end_music()
