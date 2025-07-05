@@ -13,11 +13,11 @@ class_name notes
 @export var text_active : bool = false
 
 #audio players
-@export var note_open_sound : AudioStreamPlayer
-@export var note_close_sound : AudioStreamPlayer
-@export var note_right_sound : AudioStreamPlayer
-@export var note_left_sound : AudioStreamPlayer
-@export var error_sound : AudioStreamPlayer
+@export var note_open_sound : AudioStream
+@export var note_close_sound : AudioStream
+@export var note_right_sound : AudioStream
+@export var note_left_sound : AudioStream
+@export var error_sound : AudioStream
 
 #signal
 signal note_opened (note : note_res)
@@ -37,7 +37,7 @@ func start_showing_note(_note : note_res):
 	update_page_string()
 	update_note_text()
 	note_opened.emit(_note)
-	note_open_sound.play()
+	Audio.play(note_open_sound,false,Audio.audio_bus.sfx)
 	visibility_parent.visible=true
 	GameData.lock_input(self)
 
@@ -56,7 +56,7 @@ func stop_showing_note():
 	GameData.release_input_lock(self)
 	if note != null:
 		note_closed.emit(note)
-		note_close_sound.play()
+		Audio.play(note_close_sound,false,Audio.audio_bus.sfx)
 		GameData.set_flags(note.flags)
 	note = null
 	image = null
@@ -120,9 +120,9 @@ func page_right():
 	note_page += 1
 	if note_page > note.pages.size()-1:
 		#todo: play error sound
-		error_sound.play()
+		Audio.play(error_sound,false,Audio.audio_bus.sfx)
 	else:
-		note_right_sound.play()
+		Audio.play(note_right_sound,false,Audio.audio_bus.sfx)
 	check_note_page_bounds()
 	update_page_string()
 	update_note_text()
@@ -140,9 +140,9 @@ func page_left():
 	note_page -= 1
 	if note_page < 0:
 		#todo play error sound
-		error_sound.play()
+		Audio.play(error_sound,false,Audio.audio_bus.sfx)
 	else:
-		note_left_sound.play()
+		Audio.play(note_left_sound,false,Audio.audio_bus.sfx)
 	check_note_page_bounds()
 	update_page_string()
 	update_note_text()

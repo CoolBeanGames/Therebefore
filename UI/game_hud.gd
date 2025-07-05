@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name game_hud
 
 @export var noteUI : notes
+@export var dialogUI : dialog_ui
 @export var interaction_text : Label
 
 func _ready() -> void:

@@ -16,4 +16,11 @@ func remove_reference(node : Node):
 	refs.erase(node.name)
 
 func get_reference(key : String):
-	return refs[key]
+	if has_key(key):
+		return refs[key]
+	else:
+		push_error("ERROR: Key does not exist!, Key : ",key)
+		return null
+
+func has_key(key : String):
+	return refs.has(key)

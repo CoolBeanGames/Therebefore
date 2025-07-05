@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwaegwvlxtxbr"]
+[gd_scene load_steps=12 format=3 uid="uid://bwaegwvlxtxbr"]
 
 [ext_resource type="Script" uid="uid://covnblndurusc" path="res://UI/game_hud.gd" id="1_5bqoq"]
 [ext_resource type="Texture2D" uid="uid://y4sqdu7nnwyw" path="res://icon.svg" id="1_v2jwi"]
@@ -9,14 +9,16 @@
 [ext_resource type="AudioStream" uid="uid://fq6w77sqsx0o" path="res://audio/sound effects/ui/note_close.mp3" id="6_2dltx"]
 [ext_resource type="AudioStream" uid="uid://bch803vj56khg" path="res://audio/sound effects/ui/page_right.mp3" id="7_gb73w"]
 [ext_resource type="AudioStream" uid="uid://plloj4pooow4" path="res://audio/sound effects/ui/page_left.mp3" id="8_lqvkh"]
+[ext_resource type="Script" uid="uid://cle2ei8fvift6" path="res://UI/dialog_ui.gd" id="10_2dltx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3wh3"]
 bg_color = Color(0, 0, 0, 0.807843)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("noteUI", "interaction_text")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("noteUI", "dialogUI", "interaction_text")]
 follow_viewport_enabled = true
 script = ExtResource("1_5bqoq")
 noteUI = NodePath("Notes_UI/NotesUI")
+dialogUI = NodePath("Dialog_UI")
 interaction_text = NodePath("Look_At_UI/look_at_text")
 
 [node name="Notes_UI" type="Control" parent="."]
@@ -31,7 +33,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="NotesUI" type="PanelContainer" parent="Notes_UI" node_paths=PackedStringArray("visibility_parent", "image", "text_contents", "page_couinter", "button_prompts", "note_open_sound", "note_close_sound", "note_right_sound", "note_left_sound", "error_sound")]
+[node name="NotesUI" type="PanelContainer" parent="Notes_UI" node_paths=PackedStringArray("visibility_parent", "image", "text_contents", "page_couinter", "button_prompts")]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -50,11 +52,11 @@ image = NodePath("TextureRect")
 text_contents = NodePath("../Note_TextPanel/RichTextLabel")
 page_couinter = NodePath("../Note_TextPanel/Page Counter")
 button_prompts = NodePath("../Note_TextPanel/button_prompts")
-note_open_sound = NodePath("note_open_sound")
-note_close_sound = NodePath("note_close_sound")
-note_right_sound = NodePath("note_page_right_sound")
-note_left_sound = NodePath("note_page_left_sound")
-error_sound = NodePath("../../error_sound")
+note_open_sound = ExtResource("5_a3wh3")
+note_close_sound = ExtResource("6_2dltx")
+note_right_sound = ExtResource("7_gb73w")
+note_left_sound = ExtResource("8_lqvkh")
+error_sound = ExtResource("5_qbrru")
 
 [node name="TextureRect" type="TextureRect" parent="Notes_UI/NotesUI"]
 layout_mode = 2
@@ -162,5 +164,26 @@ anchors_preset = -1
 anchor_top = 0.545
 anchor_right = 1.0
 anchor_bottom = 0.696
-text = "[placeholder text]"
 horizontal_alignment = 1
+
+[node name="Dialog_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_2dltx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialog_UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.6
+anchor_right = 0.95
+anchor_bottom = 0.95
+mouse_filter = 2
+text = "this is some sample text just to get the basic dialog system up and running properly, once this is working correctly i should be able to see and hear any dialog that is loaded and played in game"
+horizontal_alignment = 1
+vertical_alignment = 1

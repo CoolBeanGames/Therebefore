@@ -3,8 +3,9 @@ class_name audio_player
 
 @export var player_3D : AudioStreamPlayer3D
 @export var player_global : AudioStreamPlayer
+@export var player_id : int = 0
 
-signal audio_finished
+signal audio_finished(player : audio_player)
 
 func start(clip : AudioStream,randomize_pitch : bool = false,_bus : Audio.audio_bus = Audio.audio_bus.master, use_position : bool = false, _position : Vector3 = Vector3(0,0,0)):
 	if use_position:
@@ -42,10 +43,14 @@ func _setup_global(clip : AudioStream,randomize_pitch : bool = false,_bus : Audi
 	player_global.finished.connect(finished_global)
 	player_global.play()
 
+func _stop():
+	player_global.stop()
+	player_3D.stop()
+
 func finished_3d():
-	audio_finished.emit()
+	audio_finished.emit(self)
 	player_3D.finished.disconnect(finished_3d)
 
 func finished_global():
-	audio_finished.emit()
+	audio_finished.emit(self)
 	player_global.finished.disconnect(finished_global)

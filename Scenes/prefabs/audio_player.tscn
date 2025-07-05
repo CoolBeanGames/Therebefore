@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d4lvatshrtyym" path="res://scripts/prefabs/audio_player.gd" id="1_n037t"]
 
-[node name="AudioPlayer" type="AudioStreamPlayer3D"]
+[node name="AudioPlayer" type="AudioStreamPlayer3D" node_paths=PackedStringArray("player_3D", "player_global")]
 script = ExtResource("1_n037t")
+player_3D = NodePath("3Dplayer")
+player_global = NodePath("GlobalPlayer")
 
 [node name="3Dplayer" type="AudioStreamPlayer3D" parent="."]
 
