@@ -7,7 +7,7 @@
 [resource]
 resource_name = "test_dialog"
 script = ExtResource("1_dbcyo")
-lines = Array[String](["", "this is the second line for the test dialog", "and here we have a third line!"])
+lines = Array[String](["this is the first line of dialogmicmic", "this is the second line for the test dialog", "and here we have a third line!"])
 audio = Array[AudioStream]([ExtResource("1_u2cl5"), ExtResource("1_u2cl5"), ExtResource("2_t8pk2")])
 flags = Array[String]([])
 use_position = Array[bool]([false, false, false])

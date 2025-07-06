@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0g6rvywngf84"
+path="res://.godot/imported/Im the Last Person you want to hear from.mp3-172c269e39617f80ff8f8ffbc707e523.mp3str"
+
+[deps]
+
+source_file="res://audio/vocals/Im the Last Person you want to hear from.mp3"
+dest_files=["res://.godot/imported/Im the Last Person you want to hear from.mp3-172c269e39617f80ff8f8ffbc707e523.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

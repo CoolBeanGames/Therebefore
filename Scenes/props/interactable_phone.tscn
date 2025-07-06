@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj8a3i51plouv"]
+
+[ext_resource type="PackedScene" uid="uid://cp6yv4pe02f3g" path="res://Models/phone/phone.glb" id="1_n867w"]
+[ext_resource type="PackedScene" uid="uid://cx3fdbq0dkeks" path="res://Scenes/Components/Interactables/interactable.tscn" id="2_jandi"]
+[ext_resource type="Script" uid="uid://c4ijpmfgpty08" path="res://scripts/props/interactable_phone.gd" id="2_m2gdd"]
+
+[node name="interactable_phone" instance=ExtResource("1_n867w")]
+script = ExtResource("2_m2gdd")
+
+[node name="Interactable" parent="." index="2" instance=ExtResource("2_jandi")]
+look_at_text = "[E] to check messages"
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0110321, 0.0267334, 0.0157471)
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+
+[editable path="Interactable"]

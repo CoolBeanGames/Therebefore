@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="dialog_res" load_steps=12 format=3 uid="uid://b5ae3viv0ikow"]
+
+[ext_resource type="AudioStream" uid="uid://bc4v2iwivk5u4" path="res://audio/vocals/one new message.wav" id="1_o821n"]
+[ext_resource type="Script" uid="uid://fk7kflknk12n" path="res://scripts/resource_definitions/dialog_res.gd" id="1_poei7"]
+[ext_resource type="AudioStream" uid="uid://cawd4iupixyym" path="res://audio/vocals/First New Message.wav" id="2_6r7cw"]
+[ext_resource type="AudioStream" uid="uid://b0s7vt3j0wf6e" path="res://audio/vocals/answering_machine_beep.mp3" id="3_cxvpx"]
+[ext_resource type="AudioStream" uid="uid://chl3egb1hu1m2" path="res://audio/vocals/Hey Its Me Alice.mp3" id="4_amdg8"]
+[ext_resource type="AudioStream" uid="uid://drx5phjjprkcp" path="res://audio/vocals/I Know I Know.mp3" id="5_r8o8b"]
+[ext_resource type="AudioStream" uid="uid://b0g6rvywngf84" path="res://audio/vocals/Im the Last Person you want to hear from.mp3" id="6_naq6l"]
+[ext_resource type="AudioStream" uid="uid://c10titf0avlqq" path="res://audio/vocals/But I wanted to hear your voice.mp3" id="7_4u86r"]
+[ext_resource type="AudioStream" uid="uid://c86httmuw5kmc" path="res://audio/vocals/Anyways.mp3" id="8_6a8no"]
+[ext_resource type="AudioStream" uid="uid://ccjts3k3ke15c" path="res://audio/vocals/It Looks Like your not home right now.mp3" id="9_6r7cw"]
+[ext_resource type="AudioStream" uid="uid://dbiiff8wglu10" path="res://audio/vocals/Goodbye.mp3" id="9_rd3io"]
+
+[resource]
+resource_name = "test_phone"
+script = ExtResource("1_poei7")
+lines = Array[String](["you have one new message", "First new Message: Received Saturday May 13th at 2 P M", "", "Hey! its me alice.", "I Know, I know...", "Im the Last person you want to hear from....", "But I wanted to hear your voice...", "Anyways...", "It looks like your not home right now", "Goodbye"])
+audio = Array[AudioStream]([ExtResource("1_o821n"), ExtResource("2_6r7cw"), ExtResource("3_cxvpx"), ExtResource("4_amdg8"), ExtResource("5_r8o8b"), ExtResource("6_naq6l"), ExtResource("7_4u86r"), ExtResource("8_6a8no"), ExtResource("9_6r7cw"), ExtResource("9_rd3io")])
+flags = Array[String]([])
+use_position = Array[bool]([true, true, true, true, true, true, true, true, true, true])
+bus = Array[int]([3, 3, 4, 4, 4, 4, 4, 4, 4, 4])

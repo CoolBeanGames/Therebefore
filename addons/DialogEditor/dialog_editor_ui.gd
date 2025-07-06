@@ -1,3 +1,5 @@
+# dialog_editor_ui.gd
+
 @tool
 extends Control
 class_name dialog_editor
@@ -39,8 +41,19 @@ var plugin : dialog_editor_plugin
 func setup(plug : EditorPlugin):
 	plugin = plug
 
+# Removed the problematic get_tree() == null check from here.
+# This function can now assume get_tree() is valid when called.
 func get_all_audio_streams() -> Array[AudioStream]:
 	var results: Array[AudioStream] = []
+	
+	# Only check for plugin and EditorInterface availability here.
+	# get_tree() is guaranteed to be valid at this point because
+	# _perform_initial_ui_setup (called by the plugin) waited for it.
+	if plugin == null or plugin.get_editor_interface() == null:
+		print("DialogEditorUI: Editor plugin or EditorInterface not yet ready, trying again next frame.")
+		await get_tree().process_frame # This is now safe as get_tree() is valid.
+		return await get_all_audio_streams() # Recursive retry
+	
 	var file_system := plugin.get_editor_interface().get_resource_filesystem().get_filesystem()
 	_scan_dir_for_audio(file_system, results)
 	return results
@@ -59,18 +72,28 @@ func _scan_dir_for_audio(dir: EditorFileSystemDirectory, results: Array[AudioStr
 	for i in dir.get_subdir_count():
 		_scan_dir_for_audio(dir.get_subdir(i), results)
 
-
-
-func reload_clicked() -> void:
+func reload_clicked() -> void: # No _async in definition, but contains await
 	check_directory()
 	play_reload()
 	dialog_list.clear()
 	audio_selection_list.clear()
-	audio = get_all_audio_streams()
+	audio = await get_all_audio_streams() # This makes the function asynchronous
 	get_all_dialog()
 
+func _ready() -> void:
+	# _ready() is now empty. Initial UI setup is triggered externally by the plugin
+	# via _perform_initial_ui_setup once the plugin confirms the UI is truly ready.
+	pass
+
+# --- NEW: Function called by the plugin to perform initial setup ---
+# This is the new entry point for all initial UI setup.
+func _perform_initial_ui_setup() -> void:
+	print("DialogEditorUI: _perform_initial_ui_setup called by plugin. Proceeding with UI initialization.")
+	check_directory()
+	await reload_clicked() # Await reload_clicked as it makes an async call
+
 func play_click():
-	if click_sound_player!=null and plugin.is_visible:
+	if click_sound_player!=null and plugin != null and plugin.is_visible:
 		click_sound_player.play()
 
 func on_dialog_selected(index: int) -> void:
@@ -89,19 +112,19 @@ func remove_icon_from_all_entries():
 		dialog_list.set_item_icon(i, null)
 
 func play_save():
-	if save_sound_player!=null and plugin.is_visible:
+	if save_sound_player!=null and plugin != null and plugin.is_visible:
 		save_sound_player.play()
 
 func play_reload():
-	if reload_sound_player!=null and plugin.is_visible:
+	if reload_sound_player!=null and plugin != null and plugin.is_visible:
 		reload_sound_player.play()
 
 func play_delete():
-	if delete_sound_player!=null and plugin.is_visible:
+	if delete_sound_player!=null and plugin != null and plugin.is_visible:
 		delete_sound_player.play()
 
 func play_new():
-	if new_file_sound_player!=null and plugin.is_visible:
+	if new_file_sound_player!=null and plugin != null and plugin.is_visible:
 		new_file_sound_player.play()
 
 func save_all() -> void:
@@ -206,10 +229,6 @@ func on_page_right() -> void:
 		update_page_counter()
 		set_data()
 
-func _ready() -> void:
-	call_deferred("check_directory")
-	call_deferred("reload_clicked")
-
 func get_all_dialog(folder := "res://") -> Array[dialog_res]:
 	if folder == "res://":
 		clear_all_dialog()
@@ -225,7 +244,7 @@ func get_all_dialog(folder := "res://") -> Array[dialog_res]:
 	while file_name != "":
 		var full_path := folder.path_join(file_name)
 		if dir.current_is_dir():
-			dialog += get_all_dialog(full_path)  # Recurse
+			dialog += get_all_dialog(full_path) # Recurse
 		elif file_name.get_extension() in ["tres", "res"]:
 			var res = ResourceLoader.load(full_path)
 			if res is dialog_res:
@@ -253,7 +272,7 @@ func check_directory():
 		print("Directory doesn't exist: ", note_path)
 		var result := dir.make_dir_recursive(note_path)
 		if result == OK:
-			EditorInterface.get_resource_filesystem().call_deferred("scan") 
+			EditorInterface.get_resource_filesystem().call_deferred("scan")
 		else:
 			print("Failed to make directory, error: ", result)
 	# No unconditional scan here.
@@ -308,7 +327,7 @@ func check_page():
 func update_page_counter():
 	if dialog_selected_res != null:
 		var index_counter : String = str(dialog_page_index + 1)
-		var max_index : String  = str(dialog_selected_res.lines.size())
+		var max_index : String = str(dialog_selected_res.lines.size())
 		page_count_label.text = index_counter + " / " + max_index
 	else:
 		page_count_label.text = "-- / --"

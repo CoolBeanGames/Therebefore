@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c10titf0avlqq"
+path="res://.godot/imported/But I wanted to hear your voice.mp3-2f7fe134d6093ef1ddce9be63bbde0c4.mp3str"
+
+[deps]
+
+source_file="res://audio/vocals/But I wanted to hear your voice.mp3"
+dest_files=["res://.godot/imported/But I wanted to hear your voice.mp3-2f7fe134d6093ef1ddce9be63bbde0c4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

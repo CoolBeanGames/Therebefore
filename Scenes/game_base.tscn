@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7f5ifnt8gshr"]
+[gd_scene load_steps=9 format=3 uid="uid://b7f5ifnt8gshr"]
 
 [ext_resource type="Script" uid="uid://bwa8marrksgol" path="res://scripts/game_base.gd" id="1_8ktb3"]
 [ext_resource type="PackedScene" uid="uid://msb8glnwae50" path="res://Scenes/test_map.tscn" id="2_nvvv1"]
 [ext_resource type="PackedScene" uid="uid://dqp0iws3a70pw" path="res://Scenes/player.tscn" id="3_op4vg"]
 [ext_resource type="PackedScene" uid="uid://bwaegwvlxtxbr" path="res://UI/game_hud.tscn" id="4_bngpg"]
 [ext_resource type="PackedScene" uid="uid://bysak7m1h8ts7" path="res://Scenes/test_note.tscn" id="5_fqtgw"]
-[ext_resource type="Resource" uid="uid://bva8bs5gcorl" path="res://Data/Dialog/test_dialog.tres" id="6_m357k"]
+[ext_resource type="Resource" uid="uid://b5ae3viv0ikow" path="res://Data/Dialog/test_phone.tres" id="7_sx1ts"]
+[ext_resource type="PackedScene" uid="uid://dj8a3i51plouv" path="res://Scenes/props/interactable_phone.tscn" id="7_xqm0q"]
+[ext_resource type="AudioStream" uid="uid://ccjts3k3ke15c" path="res://audio/vocals/It Looks Like your not home right now.mp3" id="8_sx1ts"]
 
 [node name="Game_Base" type="Node" node_paths=PackedStringArray("ActivePlayersParent", "InactivePlayersParent")]
 script = ExtResource("1_8ktb3")
@@ -21,10 +23,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955751, 0)
 
 [node name="test_note" parent="." instance=ExtResource("5_fqtgw")]
 transform = Transform3D(0.282967, 0, -0.0996483, 0, 0.3, 0, 0.0996483, 0, 0.282967, 0, 0.64801, 4.335)
-dialog = ExtResource("6_m357k")
 
 [node name="AudioPlayers" type="Node" parent="."]
 
 [node name="Active" type="Node" parent="AudioPlayers"]
 
 [node name="Inactive" type="Node" parent="AudioPlayers"]
+
+[node name="interactable_phone" parent="." instance=ExtResource("7_xqm0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00699881, 0.663605, -4.54702)
+dialog = ExtResource("7_sx1ts")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_sx1ts")
+bus = &"phone"

@@ -166,7 +166,7 @@ anchor_right = 1.0
 anchor_bottom = 0.696
 horizontal_alignment = 1
 
-[node name="Dialog_UI" type="Control" parent="."]
+[node name="Dialog_UI" type="Control" parent="." node_paths=PackedStringArray("text")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,6 +175,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("10_2dltx")
+text = NodePath("RichTextLabel")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Dialog_UI"]
 layout_mode = 1
