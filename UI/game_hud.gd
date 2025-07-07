@@ -3,7 +3,7 @@ class_name game_hud
 
 @export var noteUI : notes
 @export var dialogUI : dialog_ui
-@export var interaction_text : Label
+@export var interaction_text : auto_size_label
 
 func _ready() -> void:
 	References.add_custom("ui",self)

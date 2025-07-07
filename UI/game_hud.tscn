@@ -1,15 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwaegwvlxtxbr"]
+[gd_scene load_steps=15 format=3 uid="uid://bwaegwvlxtxbr"]
 
 [ext_resource type="Script" uid="uid://covnblndurusc" path="res://UI/game_hud.gd" id="1_5bqoq"]
 [ext_resource type="Texture2D" uid="uid://y4sqdu7nnwyw" path="res://icon.svg" id="1_v2jwi"]
 [ext_resource type="Script" uid="uid://bviv0sceyrg8v" path="res://UI/notes_ui.gd" id="2_qbrru"]
-[ext_resource type="Theme" uid="uid://50jxdsckl2ay" path="res://UI/game_theme.tres" id="2_s04bl"]
 [ext_resource type="AudioStream" uid="uid://bmjgvdc2eioca" path="res://audio/sound effects/ui/note_open.mp3" id="5_a3wh3"]
 [ext_resource type="AudioStream" uid="uid://d2opj4sh8kocm" path="res://audio/sound effects/ui/error_sound.mp3" id="5_qbrru"]
 [ext_resource type="AudioStream" uid="uid://fq6w77sqsx0o" path="res://audio/sound effects/ui/note_close.mp3" id="6_2dltx"]
 [ext_resource type="AudioStream" uid="uid://bch803vj56khg" path="res://audio/sound effects/ui/page_right.mp3" id="7_gb73w"]
 [ext_resource type="AudioStream" uid="uid://plloj4pooow4" path="res://audio/sound effects/ui/page_left.mp3" id="8_lqvkh"]
 [ext_resource type="Script" uid="uid://cle2ei8fvift6" path="res://UI/dialog_ui.gd" id="10_2dltx"]
+[ext_resource type="Script" uid="uid://csbxlriiinr4e" path="res://UI/auto_sized_richtext.gd" id="10_hllct"]
+[ext_resource type="Script" uid="uid://bseq2rn182pv6" path="res://auto_size_label.gd" id="11_usp3h"]
+[ext_resource type="Texture2D" uid="uid://defnjcng2jeki" path="res://UI/Textures/aiming_circle.png" id="12_hllct"]
+[ext_resource type="Theme" uid="uid://c23dpnho8idt8" path="res://UI/game_UI_Theme.tres" id="13_nc7xe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3wh3"]
 bg_color = Color(0, 0, 0, 0.807843)
@@ -98,13 +101,15 @@ anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("2_s04bl")
+theme = ExtResource("13_nc7xe")
 text = "This is where text will go
 notes will look like this
 its important for displaying
 lore and in game store"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_hllct")
+metadata/_custom_type_script = "uid://csbxlriiinr4e"
 
 [node name="Page Counter" type="Label" parent="Notes_UI/Note_TextPanel"]
 layout_mode = 1
@@ -112,10 +117,12 @@ anchors_preset = -1
 anchor_top = 0.8
 anchor_right = 1.0
 anchor_bottom = 0.9
-theme = ExtResource("2_s04bl")
+theme = ExtResource("13_nc7xe")
 text = "-- / --"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("11_usp3h")
+metadata/_custom_type_script = "uid://bseq2rn182pv6"
 
 [node name="button_prompts" type="Label" parent="Notes_UI/Note_TextPanel"]
 layout_mode = 1
@@ -123,10 +130,12 @@ anchors_preset = -1
 anchor_top = 0.9
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource("2_s04bl")
+theme = ExtResource("13_nc7xe")
 text = " [esc] close"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("11_usp3h")
+metadata/_custom_type_script = "uid://bseq2rn182pv6"
 
 [node name="error_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qbrru")
@@ -152,10 +161,11 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="look_at_reticle" type="TextureRect" parent="Look_At_UI/aiming"]
+self_modulate = Color(1, 1, 1, 0.443137)
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("1_v2jwi")
+texture = ExtResource("12_hllct")
 expand_mode = 2
 
 [node name="look_at_text" type="Label" parent="Look_At_UI"]
@@ -164,7 +174,10 @@ anchors_preset = -1
 anchor_top = 0.545
 anchor_right = 1.0
 anchor_bottom = 0.696
+theme = ExtResource("13_nc7xe")
 horizontal_alignment = 1
+script = ExtResource("11_usp3h")
+metadata/_custom_type_script = "uid://bseq2rn182pv6"
 
 [node name="Dialog_UI" type="Control" parent="." node_paths=PackedStringArray("text")]
 layout_mode = 3
@@ -185,6 +198,9 @@ anchor_top = 0.6
 anchor_right = 0.95
 anchor_bottom = 0.95
 mouse_filter = 2
+theme = ExtResource("13_nc7xe")
 text = "this is some sample text just to get the basic dialog system up and running properly, once this is working correctly i should be able to see and hear any dialog that is loaded and played in game"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_hllct")
+metadata/_custom_type_script = "uid://csbxlriiinr4e"

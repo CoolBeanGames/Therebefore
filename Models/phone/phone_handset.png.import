@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d11k8csc3ktor"
-path.s3tc="res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.s3tc.ctex"
+path.etc2="res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Models/phone/phone_handset.png"
-dest_files=["res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.s3tc.ctex"]
+dest_files=["res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.etc2.ctex"]
 
 [params]
 

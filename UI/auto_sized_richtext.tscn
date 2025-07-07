@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwjg50ptbwx1s"]
+
+[ext_resource type="Script" uid="uid://csbxlriiinr4e" path="res://UI/auto_sized_richtext.gd" id="1_kdydj"]
+
+[node name="auto_sized_richtext" type="RichTextLabel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kdydj")

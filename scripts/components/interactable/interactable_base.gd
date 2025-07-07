@@ -19,6 +19,7 @@ func _ready() -> void:
 func start_looking_at():
 	started_looking.emit()
 	is_look_at = true
+	ui.interaction_text.update_font_size()
 	ui.set_interaction(look_at_text)
 	print("start looking")
 	pass
