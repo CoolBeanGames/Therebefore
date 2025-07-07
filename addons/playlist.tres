@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="editor_playlist" load_steps=21 format=3 uid="uid://jse1i03uqlii"]
+
+[ext_resource type="Script" uid="uid://b83x3n7iyy6al" path="res://addons/editor_playlist.gd" id="1_sx08x"]
+[ext_resource type="AudioStream" uid="uid://cbru5cowuqcsn" path="res://addons/AddonUIComponents/Sounds/Music/1-02 - At Zanarkand.mp3" id="2_ctgeh"]
+[ext_resource type="AudioStream" uid="uid://dscehy31aer00" path="res://addons/AddonUIComponents/Sounds/Music/01. Liberi Fatali.mp3" id="3_3i4le"]
+[ext_resource type="AudioStream" uid="uid://dg648andw8fyq" path="res://addons/AddonUIComponents/Sounds/Music/38-J-E-N-O-V-A.mp3" id="4_d0bx5"]
+[ext_resource type="AudioStream" uid="uid://d0vv7t2y0m60d" path="res://addons/AddonUIComponents/Sounds/Music/10-Shinra Corporation.mp3" id="5_msg1v"]
+[ext_resource type="AudioStream" uid="uid://fenb38a20ja2" path="res://addons/AddonUIComponents/Sounds/Music/07. SeeD.mp3" id="6_03upv"]
+[ext_resource type="AudioStream" uid="uid://cb5yj6g3nkg7o" path="res://addons/AddonUIComponents/Sounds/Music/68-Reunion.mp3" id="7_webe2"]
+[ext_resource type="AudioStream" uid="uid://8iry68jeo4wr" path="res://addons/AddonUIComponents/Sounds/Music/22-Red XIII's Theme.mp3" id="8_u867f"]
+[ext_resource type="AudioStream" uid="uid://ba25eh620yr28" path="res://addons/AddonUIComponents/Sounds/Music/18-Who Are You.mp3" id="9_vx3j4"]
+[ext_resource type="AudioStream" uid="uid://dj58xcav8tk3s" path="res://addons/AddonUIComponents/Sounds/Music/08. Maybe I'm A Lion.mp3" id="10_a8uf0"]
+[ext_resource type="AudioStream" uid="uid://drkoyofa6rctu" path="res://addons/AddonUIComponents/Sounds/Music/06. Find Your Way.mp3" id="11_trh64"]
+[ext_resource type="AudioStream" uid="uid://bii71tgc1q5ew" path="res://addons/AddonUIComponents/Sounds/Music/101 Ahead on our Way.mp3" id="12_id0p8"]
+[ext_resource type="AudioStream" uid="uid://446i5lhhonq7" path="res://addons/AddonUIComponents/Sounds/Music/16. The Sunleth Waterscape.mp3" id="13_pgfqk"]
+[ext_resource type="AudioStream" uid="uid://b20v52iioj0a3" path="res://addons/AddonUIComponents/Sounds/Music/19. The Man With The Machine Gun.mp3" id="14_m2nlg"]
+[ext_resource type="AudioStream" uid="uid://bsn2v7e7dubai" path="res://addons/AddonUIComponents/Sounds/Music/06-Tifa's Theme.mp3" id="15_1a0tm"]
+[ext_resource type="AudioStream" uid="uid://1yalbru4qp6m" path="res://addons/AddonUIComponents/Sounds/Music/03. Hope's Theme.mp3" id="16_pd5fu"]
+[ext_resource type="AudioStream" uid="uid://njsqtgt7mss7" path="res://addons/AddonUIComponents/Sounds/Music/106 Fate in Haze.mp3" id="17_db7x7"]
+[ext_resource type="AudioStream" uid="uid://d1bwann0fmf3o" path="res://addons/AddonUIComponents/Sounds/Music/04. Defiers of Fate.mp3" id="18_aujy1"]
+[ext_resource type="AudioStream" uid="uid://dwr1djd3aw5mf" path="res://addons/AddonUIComponents/Sounds/Music/1-23 - Song of Prayer - Valefor.mp3" id="19_c2f4n"]
+[ext_resource type="AudioStream" uid="uid://bxhh784rh0aep" path="res://addons/AddonUIComponents/Sounds/Music/2-17 - Seymour's Theme.mp3" id="20_i1txx"]
+
+[resource]
+script = ExtResource("1_sx08x")
+songs = Array[AudioStream]([ExtResource("2_ctgeh"), ExtResource("3_3i4le"), ExtResource("4_d0bx5"), ExtResource("5_msg1v"), ExtResource("6_03upv"), ExtResource("7_webe2"), ExtResource("8_u867f"), ExtResource("9_vx3j4"), ExtResource("10_a8uf0"), ExtResource("11_trh64"), ExtResource("12_id0p8"), ExtResource("13_pgfqk"), ExtResource("14_m2nlg"), ExtResource("15_1a0tm"), ExtResource("16_pd5fu"), ExtResource("17_db7x7"), ExtResource("18_aujy1"), ExtResource("19_c2f4n"), ExtResource("20_i1txx")])
+metadata/_custom_type_script = "uid://b83x3n7iyy6al"

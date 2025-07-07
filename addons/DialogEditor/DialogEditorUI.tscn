@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c65eurjoqd11o"]
+[gd_scene load_steps=14 format=3 uid="uid://c65eurjoqd11o"]
 
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_11hwm"]
 [ext_resource type="Script" uid="uid://mhjh5oyudo6c" path="res://addons/DialogEditor/dialog_editor_ui.gd" id="2_oti53"]
@@ -8,12 +8,13 @@
 [ext_resource type="AudioStream" uid="uid://cf825pr1p8l4v" path="res://addons/AddonUIComponents/Sounds/new_file.mp3" id="5_8b1wl"]
 [ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="5_nugw4"]
 [ext_resource type="Resource" uid="uid://boaakr5p10afv" path="res://Data/Dialog/test.tres" id="5_xe2et"]
+[ext_resource type="Resource" uid="uid://b5ae3viv0ikow" path="res://Data/Dialog/test_phone.tres" id="6_8rulg"]
 [ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="6_fjsj2"]
 [ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_ghuyq"]
 [ext_resource type="AudioStream" uid="uid://s7r0nf4x8chj" path="res://addons/AddonUIComponents/Sounds/cancel.mp3" id="8_lsjh5"]
-[ext_resource type="AudioStream" uid="uid://bii71tgc1q5ew" path="res://addons/AddonUIComponents/Sounds/101 Ahead on our Way.mp3" id="11_8rulg"]
+[ext_resource type="AudioStream" uid="uid://bii71tgc1q5ew" path="res://addons/AddonUIComponents/Sounds/Music/101 Ahead on our Way.mp3" id="11_8rulg"]
 
-[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "audio_selection_list", "bus_selection", "dialog_list", "dialog_name", "text_entry", "page_count_label", "checkButton", "flags_text", "music_player")]
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "audio_selection_list", "bus_selection", "dialog_list", "dialog_name", "text_entry", "page_count_label", "checkButton", "flags_text", "music_player", "line_preview_player", "toggle_music_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,11 +29,12 @@ save_sound_player = NodePath("save_sound")
 reload_sound_player = NodePath("reload_sound")
 new_file_sound_player = NodePath("new_sound")
 delete_sound_player = NodePath("delete_sound")
-audio_selection_list = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/audio_selector")
+audio_selection_list = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box/audio_selector")
 bus_selection = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/bus_section/bus selector")
 dialog_data = Dictionary[String, ExtResource("3_dbx3p")]({
 "test": ExtResource("5_xe2et"),
-"test_dialog": ExtResource("4_8rulg")
+"test_dialog": ExtResource("4_8rulg"),
+"test_phone": ExtResource("6_8rulg")
 })
 dialog_list = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/note_list")
 item_list_pointer_icon = ExtResource("5_nugw4")
@@ -42,6 +44,8 @@ page_count_label = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Da
 checkButton = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/CheckButton")
 flags_text = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit")
 music_player = NodePath("background_music")
+line_preview_player = NodePath("line_preview_player")
+toggle_music_button = NodePath("VBoxContainer/BottomPanel/bottom/toggle_music")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -136,16 +140,26 @@ layout_mode = 2
 text = "Data"
 horizontal_alignment = 1
 
-[node name="texture_box" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
+[node name="audio_box" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box"]
+[node name="Label" type="Label" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box"]
 layout_mode = 2
 text = "Line Audio:"
 
-[node name="audio_selector" type="OptionButton" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box"]
+[node name="audio_selector" type="OptionButton" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="play_button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box"]
+layout_mode = 2
+text = "play"
+alignment = 0
+
+[node name="stop_button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box"]
+layout_mode = 2
+text = "stop"
+alignment = 0
 
 [node name="text_box" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
 layout_mode = 2
@@ -198,6 +212,10 @@ popup/item_7/id = 7
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="first_button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+text = "<<"
+
 [node name="Left Button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
 layout_mode = 2
 theme = ExtResource("1_11hwm")
@@ -229,6 +247,10 @@ layout_mode = 2
 theme = ExtResource("1_11hwm")
 text = ">"
 
+[node name="last_button" type="Button" parent="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector"]
+layout_mode = 2
+text = ">>"
+
 [node name="flags" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
 layout_mode = 2
 
@@ -247,6 +269,10 @@ layout_mode = 2
 
 [node name="bottom" type="HBoxContainer" parent="VBoxContainer/BottomPanel"]
 layout_mode = 2
+
+[node name="toggle_music" type="Button" parent="VBoxContainer/BottomPanel/bottom"]
+layout_mode = 2
+text = "Toggle Music (On)"
 
 [node name="click_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_vjuiv")
@@ -271,6 +297,8 @@ bus = &"ui"
 [node name="background_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_8rulg")
 
+[node name="line_preview_player" type="AudioStreamPlayer" parent="."]
+
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/save_selected" to="." method="save_selected"]
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/save_all" to="." method="save_all"]
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/reload" to="." method="reload_clicked"]
@@ -279,12 +307,17 @@ stream = ExtResource("11_8rulg")
 [connection signal="item_selected" from="VBoxContainer/ContentPanel/content/NoteList/Notes/note_list" to="." method="on_dialog_selected"]
 [connection signal="text_submitted" from="VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit" to="." method="new_note_enter"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/NoteList/Notes/new note/new_note_button" to="." method="make_new_note"]
-[connection signal="item_selected" from="VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/audio_selector" to="." method="set_res_audio"]
+[connection signal="item_selected" from="VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box/audio_selector" to="." method="set_res_audio"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box/play_button" to="." method="play_button_clicked"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/audio_box/stop_button" to="." method="stop_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/ContentPanel/content/DataContainer/Data/text_box/TextEdit" to="." method="text_edit_finished"]
 [connection signal="toggled" from="VBoxContainer/ContentPanel/content/DataContainer/Data/CheckButton" to="." method="check_button_toggle"]
 [connection signal="item_selected" from="VBoxContainer/ContentPanel/content/DataContainer/Data/bus_section/bus selector" to="." method="set_bus_from_list"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/first_button" to="." method="first_page_button_pressed"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Left Button" to="." method="on_page_left"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Delete Button" to="." method="on_page_delete"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Add Button" to="." method="on_add_page"]
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/Right Button" to="." method="on_page_right"]
+[connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/last_button" to="." method="last_page_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit" to="." method="flags_updated"]
+[connection signal="button_down" from="VBoxContainer/BottomPanel/bottom/toggle_music" to="." method="toggle_music_pressed"]

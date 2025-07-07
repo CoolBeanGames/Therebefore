@@ -33,7 +33,12 @@ var audio : Array[AudioStream]
 @export var flags_text : TextEdit
 
 @export var music_player : AudioStreamPlayer
+@export var line_preview_player: AudioStreamPlayer
 @export var music_playing : bool = false
+
+@export var toggle_music_button : Button
+@export var music_on : bool = true
+
 var dialog_page_index : int = 0
 
 var plugin : dialog_editor_plugin
@@ -197,6 +202,7 @@ func make_new_note() -> void:
 
 func on_page_left() -> void:
 	play_click()
+	line_preview_player.stop()
 	if dialog_selected_res:
 		dialog_page_index -= 1
 		clamp_page_index()
@@ -204,6 +210,7 @@ func on_page_left() -> void:
 		set_data()
 
 func on_page_delete() -> void:
+	line_preview_player.stop()
 	play_delete()
 	if dialog_selected_res:
 		dialog_selected_res.remove_page(dialog_page_index)
@@ -214,6 +221,7 @@ func on_page_delete() -> void:
 		update_page_counter()
 
 func on_add_page() -> void:
+	line_preview_player.stop()
 	play_new()
 	if dialog_selected_res:
 		dialog_selected_res.add_page()
@@ -222,6 +230,7 @@ func on_add_page() -> void:
 		update_page_counter()
 
 func on_page_right() -> void:
+	line_preview_player.stop()
 	play_click()
 	if dialog_selected_res:
 		dialog_page_index += 1
@@ -308,6 +317,7 @@ func set_bus_from_res():
 			print("bus was set")
 
 func set_bus_from_list(index : int):
+	line_preview_player.stop()
 	if dialog_selected_res!=null:
 		if dialog_selected_res.audio != null:
 			dialog_selected_res.bus[dialog_page_index] = bus_selection.selected
@@ -353,6 +363,7 @@ func text_edit_finished() -> void:
 		text_entry.text = ""
 
 func set_res_audio(index : int):
+	line_preview_player.stop()
 	if dialog_selected_res:
 		dialog_selected_res.audio[dialog_page_index] = audio[index]
 
@@ -383,7 +394,12 @@ func int_to_audio_bus(bus_index : int) -> Audio.audio_bus:
 	return bus
 
 func start_music():
+	var playlist : editor_playlist = load("res://addons/playlist.tres")
 	if music_player and not music_playing: # Use 'not' for clarity, equivalent to '!'.
+		var r : RandomNumberGenerator = RandomNumberGenerator.new()
+		r.randomize()
+		var track = playlist.songs[r.randi_range(0,playlist.songs.size()-1)]
+		music_player.stream=track
 		music_player.play()
 		music_playing = true # Update state
 		print("Music Started") # Debug print
@@ -396,7 +412,63 @@ func end_music():
 
 # Updated function to accept the visibility state directly
 func toggle_music(is_plugin_visible: bool):
-	if is_plugin_visible:
+	if is_plugin_visible and music_on:
 		start_music()
 	else:
 		end_music()
+
+
+func play_button_clicked() -> void:
+	if audio_selection_list.selected == -1:
+		print("exiting early, no selection made")
+		return
+	var selection = audio_selection_list.selected
+	if selection >= audio.size():
+		print("exiting early, selecgtion out of bounds")
+		return
+	var bus = bus_selection.selected
+	if bus == -1 or bus >= Audio.audio_bus.size():
+		print("exiting early, bus selection bad")
+		return
+	var a_bus : String =  AudioServer.get_bus_name(bus)
+	line_preview_player.stop()
+	line_preview_player.stream = audio[selection]
+	line_preview_player.bus = a_bus
+	line_preview_player.play()
+	pass # Replace with function body.
+
+
+func stop_button_pressed() -> void:
+	line_preview_player.stop()
+	pass # Replace with function body.
+
+
+func toggle_music_pressed() -> void:
+	music_on = !music_on
+	if music_on:
+		toggle_music_button.text = "Toggle Music (On)"
+		if !music_player.playing:
+			start_music()
+	else:
+		toggle_music_button.text = "Toggle Music (Off)"
+		end_music()
+
+
+func last_page_button_pressed() -> void:
+	play_click()
+	line_preview_player.stop()
+	if dialog_selected_res:
+		dialog_page_index = dialog_selected_res.lines.size()-1
+		clamp_page_index()
+		update_page_counter()
+		set_data()
+
+
+func first_page_button_pressed() -> void:
+	play_click()
+	line_preview_player.stop()
+	if dialog_selected_res:
+		dialog_page_index = 0
+		clamp_page_index()
+		update_page_counter()
+		set_data()

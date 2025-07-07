@@ -33,6 +33,10 @@ var textures : Array[Texture2D]
 @export var music_player : AudioStreamPlayer
 @export var music_playing : bool = false
 
+
+@export var toggle_music_button : Button
+@export var music_on : bool = true
+
 var plugin : EditorPlugin
 
 func setup(plug : EditorPlugin):
@@ -331,7 +335,12 @@ func flags_updated() -> void:
 
 
 func start_music():
+	var playlist : editor_playlist = load("res://addons/playlist.tres")
 	if music_player and not music_playing: # Use 'not' for clarity, equivalent to '!'.
+		var r : RandomNumberGenerator = RandomNumberGenerator.new()
+		r.randomize()
+		var track = playlist.songs[r.randi_range(0,playlist.songs.size()-1)]
+		music_player.stream=track
 		music_player.play()
 		music_playing = true # Update state
 		print("Music Started") # Debug print
@@ -344,7 +353,35 @@ func end_music():
 
 # Updated function to accept the visibility state directly
 func toggle_music(is_plugin_visible: bool):
-	if is_plugin_visible:
+	if is_plugin_visible and music_on:
 		start_music()
 	else:
 		end_music()
+
+
+func toggle_music_pressed() -> void:
+	music_on = !music_on
+	if music_on:
+		toggle_music_button.text = "Toggle Music (On)"
+		if !music_player.playing:
+			start_music()
+	else:
+		toggle_music_button.text = "Toggle Music (Off)"
+		end_music()
+
+func last_page_button_pressed() -> void:
+	play_click()
+	if note_selected_res:
+		note_page_index = note_selected_res.pages.size()-1
+		clamp_page_index()
+		update_page_counter()
+		set_data()
+
+
+func first_page_button_pressed() -> void:
+	play_click()
+	if note_selected_res:
+		note_page_index = 0
+		clamp_page_index()
+		update_page_counter()
+		set_data()
