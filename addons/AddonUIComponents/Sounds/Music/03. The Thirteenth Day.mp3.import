@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bf7hm7ohvsxmv"
+path="res://.godot/imported/03. The Thirteenth Day.mp3-9dac6d8dcb3f216983828ed208b3d0e6.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/03. The Thirteenth Day.mp3"
+dest_files=["res://.godot/imported/03. The Thirteenth Day.mp3-9dac6d8dcb3f216983828ed208b3d0e6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
