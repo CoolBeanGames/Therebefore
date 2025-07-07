@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d4epi5wlij55"
+path="res://.godot/imported/06. Vanille's Theme.mp3-bb56dc42770dc599f355dc19827f76e6.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/06. Vanille's Theme.mp3"
+dest_files=["res://.godot/imported/06. Vanille's Theme.mp3-bb56dc42770dc599f355dc19827f76e6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

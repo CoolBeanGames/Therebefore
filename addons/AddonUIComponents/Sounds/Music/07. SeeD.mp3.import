@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fenb38a20ja2"
+path="res://.godot/imported/07. SeeD.mp3-a1681f8f3a7c5677f5f1127311925a90.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/07. SeeD.mp3"
+dest_files=["res://.godot/imported/07. SeeD.mp3-a1681f8f3a7c5677f5f1127311925a90.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
