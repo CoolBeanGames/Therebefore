@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bm2j8tjusfy5a"
+path="res://.godot/imported/Blinded By Light.mp3-974189d7c985f76030ee5b89a3883233.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Blinded By Light.mp3"
+dest_files=["res://.godot/imported/Blinded By Light.mp3-974189d7c985f76030ee5b89a3883233.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

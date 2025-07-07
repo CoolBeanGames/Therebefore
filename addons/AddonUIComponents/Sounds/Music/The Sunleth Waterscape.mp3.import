@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5ygvw77mppsf"
+path="res://.godot/imported/The Sunleth Waterscape.mp3-401690d50cda280fc845a6961b760a43.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/The Sunleth Waterscape.mp3"
+dest_files=["res://.godot/imported/The Sunleth Waterscape.mp3-401690d50cda280fc845a6961b760a43.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

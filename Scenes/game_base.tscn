@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dqp0iws3a70pw" path="res://Scenes/player.tscn" id="3_op4vg"]
 [ext_resource type="PackedScene" uid="uid://bwaegwvlxtxbr" path="res://UI/game_hud.tscn" id="4_bngpg"]
 [ext_resource type="PackedScene" uid="uid://bysak7m1h8ts7" path="res://Scenes/test_note.tscn" id="5_fqtgw"]
-[ext_resource type="Resource" uid="uid://b5ae3viv0ikow" path="res://Data/Dialog/test_phone.tres" id="7_sx1ts"]
+[ext_resource type="Resource" uid="uid://ya01drqicvml" path="res://Data/Dialog/Phone Call 2.tres" id="7_sx1ts"]
 [ext_resource type="PackedScene" uid="uid://dj8a3i51plouv" path="res://Scenes/props/interactable_phone.tscn" id="7_xqm0q"]
 [ext_resource type="AudioStream" uid="uid://ccjts3k3ke15c" path="res://audio/vocals/It Looks Like your not home right now.mp3" id="8_sx1ts"]
 

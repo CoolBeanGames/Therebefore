@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bh8gm8ksymujk"
+path="res://.godot/imported/anyway man i hope were cool.mp3-f31c1ea944de85b0caeaf528a725c7d9.mp3str"
+
+[deps]
+
+source_file="res://audio/vocals/phone_convo_2/anyway man i hope were cool.mp3"
+dest_files=["res://.godot/imported/anyway man i hope were cool.mp3-f31c1ea944de85b0caeaf528a725c7d9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

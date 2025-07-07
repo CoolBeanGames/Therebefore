@@ -39,6 +39,10 @@ var audio : Array[AudioStream]
 @export var toggle_music_button : Button
 @export var music_on : bool = true
 
+@export var playlist : editor_playlist
+
+@export var track_name : Label
+
 var dialog_page_index : int = 0
 
 var plugin : dialog_editor_plugin
@@ -96,6 +100,22 @@ func _perform_initial_ui_setup() -> void:
 	print("DialogEditorUI: _perform_initial_ui_setup called by plugin. Proceeding with UI initialization.")
 	check_directory()
 	await reload_clicked() # Await reload_clicked as it makes an async call
+	
+	if playlist != null:
+		print("DEBUG: Playlist resource is NOT null. Type: ", playlist.get_class())
+		# Try a direct call in a safe context
+		if playlist.has_method("get_track"):
+			print("DEBUG: Playlist has 'get_track' method.")
+			var test_stream = playlist.get_track() # THIS IS WHERE THE ERROR OCCURS
+			if test_stream != null:
+				print("DEBUG: Successfully got a test track: ", test_stream.resource_path)
+			else:
+				print("DEBUG: get_track returned null.")
+		else:
+			print("DEBUG: ERROR: Playlist does NOT have 'get_track' method, despite script.")
+	else:
+		print("DEBUG: ERROR: Playlist resource is NULL.")
+	# --- END TEMPORARY DEBUGGING BLOCK ---
 
 func play_click():
 	if click_sound_player!=null and plugin != null and plugin.is_visible:
@@ -394,12 +414,9 @@ func int_to_audio_bus(bus_index : int) -> Audio.audio_bus:
 	return bus
 
 func start_music():
-	var playlist : editor_playlist = load("res://addons/playlist.tres")
 	if music_player and not music_playing: # Use 'not' for clarity, equivalent to '!'.
-		var r : RandomNumberGenerator = RandomNumberGenerator.new()
-		r.randomize()
-		var track = playlist.songs[r.randi_range(0,playlist.songs.size()-1)]
-		music_player.stream=track
+		music_player.stream = playlist.get_track()
+		track_name.text = music_player.stream.resource_path.get_file().get_basename()
 		music_player.play()
 		music_playing = true # Update state
 		print("Music Started") # Debug print
@@ -416,7 +433,6 @@ func toggle_music(is_plugin_visible: bool):
 		start_music()
 	else:
 		end_music()
-
 
 func play_button_clicked() -> void:
 	if audio_selection_list.selected == -1:
@@ -472,3 +488,8 @@ func first_page_button_pressed() -> void:
 		clamp_page_index()
 		update_page_counter()
 		set_data()
+
+
+func next_track_clicked() -> void:
+	end_music()
+	start_music()

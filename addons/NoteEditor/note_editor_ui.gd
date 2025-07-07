@@ -37,6 +37,10 @@ var textures : Array[Texture2D]
 @export var toggle_music_button : Button
 @export var music_on : bool = true
 
+@export var playlist : editor_playlist
+
+@export var track_name : Label
+
 var plugin : EditorPlugin
 
 func setup(plug : EditorPlugin):
@@ -335,12 +339,9 @@ func flags_updated() -> void:
 
 
 func start_music():
-	var playlist : editor_playlist = load("res://addons/playlist.tres")
 	if music_player and not music_playing: # Use 'not' for clarity, equivalent to '!'.
-		var r : RandomNumberGenerator = RandomNumberGenerator.new()
-		r.randomize()
-		var track = playlist.songs[r.randi_range(0,playlist.songs.size()-1)]
-		music_player.stream=track
+		music_player.stream= playlist.get_track()
+		track_name.text = music_player.stream.resource_path.get_file().get_basename()
 		music_player.play()
 		music_playing = true # Update state
 		print("Music Started") # Debug print
@@ -385,3 +386,8 @@ func first_page_button_pressed() -> void:
 		clamp_page_index()
 		update_page_counter()
 		set_data()
+
+
+func play_next_track_pressed() -> void:
+	end_music()
+	start_music()

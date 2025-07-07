@@ -4,6 +4,7 @@ class_name dialog_end
 func enter_state():
 	super.enter_state()
 	manager.visible=false
+	manager.dialog_finished.emit()
 	next_state(manager.idle_state)
 
 func exit_state():

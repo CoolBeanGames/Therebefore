@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bk5ghuqmeifek"
+path="res://.godot/imported/Lunatic Pandora.mp3-734d741fb726fc4f9b958447d58cfea4.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Lunatic Pandora.mp3"
+dest_files=["res://.godot/imported/Lunatic Pandora.mp3-734d741fb726fc4f9b958447d58cfea4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

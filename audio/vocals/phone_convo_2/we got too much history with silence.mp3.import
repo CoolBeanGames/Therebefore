@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bptvnh0tku243"
+path="res://.godot/imported/we got too much history with silence.mp3-50f0b014cd01012bd2a67775558d48a1.mp3str"
+
+[deps]
+
+source_file="res://audio/vocals/phone_convo_2/we got too much history with silence.mp3"
+dest_files=["res://.godot/imported/we got too much history with silence.mp3-50f0b014cd01012bd2a67775558d48a1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

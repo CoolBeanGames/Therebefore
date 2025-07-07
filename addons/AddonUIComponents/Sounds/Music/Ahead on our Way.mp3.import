@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qqc0e3vt801p"
+path="res://.godot/imported/Ahead on our Way.mp3-46aa5a3810cef897cf14ba9570ff2984.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Ahead on our Way.mp3"
+dest_files=["res://.godot/imported/Ahead on our Way.mp3-46aa5a3810cef897cf14ba9570ff2984.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

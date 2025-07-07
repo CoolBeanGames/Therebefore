@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cf468wggh728q"
+path="res://.godot/imported/Electric de Chocobo.mp3-042f5d5c4c748ec25d0a97ba54f3620b.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Electric de Chocobo.mp3"
+dest_files=["res://.godot/imported/Electric de Chocobo.mp3-042f5d5c4c748ec25d0a97ba54f3620b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -22,6 +22,10 @@ References="*res://scripts/global/_references.gd"
 GameData="*res://scripts/global/_gameData.gd"
 Audio="*res://scripts/global/_audio.gd"
 
+[editor]
+
+movie_writer/movie_file="/home/haptic/Videos/therebefore new audio.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/DialogEditor/plugin.cfg", "res://addons/NoteEditor/plugin.cfg")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvu1ngwvxslu6"
+path="res://.godot/imported/I didnt mean for it to get out of hand like that and.mp3-26f53cac6f6414cad41a79001c2818b6.mp3str"
+
+[deps]
+
+source_file="res://audio/vocals/phone_convo_2/I didnt mean for it to get out of hand like that and.mp3"
+dest_files=["res://.godot/imported/I didnt mean for it to get out of hand like that and.mp3-26f53cac6f6414cad41a79001c2818b6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

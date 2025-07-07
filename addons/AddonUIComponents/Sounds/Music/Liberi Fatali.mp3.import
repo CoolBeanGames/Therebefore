@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bg6732rqr11to"
+path="res://.godot/imported/Liberi Fatali.mp3-890727426c21cdc48c211ab9ca784d91.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Liberi Fatali.mp3"
+dest_files=["res://.godot/imported/Liberi Fatali.mp3-890727426c21cdc48c211ab9ca784d91.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

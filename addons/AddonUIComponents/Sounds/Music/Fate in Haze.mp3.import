@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://baw3mqbt7x2ih"
+path="res://.godot/imported/Fate in Haze.mp3-f706cd003344199b6410271e04925bd8.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Fate in Haze.mp3"
+dest_files=["res://.godot/imported/Fate in Haze.mp3-f706cd003344199b6410271e04925bd8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

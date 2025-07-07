@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1egf1cv1gymp"
+path="res://.godot/imported/Lightning's Theme.mp3-18a7a1fd10651a6556ab9f0283963fc1.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Lightning's Theme.mp3"
+dest_files=["res://.godot/imported/Lightning's Theme.mp3-18a7a1fd10651a6556ab9f0283963fc1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

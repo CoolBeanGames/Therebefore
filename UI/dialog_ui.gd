@@ -16,6 +16,8 @@ class_name dialog_ui
 
 @export var current_position : Vector3
 
+signal dialog_finished
+
 func _ready() -> void:
 	#set class names for debugging
 	idle_state.cls = "idle"

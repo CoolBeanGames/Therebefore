@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cu23c8jkrqjdc"
+path="res://.godot/imported/ Balamb Garden.mp3-3e3896f64e6ec0daabed4ace202915f6.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/ Balamb Garden.mp3"
+dest_files=["res://.godot/imported/ Balamb Garden.mp3-3e3896f64e6ec0daabed4ace202915f6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

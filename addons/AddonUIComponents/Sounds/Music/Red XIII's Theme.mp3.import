@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxt24bv5rgq1x"
+path="res://.godot/imported/Red XIII's Theme.mp3-27963289f6e5d29ab04b09b6ef2a24e2.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Red XIII's Theme.mp3"
+dest_files=["res://.godot/imported/Red XIII's Theme.mp3-27963289f6e5d29ab04b09b6ef2a24e2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

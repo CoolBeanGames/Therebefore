@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://br0vkmme8lc3f"]
+[gd_scene load_steps=13 format=3 uid="uid://br0vkmme8lc3f"]
 
 [ext_resource type="Script" uid="uid://dvfd37kp2q1la" path="res://addons/NoteEditor/note_editor_ui.gd" id="1_cjxdj"]
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_lxh58"]
@@ -8,11 +8,12 @@
 [ext_resource type="Resource" uid="uid://pxcbllrawwon" path="res://Data/Notes/test_newspaper.tres" id="4_koexj"]
 [ext_resource type="AudioStream" uid="uid://cf825pr1p8l4v" path="res://addons/AddonUIComponents/Sounds/new_file.mp3" id="5_3xaye"]
 [ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="6_ht3q0"]
+[ext_resource type="Resource" uid="uid://jse1i03uqlii" path="res://addons/playlist.tres" id="6_koexj"]
 [ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_tf0eo"]
 [ext_resource type="AudioStream" uid="uid://s7r0nf4x8chj" path="res://addons/AddonUIComponents/Sounds/cancel.mp3" id="8_koexj"]
 [ext_resource type="AudioStream" uid="uid://njsqtgt7mss7" path="res://addons/AddonUIComponents/Sounds/Music/106 Fate in Haze.mp3" id="11_koexj"]
 
-[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "texture_selection_list", "note_list", "note_name", "text_entry", "page_count_label", "flags_text", "music_player", "toggle_music_button")]
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "texture_selection_list", "note_list", "note_name", "text_entry", "page_count_label", "flags_text", "music_player", "toggle_music_button", "track_name")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,6 +40,8 @@ page_count_label = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Da
 flags_text = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit")
 music_player = NodePath("background_music")
 toggle_music_button = NodePath("VBoxContainer/BottomPanel/bottom/toggle_music")
+playlist = ExtResource("6_koexj")
+track_name = NodePath("VBoxContainer/BottomPanel/bottom/track_name")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -241,6 +244,21 @@ layout_mode = 2
 layout_mode = 2
 text = "Toggle Music (On)"
 
+[node name="next_track" type="Button" parent="VBoxContainer/BottomPanel/bottom"]
+layout_mode = 2
+text = "Play Next"
+
+[node name="Label" type="Label" parent="VBoxContainer/BottomPanel/bottom"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "              "
+
+[node name="track_name" type="Label" parent="VBoxContainer/BottomPanel/bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+vertical_alignment = 1
+
 [node name="click_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_b7rpa")
 
@@ -278,3 +296,5 @@ stream = ExtResource("11_koexj")
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/last_button" to="." method="last_page_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit" to="." method="flags_updated"]
 [connection signal="button_down" from="VBoxContainer/BottomPanel/bottom/toggle_music" to="." method="toggle_music_pressed"]
+[connection signal="button_down" from="VBoxContainer/BottomPanel/bottom/next_track" to="." method="toggle_music_pressed"]
+[connection signal="button_down" from="VBoxContainer/BottomPanel/bottom/next_track" to="." method="play_next_track_pressed"]

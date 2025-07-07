@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dipmg1pmkw23y"
+path="res://.godot/imported/Hope's Theme.mp3-8a30f12ff0e14d37e702cfcd1aae96ff.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Hope's Theme.mp3"
+dest_files=["res://.godot/imported/Hope's Theme.mp3-8a30f12ff0e14d37e702cfcd1aae96ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

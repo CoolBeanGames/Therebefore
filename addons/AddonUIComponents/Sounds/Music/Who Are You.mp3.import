@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtswvgtx2o0we"
+path="res://.godot/imported/Who Are You.mp3-89b2d00cd814829c5b21fd8ecf94f680.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/Who Are You.mp3"
+dest_files=["res://.godot/imported/Who Are You.mp3-89b2d00cd814829c5b21fd8ecf94f680.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

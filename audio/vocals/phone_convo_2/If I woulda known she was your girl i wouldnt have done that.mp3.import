@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://smod3cjth04j"
+path="res://.godot/imported/If I woulda known she was your girl i wouldnt have done that.mp3-d75f7a80f61bae8a445802ae6556b421.mp3str"
+
+[deps]
+
+source_file="res://audio/vocals/phone_convo_2/If I woulda known she was your girl i wouldnt have done that.mp3"
+dest_files=["res://.godot/imported/If I woulda known she was your girl i wouldnt have done that.mp3-d75f7a80f61bae8a445802ae6556b421.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

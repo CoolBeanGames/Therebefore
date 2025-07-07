@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c65eurjoqd11o"]
+[gd_scene load_steps=15 format=3 uid="uid://c65eurjoqd11o"]
 
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_11hwm"]
 [ext_resource type="Script" uid="uid://mhjh5oyudo6c" path="res://addons/DialogEditor/dialog_editor_ui.gd" id="2_oti53"]
@@ -12,9 +12,10 @@
 [ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="6_fjsj2"]
 [ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_ghuyq"]
 [ext_resource type="AudioStream" uid="uid://s7r0nf4x8chj" path="res://addons/AddonUIComponents/Sounds/cancel.mp3" id="8_lsjh5"]
+[ext_resource type="Resource" uid="uid://jse1i03uqlii" path="res://addons/playlist.tres" id="8_xe2et"]
 [ext_resource type="AudioStream" uid="uid://bii71tgc1q5ew" path="res://addons/AddonUIComponents/Sounds/Music/101 Ahead on our Way.mp3" id="11_8rulg"]
 
-[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "audio_selection_list", "bus_selection", "dialog_list", "dialog_name", "text_entry", "page_count_label", "checkButton", "flags_text", "music_player", "line_preview_player", "toggle_music_button")]
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "audio_selection_list", "bus_selection", "dialog_list", "dialog_name", "text_entry", "page_count_label", "checkButton", "flags_text", "music_player", "line_preview_player", "toggle_music_button", "track_name")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,6 +47,8 @@ flags_text = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/fla
 music_player = NodePath("background_music")
 line_preview_player = NodePath("line_preview_player")
 toggle_music_button = NodePath("VBoxContainer/BottomPanel/bottom/toggle_music")
+playlist = ExtResource("8_xe2et")
+track_name = NodePath("VBoxContainer/BottomPanel/bottom/track_name")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -274,6 +277,20 @@ layout_mode = 2
 layout_mode = 2
 text = "Toggle Music (On)"
 
+[node name="next_track" type="Button" parent="VBoxContainer/BottomPanel/bottom"]
+layout_mode = 2
+text = "Toggle Music (On)"
+
+[node name="Label" type="Label" parent="VBoxContainer/BottomPanel/bottom"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "              "
+
+[node name="track_name" type="Label" parent="VBoxContainer/BottomPanel/bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
 [node name="click_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_vjuiv")
 bus = &"ui"
@@ -321,3 +338,4 @@ stream = ExtResource("11_8rulg")
 [connection signal="button_down" from="VBoxContainer/ContentPanel/content/DataContainer/Data/page_selector/last_button" to="." method="last_page_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/ContentPanel/content/DataContainer/Data/flags/TextEdit" to="." method="flags_updated"]
 [connection signal="button_down" from="VBoxContainer/BottomPanel/bottom/toggle_music" to="." method="toggle_music_pressed"]
+[connection signal="button_down" from="VBoxContainer/BottomPanel/bottom/next_track" to="." method="next_track_clicked"]

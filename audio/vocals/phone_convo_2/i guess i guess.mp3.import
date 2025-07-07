@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4cu3761gh7et"
+path="res://.godot/imported/i guess i guess.mp3-ad2e39cc26ac879b808c5f59d319d0e6.mp3str"
+
+[deps]
+
+source_file="res://audio/vocals/phone_convo_2/i guess i guess.mp3"
+dest_files=["res://.godot/imported/i guess i guess.mp3-ad2e39cc26ac879b808c5f59d319d0e6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

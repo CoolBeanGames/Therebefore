@@ -3,7 +3,7 @@
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
 resource_name = "Distortion"
 mode = 2
-drive = 0.8
+drive = 0.6
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
 resource_name = "HighPassFilter"
