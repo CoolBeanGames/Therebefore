@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c13vyfd86xlto"
+path="res://.godot/imported/2-23 - Guadosalam.mp3-7c7456cd70688e4ebefb8a4872061899.mp3str"
+
+[deps]
+
+source_file="res://addons/AddonUIComponents/Sounds/Music/2-23 - Guadosalam.mp3"
+dest_files=["res://.godot/imported/2-23 - Guadosalam.mp3-7c7456cd70688e4ebefb8a4872061899.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
