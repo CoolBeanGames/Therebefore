@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7f5ifnt8gshr"]
+[gd_scene load_steps=10 format=3 uid="uid://b7f5ifnt8gshr"]
 
 [ext_resource type="Script" uid="uid://bwa8marrksgol" path="res://scripts/game_base.gd" id="1_8ktb3"]
 [ext_resource type="PackedScene" uid="uid://msb8glnwae50" path="res://Scenes/test_map.tscn" id="2_nvvv1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://ya01drqicvml" path="res://Data/Dialog/Phone Call 2.tres" id="7_sx1ts"]
 [ext_resource type="PackedScene" uid="uid://dj8a3i51plouv" path="res://Scenes/props/interactable_phone.tscn" id="7_xqm0q"]
 [ext_resource type="AudioStream" uid="uid://ccjts3k3ke15c" path="res://audio/vocals/It Looks Like your not home right now.mp3" id="8_sx1ts"]
+[ext_resource type="PackedScene" uid="uid://brn1d8u7oy0fy" path="res://Scenes/prefabs/model_previews/phone_preview.tscn" id="9_p0qda"]
 
 [node name="Game_Base" type="Node" node_paths=PackedStringArray("ActivePlayersParent", "InactivePlayersParent")]
 script = ExtResource("1_8ktb3")
@@ -37,3 +38,6 @@ dialog = ExtResource("7_sx1ts")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_sx1ts")
 bus = &"phone"
+
+[node name="phone_preview" parent="." instance=ExtResource("9_p0qda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.853044, 0.660856, -4.60166)

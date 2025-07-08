@@ -27,6 +27,8 @@ func start_showing_note(_note : note_res):
 	##todo: lock input
 	note_page = 0
 	note = _note
+	var ui : game_hud = References.get_reference("ui")
+	ui.clear_interaction()
 	is_active=true
 	if note == null  or  note.pages.size() == 0:
 		printerr("tried to show a note, but the note has no pages")

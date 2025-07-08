@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3r4ie2aewsj6" path="res://Scenes/Components/player_movement.tscn" id="2_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+radius = 0.25
 height = 2.00252
 
 [node name="player" type="CharacterBody3D"]
@@ -14,22 +15,25 @@ script = ExtResource("1_vgqql")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 layers = 2
+radius = 0.25
 height = 1.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 layers = 2
+radius = 0.25
 
 [node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCylinder3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, -0.5, 0)
 layers = 2
+radius = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00946283, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0358651, 0.592706, 0.520494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036, 0.593, 0)
 cull_mask = 1048573
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]

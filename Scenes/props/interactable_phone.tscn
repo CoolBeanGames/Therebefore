@@ -7,6 +7,12 @@
 [node name="interactable_phone" instance=ExtResource("1_n867w")]
 script = ExtResource("2_m2gdd")
 
+[node name="base" parent="." index="0"]
+layers = 1
+
+[node name="handset" parent="." index="1"]
+layers = 1
+
 [node name="Interactable" parent="." index="2" instance=ExtResource("2_jandi")]
 look_at_text = "[E] to check messages"
 

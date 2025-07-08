@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 References="*res://scripts/global/_references.gd"
 GameData="*res://scripts/global/_gameData.gd"
 Audio="*res://scripts/global/_audio.gd"
+InputEvents="*res://scripts/global/input_events.gd"
 
 [editor]
 
@@ -73,6 +74,7 @@ pause={
 
 [layer_names]
 
+3d_render/layer_20="item_view"
 3d_physics/layer_1="world"
 3d_physics/layer_2="player"
 3d_physics/layer_3="interactions"
