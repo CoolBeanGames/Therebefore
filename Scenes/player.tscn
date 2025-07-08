@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqp0iws3a70pw"]
+[gd_scene load_steps=12 format=3 uid="uid://dqp0iws3a70pw"]
 
 [ext_resource type="Script" uid="uid://bqspofm4btpah" path="res://Scenes/Components/player_look_component.gd" id="1_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://b3xr7q01econf" path="res://Scenes/Components/camera_control.tscn" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://cgtd7ibotu7t8" path="res://scripts/player.gd" id="1_vgqql"]
 [ext_resource type="PackedScene" uid="uid://b3r4ie2aewsj6" path="res://Scenes/Components/player_movement.tscn" id="2_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://bkdso0h0iae8i" path="res://audio/sound effects/zoom_in.mp3" id="4_tx1dd"]
+[ext_resource type="AudioStream" uid="uid://djlymw8rpl650" path="res://audio/sound effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_01_002.mp3" id="5_8erm5"]
+[ext_resource type="AudioStream" uid="uid://2og02b60skf3" path="res://audio/sound effects/zoom_out.mp3" id="5_gymyn"]
+[ext_resource type="AudioStream" uid="uid://cw06sxr0q25iy" path="res://audio/sound effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_02_003.mp3" id="6_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://c524vvcgcbk4" path="res://audio/sound effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_03_004.mp3" id="7_tx1dd"]
+[ext_resource type="AudioStream" uid="uid://caaa8kva7er41" path="res://audio/sound effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_04_005.mp3" id="8_gymyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 radius = 0.25
@@ -50,6 +56,10 @@ spot_attenuation = 0.0
 [node name="camera_control" parent="." node_paths=PackedStringArray("body", "head") instance=ExtResource("1_cvnsp")]
 body = NodePath("..")
 head = NodePath("../Camera3D")
+zoom_in_sound = ExtResource("4_tx1dd")
+zoom_out_sound = ExtResource("5_gymyn")
 
 [node name="player_movement" parent="." node_paths=PackedStringArray("body") instance=ExtResource("2_6t5aa")]
 body = NodePath("..")
+footstep_sounds = Array[AudioStream]([ExtResource("5_8erm5"), ExtResource("6_f1ek2"), ExtResource("7_tx1dd"), ExtResource("8_gymyn")])
+footstep_interval = 0.7

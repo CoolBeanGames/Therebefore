@@ -13,6 +13,8 @@ class_name camera_control
 @export var fov_normal : int = 75
 @export var fov_speed : float = 10
 @export var goal_fov : int = 75
+@export var zoom_in_sound : AudioStream
+@export var zoom_out_sound : AudioStream
 
 
 func _ready() -> void:
@@ -38,9 +40,13 @@ func do_look():
 
 func on_rmb_up():
 	goal_fov = fov_normal
+	if !GameData.is_input_locked():
+		Audio.play(zoom_out_sound,false,_audio.audio_bus.sfx,false)
 
 func on_rmb_down():
 	goal_fov = fov_zoomed
+	if !GameData.is_input_locked():
+		Audio.play(zoom_in_sound,false,_audio.audio_bus.sfx,false)
 
 func calculate_rot():
 	pitch += input_vector.y * look_speed * delta
