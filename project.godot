@@ -16,12 +16,17 @@ run/main_scene="uid://b7f5ifnt8gshr"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Packages/Package_Base/default_bus_layout.tres"
+
 [autoload]
 
-References="*res://scripts/global/_references.gd"
-GameData="*res://scripts/global/_gameData.gd"
-Audio="*res://scripts/global/_audio.gd"
-InputEvents="*res://scripts/global/input_events.gd"
+PckLoader="*res://Packages/Package_Base/Scripts/global/pckLoader.gd"
+References="*res://Packages/Package_Base/Scripts/global/_references.gd"
+GameData="*res://Packages/Package_Base/Scripts/global/_gameData.gd"
+Audio="*res://Packages/Package_Base/Scripts/global/_audio.gd"
+InputEvents="*res://Packages/Package_Base/Scripts/global/input_events.gd"
 
 [editor]
 
@@ -82,3 +87,4 @@ pause={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

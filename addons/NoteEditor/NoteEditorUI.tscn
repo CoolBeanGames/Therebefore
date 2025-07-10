@@ -1,17 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://br0vkmme8lc3f"]
+[gd_scene load_steps=10 format=3 uid="uid://br0vkmme8lc3f"]
 
 [ext_resource type="Script" uid="uid://dvfd37kp2q1la" path="res://addons/NoteEditor/note_editor_ui.gd" id="1_cjxdj"]
 [ext_resource type="Theme" uid="uid://bkorw3gs008io" path="res://addons/AddonUIComponents/FF_Theme.tres" id="1_lxh58"]
 [ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="3_icmk7"]
-[ext_resource type="Script" uid="uid://cs37kxhy4cbk0" path="res://scripts/resource_definitions/note_res.gd" id="3_tf0eo"]
 [ext_resource type="AudioStream" uid="uid://db01h3k1d21lp" path="res://addons/AddonUIComponents/Sounds/select.mp3" id="4_b7rpa"]
-[ext_resource type="Resource" uid="uid://pxcbllrawwon" path="res://Data/Notes/test_newspaper.tres" id="4_koexj"]
 [ext_resource type="AudioStream" uid="uid://cf825pr1p8l4v" path="res://addons/AddonUIComponents/Sounds/new_file.mp3" id="5_3xaye"]
 [ext_resource type="AudioStream" uid="uid://c0ytwgmgv3qcn" path="res://addons/AddonUIComponents/Sounds/reload.mp3" id="6_ht3q0"]
 [ext_resource type="Resource" uid="uid://jse1i03uqlii" path="res://addons/playlist.tres" id="6_koexj"]
 [ext_resource type="AudioStream" uid="uid://x8acmbjgupdu" path="res://addons/AddonUIComponents/Sounds/save.mp3" id="7_tf0eo"]
 [ext_resource type="AudioStream" uid="uid://s7r0nf4x8chj" path="res://addons/AddonUIComponents/Sounds/cancel.mp3" id="8_koexj"]
-[ext_resource type="AudioStream" uid="uid://njsqtgt7mss7" path="res://addons/AddonUIComponents/Sounds/Music/106 Fate in Haze.mp3" id="11_koexj"]
 
 [node name="Control" type="PanelContainer" node_paths=PackedStringArray("click_sound_player", "save_sound_player", "reload_sound_player", "new_file_sound_player", "delete_sound_player", "texture_selection_list", "note_list", "note_name", "text_entry", "page_count_label", "flags_text", "music_player", "toggle_music_button", "track_name")]
 anchors_preset = 15
@@ -29,9 +26,6 @@ reload_sound_player = NodePath("reload_sound")
 new_file_sound_player = NodePath("new_sound")
 delete_sound_player = NodePath("delete_sound")
 texture_selection_list = NodePath("VBoxContainer/ContentPanel/content/DataContainer/Data/texture_box/texture_selector")
-notes_data = Dictionary[String, ExtResource("3_tf0eo")]({
-"test_newspaper": ExtResource("4_koexj")
-})
 note_list = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/note_list")
 item_list_pointer_icon = ExtResource("3_icmk7")
 note_name = NodePath("VBoxContainer/ContentPanel/content/NoteList/Notes/new note/LineEdit")
@@ -101,8 +95,6 @@ horizontal_alignment = 1
 [node name="note_list" type="ItemList" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
 size_flags_vertical = 3
-item_count = 1
-item_0/text = "test_newspaper"
 
 [node name="new note" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/NoteList/Notes"]
 layout_mode = 2
@@ -146,7 +138,7 @@ text = "Note Texture:"
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
-item_count = 9
+item_count = 15
 popup/item_0/text = "res://icon.svg"
 popup/item_0/id = 0
 popup/item_1/text = "res://addons/AddonUIComponents/Textures/button_hover.png"
@@ -159,12 +151,24 @@ popup/item_4/text = "res://addons/AddonUIComponents/Textures/Final Fantasy Panel
 popup/item_4/id = 4
 popup/item_5/text = "res://addons/AddonUIComponents/Textures/item_list_pointer.png"
 popup/item_5/id = 5
-popup/item_6/text = "res://Models/phone/phone_handset.png"
+popup/item_6/text = "res://Packages/Package_1/Models/Apartment/Apartment_BW_Marble_Tile_08-256x256.png"
 popup/item_6/id = 6
-popup/item_7/text = "res://Models/phone/phone_phoneUV.png"
+popup/item_7/text = "res://Packages/Package_1/Models/Apartment/Apartment_CustomUVChecker_byValle_1K.png"
 popup/item_7/id = 7
-popup/item_8/text = "res://UI/Textures/aiming_circle.png"
+popup/item_8/text = "res://Packages/Package_1/Models/Apartment/Apartment_Plaster_09-256x256.png"
 popup/item_8/id = 8
+popup/item_9/text = "res://Packages/Package_1/Models/Apartment/Apartment_Plaster_12-256x256.png"
+popup/item_9/id = 9
+popup/item_10/text = "res://Packages/Package_1/Models/Apartment/Apartment_Rectangle_Marble_Tile_03-256x256.png"
+popup/item_10/id = 10
+popup/item_11/text = "res://Packages/Package_1/Models/Apartment/Apartment_Wood_06-256x256.png"
+popup/item_11/id = 11
+popup/item_12/text = "res://Packages/Package_1/Models/phone/phone_handset.png"
+popup/item_12/id = 12
+popup/item_13/text = "res://Packages/Package_1/Models/phone/phone_phoneUV.png"
+popup/item_13/id = 13
+popup/item_14/text = "res://Packages/Package_UI/Textures/aiming_circle.png"
+popup/item_14/id = 14
 
 [node name="text_box" type="HBoxContainer" parent="VBoxContainer/ContentPanel/content/DataContainer/Data"]
 layout_mode = 2
@@ -275,7 +279,6 @@ stream = ExtResource("7_tf0eo")
 stream = ExtResource("8_koexj")
 
 [node name="background_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_koexj")
 
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/save_selected" to="." method="save_selected"]
 [connection signal="button_down" from="VBoxContainer/ButtonsPanel/topButtons/save_all" to="." method="save_all"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqp0iws3a70pw"]
+
+[ext_resource type="Script" uid="uid://cgtd7ibotu7t8" path="res://Packages/Package_Player/Scripts/player.gd" id="1_pfhd6"]
+[ext_resource type="Script" uid="uid://bqspofm4btpah" path="res://Packages/Package_Player/Scripts/Components/player_look_component.gd" id="2_e1sfg"]
+[ext_resource type="PackedScene" uid="uid://b3xr7q01econf" path="res://Packages/Package_Player/Scenes/camera_control.tscn" id="3_b7l7o"]
+[ext_resource type="AudioStream" uid="uid://bkdso0h0iae8i" path="res://Packages/Package_Player/Assets/Sound Effects/zoom_in.mp3" id="4_ws7kt"]
+[ext_resource type="AudioStream" uid="uid://2og02b60skf3" path="res://Packages/Package_Player/Assets/Sound Effects/zoom_out.mp3" id="5_nh7lq"]
+[ext_resource type="PackedScene" uid="uid://b3r4ie2aewsj6" path="res://Packages/Package_Player/Scenes/player_movement.tscn" id="6_nt6gb"]
+[ext_resource type="AudioStream" uid="uid://djlymw8rpl650" path="res://Packages/Package_Player/Assets/Sound Effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_01_002.mp3" id="7_qmo5v"]
+[ext_resource type="AudioStream" uid="uid://cw06sxr0q25iy" path="res://Packages/Package_Player/Assets/Sound Effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_02_003.mp3" id="8_nh6nd"]
+[ext_resource type="AudioStream" uid="uid://c524vvcgcbk4" path="res://Packages/Package_Player/Assets/Sound Effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_03_004.mp3" id="9_0muha"]
+[ext_resource type="AudioStream" uid="uid://caaa8kva7er41" path="res://Packages/Package_Player/Assets/Sound Effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_04_005.mp3" id="10_ebqng"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+radius = 0.25
+height = 2.00252
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_pfhd6")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+layers = 2
+radius = 0.25
+height = 1.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+layers = 2
+radius = 0.25
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009, -0.5, 0)
+layers = 2
+radius = 0.25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00946283, 0)
+shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036, 0.593, 0)
+cull_mask = 1048573
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 4
+script = ExtResource("2_e1sfg")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+light_color = Color(0.929354, 0.93109, 0.793595, 1)
+light_energy = 0.5
+spot_range = 4.0
+spot_attenuation = 0.0
+
+[node name="camera_control" parent="." node_paths=PackedStringArray("body", "head") instance=ExtResource("3_b7l7o")]
+body = NodePath("..")
+head = NodePath("../Camera3D")
+zoom_in_sound = ExtResource("4_ws7kt")
+zoom_out_sound = ExtResource("5_nh7lq")
+
+[node name="player_movement" parent="." node_paths=PackedStringArray("body") instance=ExtResource("6_nt6gb")]
+walk_speed = 300.0
+body = NodePath("..")
+footstep_sounds = Array[AudioStream]([ExtResource("7_qmo5v"), ExtResource("8_nh6nd"), ExtResource("9_0muha"), ExtResource("10_ebqng")])
+footstep_interval = 0.8
