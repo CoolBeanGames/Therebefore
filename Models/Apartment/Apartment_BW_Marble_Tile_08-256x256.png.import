@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d11k8csc3ktor"
-path.s3tc="res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.s3tc.ctex"
+uid="uid://de5reb6epb3qh"
+path.s3tc="res://.godot/imported/Apartment_BW_Marble_Tile_08-256x256.png-39e287a2fa8db0401cf0ba6223cf75ab.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f8581339621095560f19c71fc116c2b6"
+"md5": "ce443857c67718b4e1c84b7727fac4a2"
 }
 
 [deps]
 
-source_file="res://Models/phone/phone_handset.png"
-dest_files=["res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.s3tc.ctex"]
+source_file="res://Models/Apartment/Apartment_BW_Marble_Tile_08-256x256.png"
+dest_files=["res://.godot/imported/Apartment_BW_Marble_Tile_08-256x256.png-39e287a2fa8db0401cf0ba6223cf75ab.s3tc.ctex"]
 
 [params]
 

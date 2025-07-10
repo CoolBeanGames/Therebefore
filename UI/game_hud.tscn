@@ -210,7 +210,7 @@ transparent_bg = true
 size = Vector2i(1920, 1080)
 
 [node name="item_examine_yaw" type="Node3D" parent="camera_preview_viewport" node_paths=PackedStringArray("parent_to_add_item", "yaw_node", "pitch_node", "camera", "examine_ui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.760635)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9870.17, -0.760635)
 script = ExtResource("14_nc7xe")
 parent_to_add_item = NodePath("item_examine_pitch")
 yaw_node = NodePath(".")
@@ -221,11 +221,12 @@ examine_ui = NodePath("../../item_preview_ui")
 [node name="item_examine_pitch" type="Node3D" parent="camera_preview_viewport/item_examine_yaw"]
 
 [node name="Camera3D" type="Camera3D" parent="camera_preview_viewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9870.17, 0)
 cull_mask = 524288
 fov = 43.9
 
 [node name="OmniLight3D" type="OmniLight3D" parent="camera_preview_viewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0966669, -0.397501)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9870.07, -0.397501)
 layers = 524288
 
 [node name="item_preview_ui" type="Control" parent="."]

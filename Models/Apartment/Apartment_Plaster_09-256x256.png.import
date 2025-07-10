@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d11k8csc3ktor"
-path.s3tc="res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.s3tc.ctex"
+uid="uid://dfbghles48jet"
+path.s3tc="res://.godot/imported/Apartment_Plaster_09-256x256.png-c73c58d8d88fdb43b6425b8a8994fccb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f8581339621095560f19c71fc116c2b6"
+"md5": "8c36b0a2d5a58f326074b3e228b26064"
 }
 
 [deps]
 
-source_file="res://Models/phone/phone_handset.png"
-dest_files=["res://.godot/imported/phone_handset.png-2e899de0b5bd66ca2699d0bc56bbc7dd.s3tc.ctex"]
+source_file="res://Models/Apartment/Apartment_Plaster_09-256x256.png"
+dest_files=["res://.godot/imported/Apartment_Plaster_09-256x256.png-c73c58d8d88fdb43b6425b8a8994fccb.s3tc.ctex"]
 
 [params]
 

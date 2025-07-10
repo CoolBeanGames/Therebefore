@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bnog7p3gc6tof"]
+
+[ext_resource type="Texture2D" uid="uid://bschbwavmtfy4" path="res://Models/Apartment/Apartment_CustomUVChecker_byValle_1K.png" id="1_w2qxm"]
+
+[resource]
+resource_name = "setup"
+albedo_texture = ExtResource("1_w2qxm")
+roughness = 0.5

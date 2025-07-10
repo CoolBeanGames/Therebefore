@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://rt3lw382xfe1"]
+
+[ext_resource type="Texture2D" uid="uid://7eqbvpw2mxbt" path="res://Models/Apartment/Apartment_Rectangle_Marble_Tile_03-256x256.png" id="1_65k1e"]
+
+[resource]
+resource_name = "BathroomFloors"
+albedo_texture = ExtResource("1_65k1e")
+roughness = 0.5
+uv1_scale = Vector3(5, 5, 5)

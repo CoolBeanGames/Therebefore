@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjyffn46xyxus"]
+
+[ext_resource type="PackedScene" uid="uid://o7w7gawe5wlk" path="res://Models/Apartment/Apartment.glb" id="1_j7y4d"]
+[ext_resource type="AudioStream" uid="uid://0qfxaokqblq4" path="res://audio/ambient/glitched_tones_household_kitchen_roomtone_fan_grill_pan_561.mp3" id="2_rmknk"]
+
+[node name="Apartment" instance=ExtResource("1_j7y4d")]
+
+[node name="player_stand_in" parent="." index="5"]
+visible = false
+
+[node name="KitchenLight" parent="." index="15"]
+light_color = Color(0.811951, 0.754933, 0.665985, 1)
+light_energy = 1.0
+omni_range = 5.0
+
+[node name="LivingRoomLight" parent="." index="16"]
+light_color = Color(0.811951, 0.754933, 0.665985, 1)
+light_energy = 1.0
+omni_range = 5.0
+
+[node name="BathroomLight" parent="." index="17"]
+light_color = Color(0.811951, 0.754933, 0.665985, 1)
+light_energy = 1.0
+omni_range = 5.0
+
+[node name="HallLight1" parent="." index="18"]
+light_color = Color(0.811951, 0.754933, 0.665985, 1)
+light_energy = 1.0
+omni_range = 5.0
+
+[node name="HallLight2" parent="." index="19"]
+light_color = Color(0.811951, 0.754933, 0.665985, 1)
+light_energy = 1.0
+omni_range = 5.0
+
+[node name="GlitchedTonesHouseholdKitchenRoomtoneFanGrillPan561" type="AudioStreamPlayer" parent="." index="20"]
+stream = ExtResource("2_rmknk")
+volume_db = 3.0
+bus = &"reverbSFX"

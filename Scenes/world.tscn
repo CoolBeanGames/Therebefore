@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://drgattj3pxyf8"]
+
+[ext_resource type="PackedScene" uid="uid://cjyffn46xyxus" path="res://Scenes/Packages/Apartment 206/apartment_206.tscn" id="1_a02cp"]
+
+[sub_resource type="Environment" id="Environment_go701"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+ambient_light_source = 1
+fog_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.9
+
+[node name="World" type="Node3D"]
+
+[node name="Apartment" parent="." instance=ExtResource("1_a02cp")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_go701")
