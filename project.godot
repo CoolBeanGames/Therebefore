@@ -22,7 +22,7 @@ buses/default_bus_layout="res://Packages/Package_Base/default_bus_layout.tres"
 
 [autoload]
 
-PckLoader="*res://Packages/Package_Base/Scripts/global/pckLoader.gd"
+PckLoader="*res://master_scripts/pckLoader.gd"
 References="*res://Packages/Package_Base/Scripts/global/_references.gd"
 GameData="*res://Packages/Package_Base/Scripts/global/_gameData.gd"
 Audio="*res://Packages/Package_Base/Scripts/global/_audio.gd"
