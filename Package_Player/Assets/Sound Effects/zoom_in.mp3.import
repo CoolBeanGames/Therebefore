@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bkdso0h0iae8i"
+path="res://.godot/imported/zoom_in.mp3-eb4cb5f068c39c1a29b281bca40cb7b4.mp3str"
+
+[deps]
+
+source_file="res://Package_Player/Assets/Sound Effects/zoom_in.mp3"
+dest_files=["res://.godot/imported/zoom_in.mp3-eb4cb5f068c39c1a29b281bca40cb7b4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

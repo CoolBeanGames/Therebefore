@@ -1,0 +1,103 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://o7w7gawe5wlk"
+path="res://.godot/imported/Apartment.glb-1d307860007acfe5b89e12ecef62c34f.scn"
+
+[deps]
+
+source_file="res://Package_1/Models/Apartment/Apartment.glb"
+dest_files=["res://.godot/imported/Apartment.glb-1d307860007acfe5b89e12ecef62c34f.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=3
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"BathroomFloors": {
+"use_external/enabled": true,
+"use_external/path": "uid://rt3lw382xfe1"
+},
+"KitchenFloors": {
+"use_external/enabled": true,
+"use_external/path": "uid://bywgixkv63yma"
+},
+"KitchenWalls": {
+"use_external/enabled": true,
+"use_external/path": "uid://c5wldjf166xdv"
+},
+"LivingRoomFloor": {
+"use_external/enabled": true,
+"use_external/path": "uid://n5vvan8mqns5"
+},
+"Walls": {
+"use_external/enabled": true,
+"use_external/path": "uid://d0ryw6ciwhbp5"
+},
+"WindowGlass": {
+"use_external/enabled": true,
+"use_external/path": "uid://du2njrnd7scci"
+},
+"setup": {
+"use_external/enabled": true,
+"use_external/path": "uid://bnog7p3gc6tof"
+}
+},
+"nodes": {
+"PATH:Bathroom": {
+"generate/physics": true
+},
+"PATH:Bedroom": {
+"generate/physics": true
+},
+"PATH:Couch": {
+"generate/physics": true
+},
+"PATH:Hall": {
+"generate/physics": true
+},
+"PATH:Island": {
+"generate/physics": true
+},
+"PATH:Kitchen": {
+"generate/physics": true
+},
+"PATH:LivingRoom": {
+"generate/physics": true
+},
+"PATH:fridge base": {
+"generate/physics": true
+},
+"PATH:left counter": {
+"generate/physics": true
+},
+"PATH:right counter": {
+"generate/physics": true
+},
+"PATH:stove": {
+"generate/physics": true
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

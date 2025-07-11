@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7f5ifnt8gshr"]
+
+[ext_resource type="Script" uid="uid://bwa8marrksgol" path="res://Package_Base/Scripts/game_base.gd" id="1_8ktb3"]
+[ext_resource type="PackedScene" uid="uid://dqp0iws3a70pw" path="res://Package_Player/Scenes/player.tscn" id="3_op4vg"]
+[ext_resource type="PackedScene" uid="uid://bwaegwvlxtxbr" path="res://Package_UI/Scenes/game_hud.tscn" id="4_bngpg"]
+[ext_resource type="PackedScene" uid="uid://drgattj3pxyf8" path="res://Package_Base/world.tscn" id="4_fqtgw"]
+
+[node name="Game_Base" type="Node" node_paths=PackedStringArray("ActivePlayersParent", "InactivePlayersParent")]
+script = ExtResource("1_8ktb3")
+ActivePlayersParent = NodePath("AudioPlayers/Active")
+InactivePlayersParent = NodePath("AudioPlayers/Inactive")
+
+[node name="player" parent="." instance=ExtResource("3_op4vg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04261, 0)
+
+[node name="UI" parent="." instance=ExtResource("4_bngpg")]
+
+[node name="AudioPlayers" type="Node" parent="."]
+
+[node name="Active" type="Node" parent="AudioPlayers"]
+
+[node name="Inactive" type="Node" parent="AudioPlayers"]
+
+[node name="World" parent="." instance=ExtResource("4_fqtgw")]

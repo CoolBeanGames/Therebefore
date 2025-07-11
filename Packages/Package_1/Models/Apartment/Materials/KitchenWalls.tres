@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c5wldjf166xdv"]
-
-[ext_resource type="Texture2D" uid="uid://bmp3xg4ax372s" path="res://Packages/Package_1/Models/Apartment/Apartment_Plaster_12-256x256.png" id="1_fm6hr"]
-
-[resource]
-resource_name = "KitchenWalls"
-albedo_texture = ExtResource("1_fm6hr")
-roughness = 0.5
-uv1_scale = Vector3(5, 5, 5)

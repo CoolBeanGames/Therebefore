@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcsanhakxyhev"]
+
+[ext_resource type="Script" uid="uid://dlog75isrppv8" path="res://Package_1/Scenes/Notes/apartment_206_crumpled_note.gd" id="1_ibes7"]
+[ext_resource type="PackedScene" uid="uid://cx3fdbq0dkeks" path="res://Package_Base/Scenes/Components/Interactables/interactable.tscn" id="2_2xu0d"]
+[ext_resource type="Resource" uid="uid://bfr1xwriga35a" path="res://Package_1/Data/Notes/apartment_206_calendar.tres" id="2_63h3m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xu0d"]
+size = Vector3(1.12015, 0.0424805, 0.998657)
+
+[node name="calendar" type="Node3D"]
+script = ExtResource("1_ibes7")
+note_to_read = ExtResource("2_63h3m")
+
+[node name="Interactable" parent="." instance=ExtResource("2_2xu0d")]
+transform = Transform3D(0.731144, 0, 0, 0, -2.9177e-08, -0.69921, 0, 0.667493, -3.05634e-08, -0.0148856, 0, 0)
+look_at_text = "[E] Examine Calendar"
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.999994, 9.23706e-14, 0, -9.23706e-14, 0.999994, -0.103165, 0.0129394, 0.00469972)
+shape = SubResource("BoxShape3D_2xu0d")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.731144, 0, 0, 0, -2.9177e-08, -0.69921, 0, 0.667493, -3.05634e-08, -0.0958474, 0, 0)
+size = Vector3(1.12619, 0.0258789, 1)
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+
+[editable path="Interactable"]

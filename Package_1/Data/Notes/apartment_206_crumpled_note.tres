@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="note_res" load_steps=3 format=3 uid="uid://jasi68ayfoty"]
+
+[ext_resource type="Texture2D" uid="uid://b17elq6qfxi38" path="res://addons/AddonUIComponents/Textures/Final Fantasy Panel.png" id="1_7aoq1"]
+[ext_resource type="Script" uid="uid://cs37kxhy4cbk0" path="res://Package_Base/Scripts/resource_definitions/note_res.gd" id="2_pvqu7"]
+
+[resource]
+resource_name = "apartment_206_crumpled_note"
+script = ExtResource("2_pvqu7")
+pages = Array[String](["(some of the text is too damaged to read)", "Ry__ please ____ inside, I dont want you _____e
+of this damn _____ liek ev___ne else", "your __d and I alre_dy have it so please ____ ___ ____", "and forget about _______, shes ___ worth _____ from this thing", "-Love M__"])
+image = ExtResource("1_7aoq1")
+flags = Array[String]([])

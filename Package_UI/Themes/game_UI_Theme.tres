@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c23dpnho8idt8"]
+
+[ext_resource type="FontFile" uid="uid://b5lophtbtdffm" path="res://Package_UI/Fonts/LessRoundBox.ttf" id="1_hc0cd"]
+
+[resource]
+Label/fonts/font = ExtResource("1_hc0cd")
+RichTextLabel/fonts/bold_font = ExtResource("1_hc0cd")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_hc0cd")
+RichTextLabel/fonts/italics_font = ExtResource("1_hc0cd")
+RichTextLabel/fonts/mono_font = ExtResource("1_hc0cd")
+RichTextLabel/fonts/normal_font = ExtResource("1_hc0cd")

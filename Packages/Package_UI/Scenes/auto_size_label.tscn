@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy7r80j1wa4sq"]
-
-[ext_resource type="Script" uid="uid://bseq2rn182pv6" path="res://Packages/Package_UI/Scripts/auto_size_label.gd" id="1_4mbch"]
-
-[node name="auto_size_label" type="Label"]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("1_4mbch")

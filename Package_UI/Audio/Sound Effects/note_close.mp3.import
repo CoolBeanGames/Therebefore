@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fq6w77sqsx0o"
+path="res://.godot/imported/note_close.mp3-2051a82c2e7f3f77d58129e1ad6b3de4.mp3str"
+
+[deps]
+
+source_file="res://Package_UI/Audio/Sound Effects/note_close.mp3"
+dest_files=["res://.godot/imported/note_close.mp3-2051a82c2e7f3f77d58129e1ad6b3de4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

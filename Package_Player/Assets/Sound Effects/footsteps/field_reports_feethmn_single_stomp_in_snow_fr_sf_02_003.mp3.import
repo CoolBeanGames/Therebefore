@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cw06sxr0q25iy"
+path="res://.godot/imported/field_reports_feethmn_single_stomp_in_snow_fr_sf_02_003.mp3-fed02586f7376ce850d345a00eb3fb46.mp3str"
+
+[deps]
+
+source_file="res://Package_Player/Assets/Sound Effects/footsteps/field_reports_feethmn_single_stomp_in_snow_fr_sf_02_003.mp3"
+dest_files=["res://.godot/imported/field_reports_feethmn_single_stomp_in_snow_fr_sf_02_003.mp3-fed02586f7376ce850d345a00eb3fb46.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

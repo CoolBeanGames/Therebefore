@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3r4ie2aewsj6"]
+
+[ext_resource type="Script" uid="uid://bw50fmaaj5juo" path="res://Package_Player/Scripts/Components/player_movement_component.gd" id="1_nb8c2"]
+
+[node name="player_movement" type="Node" node_paths=PackedStringArray("body")]
+script = ExtResource("1_nb8c2")
+walk_speed = 500.0
+body = NodePath("")

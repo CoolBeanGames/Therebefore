@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bddm6d8vt35ph"]
+
+[ext_resource type="PackedScene" uid="uid://cp6yv4pe02f3g" path="res://Package_1/Models/phone/phone.glb" id="1_vj1y6"]
+
+[node name="phone" instance=ExtResource("1_vj1y6")]
+
+[node name="base" parent="." index="0"]
+layers = 524288
+
+[node name="handset" parent="." index="1"]
+layers = 524288

@@ -1,0 +1,280 @@
+[gd_scene load_steps=17 format=3 uid="uid://bwaegwvlxtxbr"]
+
+[ext_resource type="Script" uid="uid://covnblndurusc" path="res://Package_UI/Scripts/game_hud.gd" id="1_5bqoq"]
+[ext_resource type="Texture2D" uid="uid://y4sqdu7nnwyw" path="res://icon.svg" id="1_v2jwi"]
+[ext_resource type="Script" uid="uid://bviv0sceyrg8v" path="res://Package_UI/Scripts/notes_ui.gd" id="2_qbrru"]
+[ext_resource type="AudioStream" uid="uid://bmjgvdc2eioca" path="res://Package_UI/Audio/Sound Effects/note_open.mp3" id="5_a3wh3"]
+[ext_resource type="AudioStream" uid="uid://d2opj4sh8kocm" path="res://Package_UI/Audio/Sound Effects/error_sound.mp3" id="5_qbrru"]
+[ext_resource type="AudioStream" uid="uid://fq6w77sqsx0o" path="res://Package_UI/Audio/Sound Effects/note_close.mp3" id="6_2dltx"]
+[ext_resource type="AudioStream" uid="uid://bch803vj56khg" path="res://Package_UI/Audio/Sound Effects/page_right.mp3" id="7_gb73w"]
+[ext_resource type="AudioStream" uid="uid://plloj4pooow4" path="res://Package_UI/Audio/Sound Effects/page_left.mp3" id="8_lqvkh"]
+[ext_resource type="Script" uid="uid://cle2ei8fvift6" path="res://Package_UI/Scripts/dialog_ui.gd" id="10_2dltx"]
+[ext_resource type="Script" uid="uid://csbxlriiinr4e" path="res://Package_UI/Scripts/auto_sized_richtext.gd" id="10_hllct"]
+[ext_resource type="Script" uid="uid://bseq2rn182pv6" path="res://Package_UI/Scripts/auto_size_label.gd" id="11_usp3h"]
+[ext_resource type="Texture2D" uid="uid://defnjcng2jeki" path="res://Package_UI/Textures/aiming_circle.png" id="12_hllct"]
+[ext_resource type="Theme" uid="uid://c23dpnho8idt8" path="res://Package_UI/Themes/game_UI_Theme.tres" id="13_nc7xe"]
+[ext_resource type="Script" uid="uid://qa0w6d8ojfrj" path="res://Package_Base/Scripts/components/itemExamine.gd" id="14_nc7xe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3wh3"]
+bg_color = Color(0, 0, 0, 0.807843)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nc7xe"]
+viewport_path = NodePath("camera_preview_viewport")
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("noteUI", "dialogUI", "interaction_text")]
+follow_viewport_enabled = true
+script = ExtResource("1_5bqoq")
+noteUI = NodePath("Notes_UI/NotesUI")
+dialogUI = NodePath("Dialog_UI")
+interaction_text = NodePath("Look_At_UI/look_at_text")
+
+[node name="Notes_UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="NotesUI" type="PanelContainer" parent="Notes_UI" node_paths=PackedStringArray("visibility_parent", "image", "text_contents", "page_couinter", "button_prompts")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("2_qbrru")
+visibility_parent = NodePath("..")
+image = NodePath("TextureRect")
+text_contents = NodePath("../Note_TextPanel/RichTextLabel")
+page_couinter = NodePath("../Note_TextPanel/Page Counter")
+button_prompts = NodePath("../Note_TextPanel/button_prompts")
+note_open_sound = ExtResource("5_a3wh3")
+note_close_sound = ExtResource("6_2dltx")
+note_right_sound = ExtResource("7_gb73w")
+note_left_sound = ExtResource("8_lqvkh")
+error_sound = ExtResource("5_qbrru")
+
+[node name="TextureRect" type="TextureRect" parent="Notes_UI/NotesUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("1_v2jwi")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="note_open_sound" type="AudioStreamPlayer" parent="Notes_UI/NotesUI"]
+stream = ExtResource("5_a3wh3")
+
+[node name="note_close_sound" type="AudioStreamPlayer" parent="Notes_UI/NotesUI"]
+stream = ExtResource("6_2dltx")
+
+[node name="note_page_right_sound" type="AudioStreamPlayer" parent="Notes_UI/NotesUI"]
+stream = ExtResource("7_gb73w")
+
+[node name="note_page_left_sound" type="AudioStreamPlayer" parent="Notes_UI/NotesUI"]
+stream = ExtResource("8_lqvkh")
+
+[node name="Note_TextPanel" type="Panel" parent="Notes_UI"]
+self_modulate = Color(0.293882, 0.293882, 0.293882, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a3wh3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Notes_UI/Note_TextPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("13_nc7xe")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_hllct")
+metadata/_custom_type_script = "uid://csbxlriiinr4e"
+
+[node name="Page Counter" type="Label" parent="Notes_UI/Note_TextPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.9
+theme = ExtResource("13_nc7xe")
+text = "-- / --"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_usp3h")
+metadata/_custom_type_script = "uid://bseq2rn182pv6"
+
+[node name="button_prompts" type="Label" parent="Notes_UI/Note_TextPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("13_nc7xe")
+text = " [esc] close"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_usp3h")
+metadata/_custom_type_script = "uid://bseq2rn182pv6"
+
+[node name="error_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qbrru")
+
+[node name="Look_At_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="aiming" type="CenterContainer" parent="Look_At_UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="look_at_reticle" type="TextureRect" parent="Look_At_UI/aiming"]
+self_modulate = Color(1, 1, 1, 0.443137)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("12_hllct")
+expand_mode = 2
+
+[node name="look_at_text" type="Label" parent="Look_At_UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.545
+anchor_right = 1.0
+anchor_bottom = 0.696
+theme = ExtResource("13_nc7xe")
+horizontal_alignment = 1
+script = ExtResource("11_usp3h")
+metadata/_custom_type_script = "uid://bseq2rn182pv6"
+
+[node name="Dialog_UI" type="Control" parent="." node_paths=PackedStringArray("text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_2dltx")
+text = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialog_UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.6
+anchor_right = 0.95
+anchor_bottom = 0.95
+mouse_filter = 2
+theme = ExtResource("13_nc7xe")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_hllct")
+metadata/_custom_type_script = "uid://csbxlriiinr4e"
+
+[node name="camera_preview_viewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="item_examine_yaw" type="Node3D" parent="camera_preview_viewport" node_paths=PackedStringArray("parent_to_add_item", "yaw_node", "pitch_node", "camera", "examine_ui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9870.17, -0.760635)
+script = ExtResource("14_nc7xe")
+parent_to_add_item = NodePath("item_examine_pitch")
+yaw_node = NodePath(".")
+pitch_node = NodePath("item_examine_pitch")
+camera = NodePath("../Camera3D")
+examine_ui = NodePath("../../item_preview_ui")
+
+[node name="item_examine_pitch" type="Node3D" parent="camera_preview_viewport/item_examine_yaw"]
+
+[node name="Camera3D" type="Camera3D" parent="camera_preview_viewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9870.17, 0)
+cull_mask = 524288
+fov = 43.9
+
+[node name="OmniLight3D" type="OmniLight3D" parent="camera_preview_viewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9870.07, -0.397501)
+layers = 524288
+
+[node name="item_preview_ui" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="item_preview_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="item_preview_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 576.0
+offset_top = 324.0
+offset_right = -576.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_nc7xe")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="auto_size_label" type="Label" parent="item_preview_ui"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.928
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_nc7xe")
+text = "[ESC] to Stop"
+horizontal_alignment = 1
+script = ExtResource("11_usp3h")
+metadata/_custom_type_script = "uid://bseq2rn182pv6"

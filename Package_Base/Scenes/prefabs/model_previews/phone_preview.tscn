@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://brn1d8u7oy0fy"]
+
+[ext_resource type="PackedScene" uid="uid://cp6yv4pe02f3g" path="res://Package_1/Models/phone/phone.glb" id="1_d4g28"]
+[ext_resource type="Script" uid="uid://dvn6bodv14k35" path="res://Package_Base/Scripts/prefabs/previews/phone_model_preview.gd" id="2_ub3sl"]
+[ext_resource type="PackedScene" uid="uid://cx3fdbq0dkeks" path="res://Package_Base/Scenes/Components/Interactables/interactable.tscn" id="3_n01oh"]
+[ext_resource type="PackedScene" uid="uid://bddm6d8vt35ph" path="res://Package_Base/Scenes/prefabs/model_previews/phone_model.tscn" id="3_ub3sl"]
+
+[node name="phone_preview" node_paths=PackedStringArray("nodes_to_disable") instance=ExtResource("1_d4g28")]
+script = ExtResource("2_ub3sl")
+model = ExtResource("3_ub3sl")
+nodes_to_disable = [NodePath("base"), NodePath("handset")]
+
+[node name="base" parent="." index="0"]
+layers = 1
+
+[node name="handset" parent="." index="1"]
+layers = 1
+
+[node name="Interactable" parent="." index="2" instance=ExtResource("3_n01oh")]
+look_at_text = "[E] examine phone"
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
