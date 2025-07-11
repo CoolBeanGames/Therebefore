@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Therebefore"
 config/tags=PackedStringArray("3d", "exploration", "firstperson", "narrative", "story")
-run/main_scene="uid://b7f5ifnt8gshr"
+run/main_scene="uid://bwv77c32ssb0e"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

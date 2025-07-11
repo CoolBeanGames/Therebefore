@@ -11,7 +11,7 @@ class_name _audio
 
 enum audio_bus{master,sfx,music,vocal,phone,ui,reverbSFX,reverbVocal}
 
-func _ready() -> void:
+func prepare() -> void:
 	await get_tree().process_frame
 	game_base = References.get_reference("game")
 	active_parent = game_base.ActivePlayersParent

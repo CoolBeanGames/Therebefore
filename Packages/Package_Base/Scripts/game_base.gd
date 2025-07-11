@@ -21,6 +21,8 @@ class_name game
 @export var font_size : int = 0
 signal screen_resized
 
+func _enter_tree() -> void:
+	Audio.prepare()
 
 func _ready():
 	References.add_custom("game",self)
