@@ -70,13 +70,31 @@ _subresources={
 "PATH:Bedroom": {
 "generate/physics": true
 },
+"PATH:Couch": {
+"generate/physics": true
+},
 "PATH:Hall": {
+"generate/physics": true
+},
+"PATH:Island": {
 "generate/physics": true
 },
 "PATH:Kitchen": {
 "generate/physics": true
 },
 "PATH:LivingRoom": {
+"generate/physics": true
+},
+"PATH:fridge base": {
+"generate/physics": true
+},
+"PATH:left counter": {
+"generate/physics": true
+},
+"PATH:right counter": {
+"generate/physics": true
+},
+"PATH:stove": {
 "generate/physics": true
 }
 }

@@ -4,7 +4,18 @@ class_name game_data
 var input_locked : bool = false
 var input_lockers : Array[Node]
 
+@export var playerSettings : PlayerSettings
 @export var flags : Array[String]
+
+func _ready() -> void:
+	playerSettings = PlayerSettings.new()
+	playerSettings.load_settings()
+	print("player settings invert y set to ",playerSettings.invert_y)
+	InputEvents.mouseInvertPressed.connect(on_invert_y)
+
+func on_invert_y():
+	playerSettings.invert_y = !playerSettings.invert_y
+	playerSettings.save_settings()
 
 #input locking
 

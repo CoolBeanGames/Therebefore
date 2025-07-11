@@ -199,7 +199,6 @@ anchor_right = 0.95
 anchor_bottom = 0.95
 mouse_filter = 2
 theme = ExtResource("13_nc7xe")
-text = "this is some sample text just to get the basic dialog system up and running properly, once this is working correctly i should be able to see and hear any dialog that is loaded and played in game"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("10_hllct")

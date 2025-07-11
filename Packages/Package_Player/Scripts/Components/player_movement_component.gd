@@ -28,7 +28,7 @@ func update_input():
 func set_velocity():
 	var forward = input.y * walk_speed * delta * -body.basis.z
 	var side = input.x * walk_speed * delta * body.basis.x
-	var grav = gravity_speed * delta * Vector3(0,1,0)
+	var grav = gravity_speed  * Vector3(0,1,0)
 	body.velocity = forward + side + grav
 
 func move_player():

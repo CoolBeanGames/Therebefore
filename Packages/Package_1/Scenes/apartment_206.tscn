@@ -1,39 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjyffn46xyxus"]
+[gd_scene load_steps=5 format=3 uid="uid://cjyffn46xyxus"]
 
 [ext_resource type="PackedScene" uid="uid://o7w7gawe5wlk" path="res://Packages/Package_1/Models/Apartment/Apartment.glb" id="1_j7y4d"]
 [ext_resource type="AudioStream" uid="uid://0qfxaokqblq4" path="res://Packages/Package_1/Assets/Audio/room_tone.mp3" id="2_rmknk"]
+[ext_resource type="PackedScene" uid="uid://cue21ja5me8tl" path="res://Packages/Package_1/Scenes/Notes/apartment_206_crumpled_note.tscn" id="3_ns655"]
+[ext_resource type="PackedScene" uid="uid://dcsanhakxyhev" path="res://Packages/Package_1/Scenes/Notes/apartment_206_calendar.tscn" id="4_04any"]
 
 [node name="Apartment" instance=ExtResource("1_j7y4d")]
 
 [node name="player_stand_in" parent="." index="5"]
 visible = false
 
-[node name="KitchenLight" parent="." index="15"]
-light_color = Color(0.811951, 0.754933, 0.665985, 1)
-light_energy = 1.0
-omni_range = 5.0
-
-[node name="LivingRoomLight" parent="." index="16"]
-light_color = Color(0.811951, 0.754933, 0.665985, 1)
-light_energy = 1.0
-omni_range = 5.0
-
-[node name="BathroomLight" parent="." index="17"]
-light_color = Color(0.811951, 0.754933, 0.665985, 1)
-light_energy = 1.0
-omni_range = 5.0
-
-[node name="HallLight1" parent="." index="18"]
-light_color = Color(0.811951, 0.754933, 0.665985, 1)
-light_energy = 1.0
-omni_range = 5.0
-
-[node name="HallLight2" parent="." index="19"]
-light_color = Color(0.811951, 0.754933, 0.665985, 1)
-light_energy = 1.0
-omni_range = 5.0
-
 [node name="GlitchedTonesHouseholdKitchenRoomtoneFanGrillPan561" type="AudioStreamPlayer" parent="." index="20"]
 stream = ExtResource("2_rmknk")
 volume_db = 3.0
 bus = &"reverbSFX"
+
+[node name="crumpled_note" parent="." index="23" instance=ExtResource("3_ns655")]
+transform = Transform3D(0.648253, 0, -0.761425, 0, 1, 0, 0.761425, 0, 0.648253, -4.57203, 0, 2.30254)
+
+[node name="calendar" parent="." index="24" instance=ExtResource("4_04any")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.89607, 1.66164, -0.389754)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="note_res" load_steps=3 format=3 uid="uid://cnjrdnkfo3n21"]
+
+[ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="1_d30xa"]
+[ext_resource type="Script" uid="uid://cs37kxhy4cbk0" path="res://Packages/Package_Base/Scripts/resource_definitions/note_res.gd" id="1_y71vp"]
+
+[resource]
+resource_name = "apartment_206_calendar"
+script = ExtResource("1_y71vp")
+pages = Array[String](["May 10th : My birthday
+May 18th: Dr Appt
+May 22nd: Inverview"])
+image = ExtResource("1_d30xa")
+flags = Array[String]([])

@@ -14,7 +14,6 @@ InactivePlayersParent = NodePath("AudioPlayers/Inactive")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04261, 0)
 
 [node name="UI" parent="." instance=ExtResource("4_bngpg")]
-visible = false
 
 [node name="AudioPlayers" type="Node" parent="."]
 
