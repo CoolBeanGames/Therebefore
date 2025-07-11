@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="note_res" load_steps=3 format=3 uid="uid://bfr1xwriga35a"]
 
-[ext_resource type="Texture2D" uid="uid://c14n0o1q3m7xt" path="res://addons/AddonUIComponents/Textures/item_list_pointer.png" id="1_nome7"]
+[ext_resource type="Texture2D" uid="uid://y4sqdu7nnwyw" path="res://icon.svg" id="1_kmhvq"]
 [ext_resource type="Script" uid="uid://cs37kxhy4cbk0" path="res://Package_Base/Scripts/resource_definitions/note_res.gd" id="2_vwijm"]
 
 [resource]
@@ -9,5 +9,5 @@ script = ExtResource("2_vwijm")
 pages = Array[String](["May 10th : My birthday
 May 18th: Dr Appt
 May 22nd: Inverview"])
-image = ExtResource("1_nome7")
+image = ExtResource("1_kmhvq")
 flags = Array[String]([])

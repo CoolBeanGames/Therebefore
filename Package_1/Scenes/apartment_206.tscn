@@ -15,6 +15,9 @@ stream = ExtResource("2_rmknk")
 volume_db = 3.0
 bus = &"reverbSFX"
 
+[node name="Couch" parent="." index="22"]
+transform = Transform3D(0.241139, 0.869518, 0.162356, -0.883481, 0.245011, 0, -0.0433877, -0.156451, 0.902336, -4.51813, -0.00088501, 3.3306)
+
 [node name="crumpled_note" parent="." index="23" instance=ExtResource("3_ns655")]
 transform = Transform3D(0.648253, 0, -0.761425, 0, 1, 0, 0.761425, 0, 0.648253, -4.57203, 0, 2.30254)
 
